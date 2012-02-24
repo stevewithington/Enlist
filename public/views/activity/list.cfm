@@ -52,16 +52,16 @@
 		<th>Event</th>
 		<th>Actions</th>
 	</tr>
-	<cfloop array="#variables.activities#" index="activity">
+	<cfloop query="variables.activities">
 		<tr>
-			<td>#variables.activity.getTitle()#</td>
-			<td>#variables.activity.getNumPeople()#</td>
-			<td>#variables.activity.getStartDate()#</td>
-			<td>#variables.activity.getEndDate()#</td>
-			<td>#variables.activity.getPointHours()#</td>
-			<td>#variables.activity.getLocation()#</td>
-			<td>#variables.activity.getEvent().getName()#</td>
-			<td><view:a event="activity.edit" p:id="#variables.activity.getId()#" label="Edit" /></td>
+			<td>#variables.activity.title#</td>
+			<td>#variables.activity.numPeople#</td>
+			<td>#variables.activity.startDate#</td>
+			<td>#variables.activity.endDate#</td>
+			<td>#variables.activity.pointHours#</td>
+			<td>#variables.activity.location#</td>
+			<!--- <td>#variables.activity.event().getName()#</td> --->
+			<td><view:a event="activity.edit" p:id="#variables.activity.id#" label="Edit" /></td>
 		</tr>	
 	</cfloop>
 </table>
