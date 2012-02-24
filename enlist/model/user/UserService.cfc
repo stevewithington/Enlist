@@ -54,11 +54,11 @@ Notes:
 	--->
 	<cffunction name="getUser" access="public" returntype="any" output="false">
 		<cfargument name="id" type="string" required="true" />
-		<cfreturn getGateway().read( arguments.id ) />
+		<cfreturn getGateway().getUser( Val(arguments.id) ) />
 	</cffunction>
 
-	<cffunction name="getUsers" access="public" returntype="array" output="false">
-		<cfreturn getGateway().list() />
+	<cffunction name="getUsers" access="public" returntype="query" output="false">
+		<cfreturn getGateway().getUsers() />
 	</cffunction>
 
 	<cffunction name="getUsersBySearch" access="public" returntype="array" output="false">
@@ -82,7 +82,7 @@ Notes:
 	<cffunction name="getUserByGoogleEmail" access="public" returntype="any" output="false"
 		hint="Gets an User from the datastore by Google Email.">
 		<cfargument name="googleEmail" type="string" required="true" />
-		<cfreturn getGateway().readByProperty( "googleEmail", arguments.googleEmail ) />
+		<cfreturn getGateway().getUser( googleEmail = arguments.googleEmail ) />
 	</cffunction>
 
 	<cffunction name="logoutUser" access="public" returntype="void" output="false">

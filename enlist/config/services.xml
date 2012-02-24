@@ -39,11 +39,7 @@ Notes:
 		<property name="gateway"><ref bean="userGateway" /></property>
 		<property name="sessionFacade"><ref bean="sessionFacade" /></property>
 	</bean>
-	<bean id="userGateway" class="enlist.model.BaseGateway">
-		<constructor-arg name="entityComponentPath">
-			<value>enlist.model.user.User</value>
-		</constructor-arg>
-	</bean>	
+	<bean id="userGateway" class="enlist.model.user.UserGateway" />	
 	
 	<!-- <bean id="googleUserService" factory-bean="userService" factory-method="getGoogleUserService" /> -->
 		
