@@ -85,7 +85,7 @@ Notes:
 				    </ul>
 				</li>
 			    <li class="dropdown">
-				    <a href="index.cfm?event=event.list"
+				    <a href="index.cfm?event=chapter.list"
 				          class="dropdown-toggle"
 				          data-toggle="dropdown">
 				          Chapters

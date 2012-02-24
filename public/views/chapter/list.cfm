@@ -34,24 +34,54 @@
 	
 	<view:meta type="title" content="List Chapters" />
 </cfsilent>
+
+
+<script type="text/javascript" charset="utf-8">
+	$(document).ready(function() {
+
+		$('#chapters').dataTable( {
+			"sPaginationType": "full_numbers",
+			"sType":"title-numeric"
+		} );
+
+		//link datable rows to chapter.edit
+		$('#chaptersList tr').live('click', function() {
+			var thisId = $(this).find('td[id]').attr("id");
+			window.location = '/index.cfm/?event=chapter.edit&id=' + thisId;
+		});
+	} );
+</script>
+
+
+
 <cfoutput>
 <p><view:a event="chapter.edit">Create a new chapter</view:a></p>
-
-<table>
-	<tr>
-		<th>Chapter</th>
-		<th>Location</th>
-		<th>Status</th>
-	</tr>
-<cfloop query="chapters">
-	<tr>
-		<td>#name#</td>
-		<td>#location#</td>
-		<td>#StatusCode#</td>
-		<td><view:a event="chapter.edit" p:id="#id#">Edit</view:a></td>
-	</tr>
-</cfloop>
-</table>
-
+<div>
+	<table id="chapters">
+		<thead>
+			<tr>
+				<th>Chapter</th>
+				<th>Location</th>
+				<th>Status</th>
+			</tr>
+		</thead>
+		<tbody id="chaptersList">
+			<cfloop query="chapters">
+				<tr>
+					<td id="#id#">#name#</td>
+					<td>#location#</td>
+					<td>#StatusCode#</td>
+				</tr>
+			</cfloop>
+		</tbody>
+		<tfoot>
+			<tr>
+				<th>Chapter</th>
+				<th>Location</th>
+				<th>Status</th>
+			</tr>
+		</tfoot>
+	</table>
+</div>
 <p><view:a event="chapter.edit">Create a new chapter</view:a></p>
 </cfoutput>
