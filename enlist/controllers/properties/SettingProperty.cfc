@@ -15,7 +15,7 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
-    
+
     Linking this library statically or dynamically with other modules is
     making a combined work based on this library.  Thus, the terms and
     conditions of the GNU General Public License cover the whole
@@ -28,6 +28,7 @@ Notes:
 <cfcomponent
 	displayname="SettingProperty"
 	extends="MachII.framework.Property"
+	depends="SettingService"
 	output="false"
 	hint="A property for the application specific settings">
 

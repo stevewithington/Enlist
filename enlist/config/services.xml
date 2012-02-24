@@ -60,9 +60,6 @@ Notes:
 	<bean id="activityGateway" class="enlist.model.event.activity.ActivityGateway">
 		<property name="eventService"><ref bean="eventService" /></property>
 		<property name="userService"><ref bean="userService" /></property>
-		<constructor-arg name="entityComponentPath">
-			<value>enlist.model.event.activity.Activity</value>
-		</constructor-arg>
 	</bean>
     	
 	<!-- CHAPTER -->

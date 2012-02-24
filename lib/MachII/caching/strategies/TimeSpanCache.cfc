@@ -41,10 +41,10 @@
 	interfaces).
 
 Author: Kurt Wiersma (kurt@mach-ii.com)
-$Id: TimeSpanCache.cfc 2657 2011-02-04 22:08:33Z peterjfarrell $
+$Id: TimeSpanCache.cfc 2871 2012-02-22 00:36:34Z peterjfarrell $
 
 Created version: 1.6.0
-Updated version: 1.8.1
+Updated version: 1.9.0
 
 Notes:
 
@@ -173,7 +173,11 @@ via reap() which is run every 3 minutes.
 		<cfset setThreadingAdapter(variables.utils.createThreadingAdapter()) />
 
 		<!--- Setup the cache by running a flush() --->
-		<cfset this.flush() />
+		<cfif getParameter("enableInitialFlush", true)>
+			<cfset this.flush() />
+		<cfelse>
+			<cfset getStorage() />
+		</cfif>
 	</cffunction>
 
 	<!---

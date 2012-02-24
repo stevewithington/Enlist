@@ -92,6 +92,13 @@ Notes:
 				</parameter>
 				<parameter name="assetPackages">
 					<struct>
+						<key name="datatables">
+							<array>
+								<element value="/views/thirdParty/DataTables-1.9.0/media/css/demo_table_jui.css" />
+								<element value="/views/thirdParty/DataTables-1.9.0/media/css/demo_table.css" />
+								<element value="/views/thirdParty/DataTables-1.9.0/media/js/jquery.dataTables.js" />
+							</array>
+						</key>
 						<key name="jquery">
 							<array>
 								<element value="libraries/jquery/jquery-1-5.js" />
@@ -115,7 +122,7 @@ Notes:
 			<parameters>
 				<parameter name="bundles">
 					<array>
-						<element value="./config/resources/"/>
+						<element value="/enlist/config/resources/content"/>
 					</array>
 				</parameter>
 			</parameters>
