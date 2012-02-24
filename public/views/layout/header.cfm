@@ -43,8 +43,10 @@ Notes:
 	  <div class="navbar-inner">
 	    <div class="container">
 	     <ul class="nav nav-tabs">
-				<li class="active"><view:a event="home" >Home</view:a></li>
-			<!--- <cfif variables.googleUserService.isUserLoggedIn()> --->
+
+				<li class="active"><view:a event="home" ><view:message key="nav.home" /></view:a></li>
+				<li class="active"><view:a event="home" ><view:message key="nav.home" /></view:a></li>
+			<!--- <cfif variables.googleUserService.isUserLoggedIn()> --->	
 			   <li class="dropdown">
 				    <a href="index.cfm?event=event.list"
 				          class="dropdown-toggle"
@@ -109,11 +111,11 @@ Notes:
 				     <li>Remove Navigation Item</li>
 				    </ul>
 				</li>
-				<li><view:a event="activityvolunteer.list">My Activities</view:a></li>
-				<li><view:a event="register">Register</view:a></li>
-				<li><a href="" id="logout">Logout</a></li>
+				<li><view:a event="activityvolunteer.list"><view:message key="nav.activities"/></view:a></li>  
+				<li><view:a event="register"><view:message key="nav.registration"/></view:a></li>
+				<li><a href="" id="logout"><view:message key="nav.logout"/></a></li>
 			<!--- <cfelse> --->
-				<li><a href="">Login</a></li>
+				<li><a href=""><view:message key="nav.login"/></a></li>
 			<!--- </cfif> --->
 			</ul>
 	    </div>
