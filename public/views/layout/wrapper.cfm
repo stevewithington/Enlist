@@ -44,6 +44,7 @@
 	<view:style href="south-street/jquery-ui-1.8.9.custom.css" media="screen"/>
 	<view:link type="icon" href="/favicon.ico" />
 	<view:asset package="jquery" outputType="inline" />
+	<view:asset package="datatables" outputType="inline" />
 </head>
 
 <body>
