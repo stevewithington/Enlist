@@ -28,8 +28,8 @@ Notes:
 --->
 	<cfimport prefix="form" taglib="/MachII/customtags/form" />
 	<cfimport prefix="view" taglib="/MachII/customtags/view" />
-	<cfimport prefix="tags" taglib="/customtags" />
-	<cfset copyToScope("${event.user},${event.chapters},states=${properties.usStates},roles=${properties.userRoles},statuses=${properties.userStatuses}") />
+	<cfimport prefix="tags" taglib="/Enlist/customtags" />
+	<cfset copyToScope("${event.user},${event.chapters:arrayNew(1)},states=${properties.usStates},roles=${properties.userRoles},statuses=${properties.userStatuses}") />
 
 	<cfif NOT Len(variables.user.getId())>
 		<cfset variables.type = "New" />
@@ -112,18 +112,16 @@ Notes:
 				<form:input path="zip" size="11" maxlength="10" />
 			</td>
 		</tr>
-		<cfif ArrayLen( chapters )>
 			<tr>
 				<th><label id="chapterId">Chapter</label></th>
 				<td>
 					<form:select path="chapterId">
-						<cfloop from="1" to="#ArrayLen(chapters)#" index="i">
-							<form:option value="#chapters[i].getID()#" label="#chapters[i].getName()#" />
+						<cfloop query="chapters">
+							<form:option value="#chapters.id#" label="#chapters.Name#" />
 						</cfloop>
 					</form:select>
 				</td>
 			</tr>
-		</cfif>
 		<tr>
 			<td><form:hidden name="id" path="id" /></td>
 			<td colspan="3"><form:button type="submit" name="save" value="Save User" /></td>
