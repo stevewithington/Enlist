@@ -33,8 +33,7 @@ Notes:
 	<!---
 	INITIALIZATION / CONFIGURATION
 	--->
-	<cffunction name="init" access="public" returntype="ActivityService" output="false"
-		hint="Initializes the service.">
+	<cffunction name="init" access="public" returntype="ActivityService" output="false" hint="Initializes the service.">
 
 		<cfset super.init(argumentcollection=arguments) />
 
@@ -49,7 +48,7 @@ Notes:
 		<cfreturn getGateway().read( argumentCollection = arguments ) />
 	</cffunction>
 
-	<cffunction name="getActivities" access="public" returntype="array" output="false">
+	<cffunction name="getActivities" access="public" returntype="query" output="false">
 		<cfreturn getGateway().list() />
 	</cffunction>
 
