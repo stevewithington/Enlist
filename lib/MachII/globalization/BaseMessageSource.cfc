@@ -149,6 +149,7 @@ Created version: 1.9.0
 		<cfif IsObject(messageFormat)>
 			<cflock name="_MachIIResourceBundleMessageSource_messageFormat_#variables.uniqueId#" type="readonly" timeout="30">
 				<cfset getLog().trace("MessageFormat object found and resolving.") />
+				
 				<cfreturn messageFormat.format(argsToUse) />
 			</cflock>
 		</cfif>
