@@ -297,7 +297,7 @@ Notes:
 	<!---
 	PROTECTED FUNCTIONS - GENERAL
 	--->
-	<cffunction name="getWorkingLocale" access="private" returntype="string" output="false"
+	<cffunction name="getWorkingLocale" access="private" returntype="any" output="false"
 		hint="Returns the current Locale for this request">
 
 		<cfset var locale = "" />
@@ -710,7 +710,7 @@ Notes:
 		<cfargument name="locale" type="string" required="true" />
 		<cfset setWorkingLocale(arguments.locale)/>
 	</cffunction>
-	<cffunction name="getCurrentLocale" access="public" returntype="string" output="false"
+	<cffunction name="getCurrentLocale" access="public" returntype="any" output="false"
 		hint="Gets the current locale for a request">
 		<cfreturn getWorkingLocale()/>
 	</cffunction>
