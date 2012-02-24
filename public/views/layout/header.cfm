@@ -30,9 +30,12 @@ Notes:
 	<cfset copyToScope("eventName=${event.getName()},${properties.udfs}") />
 </cfsilent>
 <cfoutput>
-	
+<script charset="javascript">
+	$('.dropdown-toggle').dropdown()
+</script>	
+
 <div class="row">
-	<div><h2><view:a event="home" title="Back to Home">Enlist</view:a></h2></div>
+	<div class="span12"><img alt="" width="172" height="70" src="/img/Enlist_Logo.png"/></div>
 </div>	
 
 <div class="row">	
@@ -40,10 +43,75 @@ Notes:
 	  <div class="navbar-inner">
 	    <div class="container">
 	     <ul class="nav nav-tabs">
-				<li><view:a event="home" class="#variables.udfs.highlightLevel("home", variables.eventName)#">Home</view:a></li>
-			<!--- <cfif variables.googleUserService.isUserLoggedIn()> --->
-				<li><a href="" id="logout">Logout</a></li>
+				<li class="active"><view:a event="home" >Home</view:a></li>
+			<!--- <cfif variables.googleUserService.isUserLoggedIn()> --->	
+			   <li class="dropdown">
+				    <a href="index.cfm?event=event.list"
+				          class="dropdown-toggle"
+				          data-toggle="dropdown">
+				          Users
+				          <b class="caret"></b>
+				    </a>
+				    <ul class="dropdown-menu">
+				     <li><view:a event="user.add" >Add User</view:a></li>
+				     <li><view:a event="user.list" >List Users</view:a></li>
+				     <li><view:a event="user.search" >Search User</view:a></li>
+				    </ul>
+				</li>		
+			   <li class="dropdown">
+				    <a href="index.cfm?event=event.list"
+				          class="dropdown-toggle"
+				          data-toggle="dropdown">
+				          Events
+				          <b class="caret"></b>
+				    </a>
+				    <ul class="dropdown-menu">
+				     <li><view:a event="event.add" >Add Event</view:a></li>
+				     <li><view:a event="event.list" >List Events</view:a></li>
+				     <li><view:a event="event.search" >Search Events</view:a></li>
+				    </ul>
+				</li>
+			    <li class="dropdown">
+				    <a href="index.cfm?event=event.list"
+				          class="dropdown-toggle"
+				          data-toggle="dropdown">
+				          Actvites
+				          <b class="caret"></b>
+				    </a>
+				    <ul class="dropdown-menu">
+				     <li><view:a event="activity.edit" >Add Activity</view:a></li>
+				     <li><view:a event="activity.list" >List Activity</view:a></li>
+				     <li><view:a event="activity.search" >Search Activity</view:a></li>
+				    </ul>
+				</li>
+			    <li class="dropdown">
+				    <a href="index.cfm?event=event.list"
+				          class="dropdown-toggle"
+				          data-toggle="dropdown">
+				          Chapters
+				          <b class="caret"></b>
+				    </a>
+				    <ul class="dropdown-menu">
+				     <li><view:a event="chapter.add" >Add Chapter</view:a></li>
+				     <li><view:a event="chapter.list" >List Chapters</view:a></li>
+				    </ul>
+				</li>
+			    <li class="dropdown">
+				    <a href="index.cfm?event=event.list"
+				          class="dropdown-toggle"
+				          data-toggle="dropdown">
+				          Navigation
+				          <b class="caret"></b>
+				    </a>
+				    <ul class="dropdown-menu">
+				     <li>Add Navigation Item</li>
+				     <li>Edit Navigation Item</li>
+				     <li>Remove Navigation Item</li>
+				    </ul>
+				</li>
+				<li><view:a event="activityvolunteer.list">My Activities</view:a></li>  
 				<li><view:a event="register">Register</view:a></li>
+				<li><a href="" id="logout">Logout</a></li>
 			<!--- <cfelse> --->
 				<li><a href="">Login</a></li>
 			<!--- </cfif> --->

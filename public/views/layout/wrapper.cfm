@@ -55,13 +55,9 @@
 	</div>
   </div>
   <div class="row-fluid">
-    <div class="span10">
+    <div class="span12">
       <!--Body content-->
 		#event.getArg("layout.content")#
-    </div>
-    <div class="span2">
-      <!--Sidebar content-->
-		#event.getArg("layout.nav")#
     </div>
   </div>
   </div class="row">
