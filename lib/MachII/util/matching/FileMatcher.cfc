@@ -99,7 +99,7 @@ Notes:
 				OR (FindNoCase("BlueDragon", variables.engineInfo.Name) AND variables.engineInfo.productLevel EQ "GPL" AND ((variables.engineInfo.majorVersion EQ 1 AND variables.engineInfo.minorVersion GTE 4) OR variables.engineInfo.majorVersion GTE 2))
 				OR (FindNoCase("Railo", variables.engineInfo.Name) AND variables.engineInfo.majorVersion GTE 3)
 				)>
-				<cfset variables.useListInfo = true />
+				<cfset variables.useListInfo = false />
 			</cfif>
 		</cfif>
 
@@ -334,6 +334,8 @@ Notes:
 			<cfset rootFix = "/" />
 		</cfif>
 
+		<cfdump var="#pathResults#">
+
 		<!--- Add modified path columns --->
 		<cfset QueryAddColumn(pathResults, "modifiedPath", "VarChar", ArrayNew(1)) />
 		<cfset QueryAddColumn(pathResults, "fullPath", "VarChar", ArrayNew(1)) />
@@ -350,6 +352,8 @@ Notes:
 		--->
 		<cfif Len(arguments.removeRootPath)>
 			<cfloop from="1" to="#pathResults.recordcount#" index="i">
+				<cfdump var="#GetDirectoryFromPath(pathResults.name[i])#">
+				<cfabort>
 				<cfset pathResults.directory[i] = rootFix & REReplaceNoCase(arguments.path & "/" & GetDirectoryFromPath(pathResults.name[i]), "(\\{1,}|\/{1,})", "/", "all") />
 				<cfset pathResults.name[i] = GetFileFromPath(pathResults.name[i]) />
 				<cfset pathResults.fullPath[i] = pathResults.directory[i] & pathResults.name[i] />
@@ -363,6 +367,9 @@ Notes:
 				<cfset pathResults.modifiedPath[i] = pathResults.fullPath[i] />
 			</cfloop>
 		</cfif>
+
+			<cfdump var="#pathResults#">
+		<cfabort>
 
 		<cfreturn pathResults />
 	</cffunction>

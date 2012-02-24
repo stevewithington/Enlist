@@ -257,7 +257,7 @@ Notes:
 
 		<!--- Ensure base application properties defaults --->
 		<cfset ensureBasePropertyDefaults() />
-
+		
 		<!--- Run configure on all configurable properties --->
 		<cfloop from="1" to="#ArrayLen(configurablePropertyNames)#" index="i">
 			<cfset aConfigurableProperty = getProperty(configurablePropertyNames[i]) />
@@ -415,8 +415,12 @@ Notes:
 		<cfset var propertyName = "" />
 		<cfset var aConfigurableProperty = "" />
 
+
 		<cfset pos = ListContainsNoCase(variables.PROPERTY_LOAD_ORDER, arguments.configurablePropertyType)>
+
 		<cfif pos GT 0 AND ArrayLen(variables.configurablePropertyNames) GT 0>
+
+
 			<cfloop from="1" to="#ArrayLen(variables.configurablePropertyNames)#" index="i">
 				<cfif i EQ pos>
 					<cfset ArrayInsertAt(variables.configurablePropertyNames, insertAt, arguments.configurablePropertyName)>
@@ -425,6 +429,10 @@ Notes:
 					<cfset aConfigurableProperty = getProperty(variables.configurablePropertyNames[i]) />
 					<cfif ListFindNoCase(variables.PROPERTY_LOAD_ORDER, GetMetaData(aConfigurableProperty).name) >
 						<cfset insertAt++ />
+						<cfif insertAt GTE i>
+							<cfset ArrayAppend(variables.configurablePropertyNames, arguments.configurablePropertyName) />
+							<cfbreak />
+						</cfif>
 					<cfelseif insertAt GTE i>
 						<cfset ArrayInsertAt(variables.configurablePropertyNames, insertAt, arguments.configurablePropertyName)>
 						<cfbreak />
