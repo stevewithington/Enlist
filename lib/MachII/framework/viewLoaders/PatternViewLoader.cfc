@@ -15,12 +15,12 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
-    
+
     Linking this library statically or dynamically with other modules is
     making a combined work based on this library.  Thus, the terms and
     conditions of the GNU General Public License cover the whole
     combination.
- 
+
     As a special exception, the copyright holders of this library give you
     permission to link this library with independent modules to produce an
     executable, regardless of the license terms of these independent
@@ -51,14 +51,14 @@ Wildcards for patterns:
         <parameters>
 			<!-- An ANT-style patterns using wildcards to find views to load -->
             <parameter name="pattern" value="/views/**/*.cfm" />
-            <!-- A string to prefix the <page-view> name with (matches only 
-				starts after first pattern character is detected). 
+            <!-- A string to prefix the <page-view> name with (matches only
+				starts after first pattern character is detected).
 				Optional, showing default value if attribute is omitted -->
             <parameter name="prefix" value="" />
             <!-- Character to use when building the <page-view> names.
 				Optional, showing default value if attribute is omitted -->
             <parameter name="nameDelimiter" value="." />
-            <!-- A list or array of ANT-style patterns or static paths to 
+            <!-- A list or array of ANT-style patterns or static paths to
 				exclude from the pattern search routine.
 				Optional, takes a list or an array -->
             <parameter name="exclude" value="/views/includes/**,/views/otherDir/**" />
@@ -82,8 +82,8 @@ Wildcards for patterns:
 --->
 <cfcomponent
 	displayname="PatternViewLoader"
-	extends="MachII.framework.viewLoaders.AbstractViewLoader" 
-	output="false" 
+	extends="MachII.framework.viewLoaders.AbstractViewLoader"
+	output="false"
 	hint="Loads views that match an ANT-style path pattern.">
 
 	<!---
@@ -101,22 +101,22 @@ Wildcards for patterns:
 	INITIALIZATION / CONFIGURATION
 	--->
 	<cffunction name="configure" access="public" returntype="void" output="false"
-		hint="Configures the view loader.">			
-		<cfset setApplicationRoot(getAppManager().getPropertyManager().getProperty("applicationRoot")) />		
+		hint="Configures the view loader.">
+		<cfset setApplicationRoot(getAppManager().getPropertyManager().getProperty("applicationRoot")) />
 		<cfset setPattern(getParameter("pattern", "/views/**/*.cfm")) />
 		<cfset setPrefix(getParameter("prefix" ,"")) />
 		<cfset setNameDelimiter(getParameter("nameDelimiter", ".")) />
 		<cfset setExclude(getParameter("exclude", ArrayNew(1))) />
 		<cfset setThrowIfNoMatches(getParameter("throwIfNoMatches", true)) />
 	</cffunction>
-	
+
 	<!---
 	PUBLIC FUNCTIONS
 	--->
 	<cffunction name="discoverViews" access="public" returntype="struct" output="false"
 		hint="Loads views based on the defined parameters.">
-		
-		<cfset var appRoot = getApplicationRoot() />	
+
+		<cfset var appRoot = getApplicationRoot() />
 		<cfset var appRootPath = variables.pathMatcher.pathClean(ExpandPath(appRoot)) />
 		<cfset var searchPath = "" />
 		<cfset var pattern = getPattern() />
@@ -129,7 +129,7 @@ Wildcards for patterns:
 		<cfif appRootPath.endsWith("/")>
 			<cfset appRootPath = Left(appRootPath, Len(appRootPath) -1) />
 		</cfif>
-		
+
 		<!--- Decide if we need to resolve a relative pattern path   --->
 		<cfif pattern.startsWith(".")>
 			<cfset searchPath = getUtils().expandRelativePath(appRootPath, variables.pathMatcher.extractPathWithoutPattern(pattern)) />
@@ -140,9 +140,9 @@ Wildcards for patterns:
 		<cfelse>
 			<cfset searchPath = appRootPath & "/" & variables.pathMatcher.extractPathWithoutPattern(pattern) />
 		</cfif>
-		
+
 		<cfset searchPath = variables.pathMatcher.pathClean(searchPath) />
-		
+
 		<cfset pageViewPaths = variables.pathMatcher.match(pattern, searchPath, appRootPath, getExclude()) />
 
 		<!--- Build page-views that match patterns --->
@@ -153,38 +153,38 @@ Wildcards for patterns:
 			<cfset viewData.appRootType = "local" />
 			<cfset results[buildPageViewName(pattern, viewData.page)] = viewData />
 		</cfloop>
-		
+
 		<!--- Throw an exception if there are not matches --->
 		<cfif getThrowIfNoMatches() AND NOT StructCount(results)>
 			<cfthrow type="MachII.framework.viewLoaders.PatternViewLoader.noMatches"
 				message="No matches found for pattern '#getPattern()#' in module '#getAppManager().getModuleName()#'."
 				detail="App root '#appRoot#', App root path '#appRootPath#, 'Search path '#searchPath#', Total view paths found '#pageViewPaths.recordcount#'." />
 		</cfif>
-		
+
 		<cfreturn results />
 	</cffunction>
-	
+
 	<!---
 	PROTECTED FUNCTIONS - UTILS
-	--->	
+	--->
 	<cffunction name="buildPageViewName" access="private" returntype="string" output="false"
 		hint="Builds page view name based on the path and pattern.">
 		<cfargument name="pattern" type="string" required="true" />
 		<cfargument name="path" type="string" required="true" />
-		
+
 		<cfset var prefix = getPrefix() />
 		<cfset var fileName = ListLast(arguments.path, "/") />
 		<cfset var fileExtension = "" />
 		<cfset var result = "" />
-		
+
 		<!--- Append name delimiter to prefix if a prefix is defined--->
 		<cfif Len(prefix)>
-			<cfset prefix = prefix & getNameDelimiter() />	
+			<cfset prefix = prefix & getNameDelimiter() />
 		</cfif>
-		
+
 		<!--- Replace all path separators with name delimiter --->
 		<cfset result = Replace(variables.pathMatcher.extractPathWithinPattern(arguments.pattern, arguments.path), "/", getNameDelimiter(), "all") />
-		
+
 		<!---
 		Remove file extension if defined
 		(some directories have periods in them so we have to look at the file name)
@@ -200,27 +200,27 @@ Wildcards for patterns:
 				<cfset result = Left(result, Len(result) - Len(fileExtension)) />
 			</cfif>
 		</cfif>
-		
+
 		<cfreturn prefix & result />
 	</cffunction>
-	
+
 	<cffunction name="removeRelativePartsFromPattern" access="private" returntype="string" output="false"
 		hint="Removes the relative parts form the pattern.">
 		<cfargument name="pattern" type="string" required="true" />
-		
+
 		<cfset var patternParts = ListToArray(arguments.pattern, "/") />
 		<cfset var patternBase = "" />
 		<cfset var i = 0 />
-		
+
 		<cfloop from="1" to="#ArrayLen(patternParts)#" index="i">
 			<cfif NOT ListFindNoCase(".|..", patternParts[i], "|")>
 				<cfset patternBase = ListAppend(patternBase, patternParts[i], "/") />
 			</cfif>
 		</cfloop>
-		
+
 		<cfreturn patternBase />
 	</cffunction>
-	
+
 	<!---
 	ACCESSORS
 	--->
@@ -231,15 +231,15 @@ Wildcards for patterns:
 	<cffunction name="getApplicationRoot" access="public" returntype="string" output="false">
 		<cfreturn variables.applicationRoot />
 	</cffunction>
-	
+
 	<cffunction name="setPattern" access="private" returntype="void" output="false">
 		<cfargument name="pattern" type="string" required="true" />
-		
+
 		<!--- Ensure the passed value is really a pattern --->
 		<cfset getAssert().isTrue(variables.pathMatcher.isPattern(arguments.pattern)
 				, "The value of the parameter 'pattern' is not a valid path pattern (ex. '/views/**/*.cfm')."
 				, "The passed pattern is '#arguments.pattern#'.") />
-		
+
 		<cfset variables.pattern = arguments.pattern />
 	</cffunction>
 	<cffunction name="getPattern" access="public" returntype="string" output="false">
@@ -265,24 +265,24 @@ Wildcards for patterns:
 	<cffunction name="setExclude" access="private" returntype="void" output="false"
 		hint="Set the exclude paths and converts to an array if necessary. Accepts a list or an array.">
 		<cfargument name="exclude" type="any" required="true" />
-		
+
 		<cfset var cleanedExclude = ArrayNew(1) />
 		<cfset var i = 0 />
-		
+
 		<!--- Convert to array --->
 		<cfif IsSimpleValue(arguments.exclude)>
 			<cfset arguments.exclude = ListToArray(getUtils().trimList(arguments.exclude)) />
 		</cfif>
-		
+
 		<cfset getAssert().isTrue(IsArray(arguments.exclude)
 				, "The value of the parameter 'exclude' is must be a list or an array.") />
-		
+
 		<cfset variables.exclude = arguments.exclude />
 	</cffunction>
 	<cffunction name="getExclude" access="public" returntype="array" output="false">
 		<cfreturn variables.exclude />
 	</cffunction>
-	
+
 	<cffunction name="setThrowIfNoMatches" access="private" returntype="void" output="false">
 		<cfargument name="throwIfNoMatches" type="boolean" required="true" />
 		<cfset variables.throwIfNoMatches = arguments.throwIfNoMatches />

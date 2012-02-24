@@ -103,8 +103,6 @@ Notes:
 		<cfset var viewContent = "" />
 		<cfset var resolvedContentData = "" />
 		<cfset var log = getLog() />
-		
-		<cfset viewPath = replaceNoCase(viewPath, "//", "/", "ALL") />
 
 		<!--- Log this view --->
 		<cfif Len(arguments.contentKey)>
