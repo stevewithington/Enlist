@@ -30,16 +30,26 @@ Notes:
 	<cfset copyToScope("eventName=${event.getName()},${properties.udfs}") />
 </cfsilent>
 <cfoutput>
-<h2><view:a event="home" title="Back to Home">Enlist</view:a></h2>
-<div id="menu">
-	<ul>
-		<li><view:a event="home" class="#variables.udfs.highlightLevel("home", variables.eventName)#">Home</view:a></li>
-	<!--- <cfif variables.googleUserService.isUserLoggedIn()> --->
-		<li><a href="" id="logout">Logout</a></li>
-		<li><view:a event="register">Register</view:a></li>
-	<!--- <cfelse> --->
-		<li><a href="">Login</a></li>
-	<!--- </cfif> --->
-	</ul>
+	
+<div class="row">
+	<div><h2><view:a event="home" title="Back to Home">Enlist</view:a></h2></div>
+</div>	
+
+<div class="row">	
+	<div class="navbar">
+	  <div class="navbar-inner">
+	    <div class="container">
+	     <ul class="nav nav-tabs">
+				<li><view:a event="home" class="#variables.udfs.highlightLevel("home", variables.eventName)#">Home</view:a></li>
+			<!--- <cfif variables.googleUserService.isUserLoggedIn()> --->
+				<li><a href="" id="logout">Logout</a></li>
+				<li><view:a event="register">Register</view:a></li>
+			<!--- <cfelse> --->
+				<li><a href="">Login</a></li>
+			<!--- </cfif> --->
+			</ul>
+	    </div>
+	  </div>
+	</div>	
 </div>
 </cfoutput>

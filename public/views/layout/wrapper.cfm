@@ -40,34 +40,37 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
-	<view:style href="style.css" media="screen"/>
+	<view:style href="/bootstrap/css/bootstrap.css" media="screen"/>
 	<view:style href="south-street/jquery-ui-1.8.9.custom.css" media="screen"/>
 	<view:link type="icon" href="/favicon.ico" />
 	<view:asset package="jquery" outputType="inline" />
 </head>
 
 <body>
-<div id="wrap">
-	<div id="top">
-		#event.getArg("layout.header")#
-	</div>
-
-	<div id="content">
-		<div id="left">
-			#event.getArg("layout.content")#
-		</div>
-		
-		<div id="right">
-			#event.getArg("layout.nav")#
-		</div>
-		
-		<div id="clear"></div>
-	</div>
 	
-	<div id="footer">
-		#event.getArg("layout.footer")#
+<div class="container-fluid">
+  <div class="row">
+	<div id="top" class="span12">
+       #event.getArg("layout.header")#
 	</div>
-</div>
+  </div>
+  <div class="row-fluid">
+    <div class="span10">
+      <!--Body content-->
+		#event.getArg("layout.content")#
+    </div>
+    <div class="span2">
+      <!--Sidebar content-->
+		#event.getArg("layout.nav")#
+    </div>
+  </div>
+  </div class="row">
+    <div id="footer" class="span12">
+      #event.getArg("layout.footer")#
+    </div>
+  </div>
+</div>	
+
 </body>
 </html>
 </cfoutput>
