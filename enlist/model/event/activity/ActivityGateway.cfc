@@ -33,9 +33,7 @@ Notes:
 	<!---
 	INITIALIZATION / CONFIGURATION
 	--->
-	<cffunction name="init" access="public" returntype="ActivityGateway" output="false"
-		hint="Initializes the gateway.">
-		<cfset super.init(argumentcollection = arguments) />
+	<cffunction name="init" access="public" returntype="ActivityGateway" output="false" hint="Initializes the gateway.">
 		<cfreturn this />
 	</cffunction>
 
@@ -61,9 +59,60 @@ Notes:
     <!---
 	PUBLIC FUNCTIONS
 	--->
-	<cffunction name="list" access="public" returntype="array" output="false"
-		hint="Lists all activities.">
-		<cfreturn addEventNamesToActivities(super.list()) />		
+	<cffunction name="list" access="public" returntype="query" output="false" hint="Lists all activities.">
+		<cfargument name="id" type="string" required="false" default="0" />
+		<cfargument name="title" type="string" required="false" default=""/>
+		<cfargument name="description" type="string" required="false" default="" />
+		<cfargument name="numPeople" type="string" required="false" default="0" />
+		<cfargument name="startDate" type="string" required="false" default="" />
+		<cfargument name="endDate" type="string" required="false" default="" />
+		<cfargument name="pointHours" type="string" required="false" default="0" />
+		<cfargument name="location" type="string" required="false" default="" />
+		<cfargument name="eventId" type="string" required="false" default="0" />
+
+		<cfset var qryActivities = "" />
+
+		<cfquery name="qryActivities">
+			SELECT 
+				  a.id
+				, a.title
+				, a.description
+				, a.numPeople
+				, a.startDate
+				, a.endDate
+				, a.pointHours
+				, a.location
+				, a.eventId
+
+			FROM activity AS a
+			WHERE 1=1
+				<cfif arguments.id GT 0>
+					AND a.id=<cfqueryparam value="#arguments.id#" cfsqltype="CF_SQL_INTEGER" />
+				</cfif>
+
+				<cfif len(arguments.title)>
+					AND a.title LIKE <cfqueryparam value="%#arguments.title#%" cfsqltype="CF_SQL_VARCHAR" maxlength="100" />
+				</cfif>
+
+				<cfif len(arguments.description)>
+					AND a.description LIKE <cfqueryparam value="%#arguments.description#%" cfsqltype="CF_SQL_VARCHAR" maxlength="1000" />
+				</cfif>
+
+				<cfif arguments.numPeople GT 0>
+					AND a.numPeople=<cfqueryparam value="#arguments.numPeople#" cfsqltype="CF_SQL_INTEGER" />
+				</cfif>
+
+				<cfif isDate(arguments.startDate)>
+					AND a.startDate=<cfqueryparam value="#arguments.startDate#" cfsqltype="CF_SQL_DATE" />
+				</cfif>
+
+				<cfif isDate(arguments.startDate)>
+					AND a.endDate=<cfqueryparam value="#arguments.endDate#" cfsqltype="CF_SQL_DATE" />
+				</cfif>
+		</cfquery>
+		<!---<cfreturn addEventNamesToActivities(super.list()) />--->
+
+		<cfreturn qryActivities />
 	</cffunction>
 	
 	<cffunction name="listByPropertyMap" access="public" returntype="array" output="false">

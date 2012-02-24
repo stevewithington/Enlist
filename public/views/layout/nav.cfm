@@ -43,7 +43,7 @@
 	
 	<cfset var link = "" />
 	
-	<ul id="nav">
+	<ul class="nav nav-pills nav-stacked">
 	<cfloop index="link" from="1" to="#arrayLen(arguments.links)#">
 		<cfoutput>
 		<li><view:a event="#arguments.links[link].getEventName()#">#arguments.links[link].getName()#</view:a></li>
