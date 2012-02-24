@@ -30,21 +30,21 @@ Notes:
 	<cfset copyToScope("eventName=${event.getName()},${properties.udfs}") />
 </cfsilent>
 <cfoutput>
-<script charset="javascript">
-	$('.dropdown-toggle').dropdown()
-</script>	
+<view:script src="/bootstrap/js/bootstrap.js">
+	$('.dropdown-toggle').dropdown();
+</view:script>
 
 <div class="row">
 	<div class="span12"><img alt="" width="172" height="70" src="/img/Enlist_Logo.png"/></div>
-</div>	
+</div>
 
-<div class="row">	
+<div class="row">
 	<div class="navbar">
 	  <div class="navbar-inner">
 	    <div class="container">
 	     <ul class="nav nav-tabs">
 				<li class="active"><view:a event="home" >Home</view:a></li>
-			<!--- <cfif variables.googleUserService.isUserLoggedIn()> --->	
+			<!--- <cfif variables.googleUserService.isUserLoggedIn()> --->
 			   <li class="dropdown">
 				    <a href="index.cfm?event=event.list"
 				          class="dropdown-toggle"
@@ -57,7 +57,7 @@ Notes:
 				     <li><view:a event="user.list" >List Users</view:a></li>
 				     <li><view:a event="user.search" >Search User</view:a></li>
 				    </ul>
-				</li>		
+				</li>
 			   <li class="dropdown">
 				    <a href="index.cfm?event=event.list"
 				          class="dropdown-toggle"
@@ -109,7 +109,7 @@ Notes:
 				     <li>Remove Navigation Item</li>
 				    </ul>
 				</li>
-				<li><view:a event="activityvolunteer.list">My Activities</view:a></li>  
+				<li><view:a event="activityvolunteer.list">My Activities</view:a></li>
 				<li><view:a event="register">Register</view:a></li>
 				<li><a href="" id="logout">Logout</a></li>
 			<!--- <cfelse> --->
@@ -118,6 +118,6 @@ Notes:
 			</ul>
 	    </div>
 	  </div>
-	</div>	
+	</div>
 </div>
 </cfoutput>
