@@ -122,7 +122,7 @@ Notes:
 			<parameters>
 				<parameter name="bundles">
 					<array>
-						<element value="./config/resources/"/>
+						<element value="/enlist/config/resources/content"/>
 					</array>
 				</parameter>
 			</parameters>
