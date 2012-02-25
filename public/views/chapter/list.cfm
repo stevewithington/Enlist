@@ -36,19 +36,6 @@
 </cfsilent>
 
 
-<script type="text/javascript" charset="utf-8">
-	$(document).ready(function() {
-
-		$('#chapters').dataTable();
-
-		//link datatable rows to chapter.edit
-		$('#chaptersList tr').live('click', function() {
-			var thisId = $(this).find('td[id]').attr("id");
-			window.location = '/index.cfm/?event=chapter.edit&id=' + thisId;
-		});
-	} );
-</script>
-
 <cfoutput>
 	
 <ul class="nav nav-pills">
@@ -56,32 +43,31 @@
   <li <cfif arguments.event.getArg('event') eq 'chapter.list'>class="active"</cfif>><view:a event="chapter.list">List Chapters</view:a></li>
 </ul>
 
-	
-<p><view:a event="chapter.edit">Create a new chapter</view:a></p>
-	<table id="chapters">
-		<thead>
-			<tr>
-				<th>Chapter</th>
-				<th>Location</th>
-				<th>Status</th>
-			</tr>
-		</thead>
-		<tbody id="chaptersList">
-			<cfloop query="chapters">
-				<tr>
-					<td id="#id#">#name#</td>
-					<td>#location#</td>
-					<td>#StatusCode#</td>
-				</tr>
-			</cfloop>
-		</tbody>
-		<tfoot>
-			<tr>
-				<th>Chapter</th>
-				<th>Location</th>
-				<th>Status</th>
-			</tr>
-		</tfoot>
-	</table>
-<p><view:a event="chapter.edit">Create a new chapter</view:a></p>
+<tags:datatable>
+<div class="content">	
+	<div class="row">
+		<div class="span12">
+			<table id="chapters" class="table table-striped table-bordered">
+				<thead>
+					<tr>
+						<th>Chapter</th>
+						<th>Location</th>
+						<th>Status</th>
+					</tr>
+				</thead>
+				<tbody id="chaptersList">
+					<cfloop query="chapters">
+						<tr id="tabledata">
+							<td id="#id#">#name#</td>
+							<td>#location#</td>
+							<td>#StatusCode#</td>
+						</tr>
+					</cfloop>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="clear"><br><br></div>
+</div>
+</tags:datatable>
 </cfoutput>

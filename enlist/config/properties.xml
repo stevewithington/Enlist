@@ -97,6 +97,7 @@ Notes:
 								<element value="/views/thirdParty/DataTables-1.9.0/media/css/demo_table_jui.css" />
 								<element value="/views/thirdParty/DataTables-1.9.0/media/css/demo_table.css" />
 								<element value="/views/thirdParty/DataTables-1.9.0/media/js/jquery.dataTables.js" />
+								<element value="/bootstrap/js/DT_bootstrap.js" />
 							</array>
 						</key>
 						<key name="jquery">
