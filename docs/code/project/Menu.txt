@@ -54,7 +54,7 @@ Group: Enlist  {
 
    File: Activity  (/home/psykoprogrammer/Dropbox/code/coldfusion/Enlist/enlist/model/event/activity/Activity.cfc)
    File: ActivityListener  (/home/psykoprogrammer/Dropbox/code/coldfusion/Enlist/enlist/controllers/listeners/ActivityListener.cfc)
-   File: read  (/home/psykoprogrammer/Dropbox/code/coldfusion/Enlist/enlist/model/event/activity/ActivityGateway.cfc)
+   File: model/.../activity/ActivityGateway.cfc  (/home/psykoprogrammer/Dropbox/code/coldfusion/Enlist/enlist/model/event/activity/ActivityGateway.cfc)
    }  # Group: Enlist
 
 Group: Public  {

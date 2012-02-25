@@ -73,7 +73,7 @@ var indexSectionsWithContent = {
       "I": true,
       "J": false,
       "K": false,
-      "L": false,
+      "L": true,
       "M": false,
       "N": false,
       "O": false,
@@ -92,7 +92,7 @@ var indexSectionsWithContent = {
    "Files": {
       "Symbols": false,
       "Numbers": false,
-      "A": false,
+      "A": true,
       "B": false,
       "C": false,
       "D": false,
