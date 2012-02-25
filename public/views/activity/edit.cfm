@@ -29,14 +29,16 @@ Notes:
 	<cfimport prefix="view" taglib="/MachII/customtags/view" />
 	<cfimport prefix="form" taglib="/MachII/customtags/form" />
 	<cfimport prefix="tags" taglib="/enlist/customtags" />
+	<view:message key="event.activity" var="request.event"/>
+
 	<cfset copyToScope("${event.activity},${event.events}") />
 
 	<cfif NOT Len(variables.activity.getId())>
-		<cfset variables.type = "New" />
-		<view:meta type="title" content="New Activity" />
+		<view:message key="meta.title.activity.add" var="variables.type" />
+		<view:meta type="title" content="#variables.title#" />
 	<cfelse>
-		<cfset variables.type = "Edit" />
-		<view:meta type="title" content="Edit Activity | #variables.activity.getTitle()#" />
+		<view:message key="meta.title.activity.edit" var="variables.type" arguments="#variables.activity.getTitle()#" />
+		<view:meta type="title" content="#variables.title#"  />
 	</cfif>
 
 	<view:script>
@@ -66,7 +68,7 @@ Notes:
 <form:form actionEvent="activity.save" bind="activity" id="actForm">
 	<table>
 		<tr>
-			<th>Event</th>
+			<th><view:message key="form.activity.label." /></th>
 			<td>
 				<form:select path="eventId" items="#variables.events#" bind="#variables.activity.getEvent().getId()#" class="required">
 					<form:option value="" label="Choose an event" />
@@ -74,36 +76,37 @@ Notes:
 			</td>
 		</tr>
 		<tr>
-			<th>Title</th>
+			<th><view:message key="form.activity.label.title" /></th>
 			<td><form:input path="title" size="40" maxlength="200" class="required" /></td>
 		</tr>
  		<tr>
-			<th>Description</th>
+			<th><view:message key="form.activity.label.description" /></th>
 			<td><form:textarea path="description" style="width:100%;"/></td>
 		</tr>
 		<tr>
-			<th>Number of People</th>
+			<th><view:message key="form.activity.label.number" /></th>
 			<td><form:input path="numPeople" size="40" maxlength="4" class="required" /></td>
 		</tr>
 		<tr>
-			<th>Start Date</th>
+			<th><view:message key="form.activity.label.startdate" /></th>
 			<td><form:input path="startDate" size="40" maxlength="10" class="required date" /></td>
 		</tr>
 		<tr>
-			<th>End Date</th>
+			<th><view:message key="form.activity.label.enddate" /></th>
 			<td><form:input path="endDate" size="40" maxlength="10" class="required date" /></td>
 		</tr>
 		<tr>
-			<th>Point Hours</th>
+			<th><view:message key="form.activity.label.hours" /></th>
 			<td><form:input path="pointHours" size="40" maxlength="4" class="required" /></td>
 		</tr>
 		<tr>
-			<th>Location</th>
+			<th><view:message key="form.activity.label.location" /></th>
 			<td><form:input path="location" size="40" maxlength="20" class="required" /></td>
 		</tr>
 		<tr>
 			<td><form:hidden path="id" /></td>
-			<td><form:button type="submit" name="save" value="Save Activity" class="btn-primary"  /></td>
+			<view:message key="button.save" var="variables.save" arguments="request.event" />
+			<td><form:button type="submit" name="save" value="#variables.save#" class="btn-primary"  /></td>
 		</tr>
 	</table>
 </form:form>

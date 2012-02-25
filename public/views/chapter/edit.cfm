@@ -33,11 +33,13 @@
 	<cfset copyToScope("${event.chapter}") />
 	
 	<cfif NOT Len(variables.chapter.getId())>
-		<cfset variables.type = "New" />
-		<view:meta type="title" content="New Chapter" />
+		<view:message key="links.event.new" var="variables.type" />
+		<view:message key="meta.title.charter.add" var="variables.title" />
+		<view:meta type="title" content="#variables.title#" />
 	<cfelse>
-		<cfset variables.type = "Edit" />
-		<view:meta type="title" content="Edit Chapter | #variables.chapter.getDisplayName()#" />
+		<view:message key="links.edit" var="variables.type" />
+		<view:message key="meta.title.charter.edit" var="variables.title" arguments="#variables.chapter.getDisplayName()#"/>
+		<view:meta type="title" content="#variables.title#"  />
 	</cfif>
 	
 	<view:script>

@@ -29,7 +29,7 @@ Notes:
 	<cfimport prefix="view" taglib="/MachII/customtags/view" />
 	<cfimport prefix="form" taglib="/MachII/customtags/form" />
 	<cfset copyToScope("${event.events}") />
-	
+	<view:message key="event.activity" var="variables.activityName"/>
 	<view:meta type="title" content="Search Activities" />
 
 	<view:script>
@@ -45,44 +45,46 @@ Notes:
 <form:form actionEvent="activity.doSearch">
 	<table>
 		<tr>
-			<th>Event</th>
+			<th><view:message key="form.activity.label.event" /></th>
 			<td>
+				<view:message key="form.activity.label.select" var="variables.labelSelect"/>
 				<form:select path="eventId" items="#variables.events#">
-					<form:option value="" label="Choose an event" />
+					<form:option value="" label="#variables.labelSelect#" />
 				</form:select>
 			</td>
 		</tr>
 		<tr>
-			<th>Title</th>
+			<th><view:message key="form.activity.label.title" /></th>
 			<td><form:input path="title" size="40" maxlength="200" /></td>
 		</tr>
  		<tr>
-			<th>Description</th>
+			<th><view:message key="form.activity.label.description" /></th>
 			<td><form:input path="description" size="40" maxlength="200" /></td>
 		</tr>
 		<tr>
-			<th>Number of People</th>
+			<th><view:message key="form.activity.label.number" /></th>
 			<td><form:input path="numPeople" size="40" maxlength="4" /></td>
 		</tr>
 		<tr>
-			<th>Start Date</th>
+			<th><view:message key="form.activity.label.startdate" /></th>
 			<td><form:input path="startDate" size="40" maxlength="10" /></td>
 		</tr>
 		<tr>
-			<th>End Date</th>
+			<th><view:message key="form.activity.label.enddate" /></th>
 			<td><form:input path="endDate" size="40" maxlength="10" /></td>
 		</tr>
 		<tr>
-			<th>Point Hours</th>
+			<th><view:message key="form.activity.label.hours" /></th>
 			<td><form:input path="pointHours" size="40" maxlength="4" /></td>
 		</tr>
 		<tr>
-			<th>Location</th>
+			<th><view:message key="form.activity.label.location" /></th>
 			<td><form:input path="location" size="40" maxlength="20" /></td>
 		</tr>
 		<tr>
 			<td></td>
-			<td><form:button type="submit" name="search" value="Search" class="btn-primary"/></td>
+			<view:message key="buttons.save" var="variables.save" arguments="#variables.activityName#" />
+			<td><form:button type="submit" name="search" value="#variables.save#" class="btn-primary"/></td>
 		</tr>
 	</table>
 </form:form>

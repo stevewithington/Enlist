@@ -43,8 +43,8 @@ Notes:
 <table>
 	<tr>
 		<th><view:message key="form.nav.label.name" /></th>
-		<th><view:message key="form.nav.label.event" /></th>
-		<th><view:message key="form.nav.label.actions" /></th>
+		<th><view:message key="form.label.event" /></th>
+		<th><view:message key="form.label.actions" /></th>
 	</tr>
 <cfloop array="#variables.navigations#" index="link">
 	<tr>

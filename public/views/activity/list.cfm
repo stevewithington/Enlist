@@ -28,20 +28,24 @@
 	--->
 	<cfimport prefix="view" taglib="/MachII/customtags/view" />
 	<cfimport prefix="tags" taglib="/enlist/customtags" />
-	<cfset copyToScope("${event.activities}") />	
+	<cfset copyToScope("${event.activities}") />
 	
-	<cfif event.getName() EQ "activity.doSearch">
-		<cfset variables.title = "Activities Search Results" />
-	<cfelse>
-		<cfset variables.title = "List Activities" />
-	</cfif>
-	<view:meta type="title" content="#variables.title#" />
 
+	<cfif event.getName() EQ "activity.doSearch">
+		<view:message key="meta.title.activity.listSearch" var="variables.title" />
+	<cfelse>
+		<view:message key="meta.title.activity.list" var="variables.title" />
+	</cfif>
+	<!--- setting a variable name into the variables scope from i18n --->
+	<view:message key="event.activity" var="variables.activityName"/>
+	<view:meta type="title" content="#variables.title#" />
+	
 </cfsilent>
 <cfoutput>
 
 <h3>#variables.title#</h3>
 <br><br>
+<<<<<<< HEAD
 <cfif variables.activities.recordcount gte 1>	
 <tags:datatable>
 <div class="content">	
@@ -83,4 +87,36 @@
 <cfelse>
 <div>No activites found.</div>
 </cfif>
+=======
+<table>
+	<tr>
+		<th><view:message key="form.activity.label.title" /></th>
+		<th><view:message key="form.activity.label.number" /></th>
+		<th><view:message key="form.activity.label.startdate" /></th>
+		<th><view:message key="form.activity.label.enddate" /></th>
+		<th><view:message key="form.activity.label.hours" /></th>
+		<th><view:message key="form.activity.label.location" /></th>
+		<th><view:message key="form.label.event" /></th>
+		<th><view:message key="form.label.actions" /></th>
+	</tr>
+	<cfloop query="variables.activities">
+		<tr>
+			<td>#variables.activity.title#</td>
+			<td>#variables.activity.numPeople#</td>
+			<td>#variables.activity.startDate#</td>
+			<td>#variables.activity.endDate#</td>
+			<td>#variables.activity.pointHours#</td>
+			<td>#variables.activity.location#</td>
+			<!--- <td>#variables.activity.event().getName()#</td> --->
+			<view:message key="links.edit" var="variables.edit" />
+			<td><view:a event="activity.edit" p:id="#variables.activity.id#" label="#variables.edit#" /></td>
+		</tr>	
+	</cfloop>
+<cfelse>
+	<tr>
+		<td colspan="6"><view:message key="message.noRecords" arguments="#variables.activityName#"/></td>
+	</tr>
+</cfif>	
+</table>
+>>>>>>> andrewleaf/master
 </cfoutput>
