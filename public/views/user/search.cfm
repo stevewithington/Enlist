@@ -80,14 +80,14 @@
 			<th>Alternative Email</th>
 			<td><form:input path="altEmail" size="40" maxlength="200" /></td>
 		</tr>
-		<cfif ArrayLen(variables.chapters)>
+		<cfif chapters.RecordCount GT 0>
 		<tr>
 			<th>Chapter</th>
 			<td>
 				<form:select path="chapterId">
 					<form:option label="--Select to search--" value="" />
-					<cfloop from="1" to="#ArrayLen(variables.chapters)#" index="i">
-						<form:option value="#variables.chapters[i].getID()#" label="#variables.chapters[i].getName()#" />
+					<cfloop query="chapters">
+						<form:option value="#chapters.ID#" label="#chapters.Name#" />
 					</cfloop>
 				</form:select>
 			</td>

@@ -61,7 +61,7 @@ Notes:
 		<cfreturn getGateway().getUsers() />
 	</cffunction>
 
-	<cffunction name="getUsersBySearch" access="public" returntype="array" output="false">
+	<cffunction name="getUsersBySearch" access="public" returntype="query" output="false">
 		<cfargument name="id" type="string" required="false" default="" />
 		<cfargument name="status" type="string" required="false" default="" />
 		<cfargument name="role" type="string" required="false" default="" />
@@ -76,7 +76,7 @@ Notes:
 		<cfargument name="city" type="string" required="false" default="" />
 		<cfargument name="state" type="string" required="false" default="" />
 		<cfargument name="zip" type="string" required="false" default="" />
-		<cfreturn getGateway().listByPropertyMap( arguments ) />
+			<cfreturn getGateway().search( argumentCollection = arguments ) />
 	</cffunction>
 
 	<cffunction name="getUserByGoogleEmail" access="public" returntype="any" output="false"

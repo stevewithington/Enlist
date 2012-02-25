@@ -133,5 +133,58 @@ Notes:
 		WHERE id = <cfqueryparam cfsqltype="cf_sql_integer" value="#data.id#">
 		</cfquery>
 	</cffunction>
+	
+	<cffunction name="search" access="public" returntype="query" output="false">
+		
+		<cfset var qryUser = "">
+		<cfquery name="qryUsers">
+		SELECT * FROM user WHERE
+			1=1
+			<cfif StructKeyExists(arguments,"status") AND Len(arguments.status)>
+				AND UPPER(status) = <cfqueryparam cfsqltype="cf_sql_varchar" value="#ucase(arguments.status)#">
+			</cfif>
+			<cfif StructKeyExists(arguments,"role") AND Len(arguments.role)>
+				AND UPPER(role) = <cfqueryparam cfsqltype="cf_sql_varchar" value="#ucase(arguments.role)#">
+			</cfif>
+			<cfif StructKeyExists(arguments,"chapterID") AND val(arguments.chapterID)>
+				AND chapterID = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.chapterID#">
+			</cfif>
+			<cfif StructKeyExists(arguments,"firstName") AND Len(arguments.firstName)>
+				AND UPPER(firstName) = <cfqueryparam cfsqltype="cf_sql_varchar" value="#ucase(arguments.firstName)#">
+			</cfif>
+			<cfif StructKeyExists(arguments,"lastName") AND Len(arguments.lastName)>
+				AND UPPER(lastName) = <cfqueryparam cfsqltype="cf_sql_varchar" value="#ucase(arguments.lastName)#">
+			</cfif>
+			<cfif StructKeyExists(arguments,"googleEmail") AND Len(arguments.googleEmail)>
+				AND UPPER(googleEmail) = <cfqueryparam cfsqltype="cf_sql_varchar" value="#ucase(arguments.googleEmail)#">
+			</cfif>
+			<cfif StructKeyExists(arguments,"altEmail") AND Len(arguments.altEmail)>
+				AND UPPER(altEmail) = <cfqueryparam cfsqltype="cf_sql_varchar" value="#ucase(arguments.altEmail)#">
+			</cfif>
+			<cfif StructKeyExists(arguments,"phone") AND Len(arguments.phone)>
+				AND phone = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.phone#">
+			</cfif>
+			<cfif StructKeyExists(arguments,"address1") AND Len(arguments.address1)>
+				AND UPPER(address1) = <cfqueryparam cfsqltype="cf_sql_varchar" value="#ucase(arguments.address1)#">
+			</cfif>
+			<cfif StructKeyExists(arguments,"address2") AND Len(arguments.address2)>
+				AND UPPER(address2) = <cfqueryparam cfsqltype="cf_sql_varchar" value="#ucase(arguments.address2)#">
+			</cfif>
+			<cfif StructKeyExists(arguments,"city") AND Len(arguments.city)>
+				AND UPPER(city) = <cfqueryparam cfsqltype="cf_sql_varchar" value="#ucase(arguments.city)#">
+			</cfif>
+			<cfif StructKeyExists(arguments,"state") AND Len(arguments.state)>
+				AND UPPER(state) = <cfqueryparam cfsqltype="cf_sql_varchar" value="#ucase(arguments.state)#">
+			</cfif>
+			<cfif StructKeyExists(arguments,"zip") AND Len(arguments.zip)>
+				AND zip = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.zip#">
+			</cfif>
+			<cfif StructKeyExists(arguments,"id") AND Val(arguments.id)>
+				AND id = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.id#">
+			</cfif>
+		</cfquery>
+		
+		<cfreturn qryUsers />
+	</cffunction>
 
 </cfcomponent>
