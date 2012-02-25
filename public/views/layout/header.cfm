@@ -39,25 +39,16 @@ Notes:
 </div>
 
 <div class="row">
+	<div class="clear"></div>
+</div>
+
+<div class="row">
 	<div class="navbar">
 	  <div class="navbar-inner">
 	    <div class="container">
 	     <ul class="nav nav-tabs">
 				<li class="active"><view:a event="home" ><view:message key="nav.home" /></view:a></li>
-			<!--- <cfif variables.googleUserService.isUserLoggedIn()> --->	
-			  <li class="dropdown" id="menu1">
-			    <a class="dropdown-toggle" data-toggle="dropdown" href="#menu1">
-			      Dropdown
-			      <b class="caret"></b>
-			    </a>
-			    <ul class="dropdown-menu">
-			      <li><a href="">Action</a></li>
-			      <li><a href="">Another action</a></li>
-			      <li><a href="">Something else here</a></li>
-			      <li class="divider"></li>
-			      <li><a href="">Separated link</a></li>
-			    </ul>
-			  </li>
+			<!--- <cfif variables.googleUserService.isUserLoggedIn()> --->
 			   <li class="dropdown" id="menu1">
 				    <a href="#"
 				          class="dropdown-toggle"
@@ -66,11 +57,12 @@ Notes:
 				          <b class="caret"></b>
 				    </a>
 				    <ul class="dropdown-menu">
-				     <li><view:a event="user.add" >Add User</view:a></li>
-				     <li><view:a event="user.list" >List Users</view:a></li>
-				     <li><view:a event="user.search" >Search User</view:a></li>
+				     <li><view:a event="user.edit" ><view:message key="links.event.edit" arguments="User" /></view:a></li>
+				     <li><view:a event="user.list" ><view:message key="links.event.list" arguments="User" /></view:a></li>
+				     <li><view:a event="user.search" ><view:message key="links.event.search" arguments="User" /></view:a></li>
 				    </ul>
 				</li>
+
 			   <li class="dropdown">
 				    <a href="index.cfm?event=event.list">
 				    Event
@@ -84,22 +76,22 @@ Notes:
 				          <b class="caret"></b>
 				    </a>
 				    <ul class="dropdown-menu">
-				     <li><view:a event="event.add" >Add Event</view:a></li>
-				     <li><view:a event="event.list" >List Events</view:a></li>
-				     <li><view:a event="event.search" >Search Events</view:a></li>
+				     <li><view:a event="event.edit" ><view:message key="links.event.edit" arguments="Events" /></view:a></li>
+				     <li><view:a event="event.list" ><view:message key="links.event.list" arguments="Events" /></view:a></li>
+				     <li><view:a event="event.search" ><view:message key="links.event.search" arguments="Events" /></view:a></li>
 				    </ul>
 				</li>
 			    <li class="dropdown" id="menu3">
 				    <a href="#menu3"
 				          class="dropdown-toggle"
 				          data-toggle="dropdown">
-				          Actvites
+				          Actvities
 				          <b class="caret"></b>
 				    </a>
 				    <ul class="dropdown-menu">
-				     <li><view:a event="activity.edit" >Add Activity</view:a></li>
-				     <li><view:a event="activity.list" >List Activity</view:a></li>
-				     <li><view:a event="activity.search" >Search Activity</view:a></li>
+				     <li><view:a event="activity.edit" ><view:message key="links.event.edit" arguments="Actvities" /></view:a></li>
+				     <li><view:a event="activity.list" ><view:message key="links.event.list" arguments="Actvities" /></view:a></li>
+				     <li><view:a event="activity.search" ><view:message key="links.event.search" arguments="Actvities" /></view:a></li>
 				    </ul>
 				</li>
 
@@ -111,24 +103,11 @@ Notes:
 				          <b class="caret"></b>
 				    </a>
 				    <ul class="dropdown-menu">
-				     <li><view:a event="chapter.add" >Add Chapter</view:a></li>
-				     <li><view:a event="chapter.list" >List Chapters</view:a></li>
+				     <li><view:a event="chapter.edit" ><view:message key="links.event.edit" arguments="Chapters" /></view:a></li>
+				     <li><view:a event="chapter.list" ><view:message key="links.event.list" arguments="Chapters" /></view:a></li>
 				    </ul>
 				</li>
-			    <li class="dropdown" id="menu4">
-				    <a href="#menu4"
-				          class="dropdown-toggle"
-				          data-toggle="dropdown">
-				          Navigation
-				          <b class="caret"></b>
-				    </a>
-				    <ul class="dropdown-menu">
-				     <li>Add Navigation Item</li>
-				     <li>Edit Navigation Item</li>
-				     <li>Remove Navigation Item</li>
-				    </ul>
-				</li>
-				<li><view:a event="activityvolunteer.list"><view:message key="nav.activities"/></view:a></li>  
+				<li><view:a event="activityvolunteer.list"><view:message key="nav.activities"/></view:a></li>
 				<li><view:a event="register"><view:message key="nav.registration"/></view:a></li>
 				<li><a href="" id="logout"><view:message key="nav.logout"/></a></li>
 			<!--- <cfelse> --->
@@ -140,3 +119,6 @@ Notes:
 	</div>
 </div>
 
+<div class="row">
+	<div class="clear"></div>
+</div>

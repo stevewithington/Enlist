@@ -49,9 +49,14 @@
 	} );
 </script>
 
-
-
 <cfoutput>
+	
+<ul class="nav nav-pills">
+  <li <cfif arguments.event.getArg('event') eq 'chapter.edit'>class="active"</cfif>><view:a event="chapter.edit">Create Chapter</view:a></li>
+  <li <cfif arguments.event.getArg('event') eq 'chapter.list'>class="active"</cfif>><view:a event="chapter.list">List Chapters</view:a></li>
+</ul>
+
+	
 <p><view:a event="chapter.edit">Create a new chapter</view:a></p>
 	<table id="chapters">
 		<thead>

@@ -34,6 +34,11 @@
 	<view:meta type="title" content="Search Users" />
 </cfsilent>
 <cfoutput>
+<ul class="nav nav-pills">
+  <li <cfif arguments.event.getArg('event') eq 'user.edit'>class="active"</cfif>><view:a event="user.edit">Create User</view:a></li>
+  <li <cfif arguments.event.getArg('event') eq 'user.list'>class="active"</cfif>><view:a event="user.list">List Users</view:a></li>
+  <li <cfif arguments.event.getArg('event') eq 'user.search'>class="active"</cfif>><view:a event="user.search">Search Users</view:a></li>
+</ul>	
 
 <h3>Search Users</h3>
 	
