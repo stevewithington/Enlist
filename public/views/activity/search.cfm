@@ -82,7 +82,7 @@ Notes:
 		</tr>
 		<tr>
 			<td></td>
-			<td><form:button type="submit" name="search" value="Search" /></td>
+			<td><form:button type="submit" name="search" value="Search" class="btn-primary"/></td>
 		</tr>
 	</table>
 </form:form>

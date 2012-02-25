@@ -111,7 +111,7 @@
 		</tr>
 		<tr>
 			<td></td>
-			<td colspan="3"><form:button type="submit" name="search" value="Search" /></td>
+			<td colspan="3"><form:button type="submit" name="search" value="Search" class="btn-primary"/></td>
 		</tr>
 	</table>
 </form:form>
