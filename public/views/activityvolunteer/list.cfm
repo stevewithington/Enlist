@@ -34,12 +34,12 @@ Notes:
 <cfoutput>
 <table>
 	<tr>
-		<th>Activity</th>
-		<th>Description</th>
-		<th>Event</th>
-		<th>Start</th>
-		<th>End</th>
-		<th>Action</th>
+		<th><view:message key="form.activity.label.title" /></th>
+		<th><view:message key="form.activity.label.description" /></th>
+		<th><view:message key="form.label.event" /></th>
+		<th><view:message key="form.activity.label.startdate" /></th>
+		<th><view:message key="form.activity.label.enddate" /></th>
+		<th><view:message key="form.activity.label.actions" /></th>
 	</tr>
 <cfloop from="1" to="#arrayLen(activityVolunteerEntities)#" index="i">
 	<tr>

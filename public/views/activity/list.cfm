@@ -27,15 +27,18 @@
 	Notes:
 	--->
 	<cfimport prefix="view" taglib="/MachII/customtags/view" />
-	<cfset copyToScope("${event.activities}") />	
+	<cfset copyToScope("${event.activities}") />
 	
-	<cfif event.getName() EQ "activity.doSearch">
-		<cfset variables.title = "Activities Search Results" />
-	<cfelse>
-		<cfset variables.title = "List Activities" />
-	</cfif>
-	<view:meta type="title" content="#variables.title#" />
 
+	<cfif event.getName() EQ "activity.doSearch">
+		<view:message key="meta.title.activity.listSearch" var="variables.title" />
+	<cfelse>
+		<view:message key="meta.title.activity.list" var="variables.title" />
+	</cfif>
+	<!--- setting a variable name into the variables scope from i18n --->
+	<view:message key="event.activity" var="variables.activityName"/>
+	<view:meta type="title" content="#variables.title#" />
+	
 </cfsilent>
 <cfoutput>
 
@@ -45,14 +48,14 @@
 <br><br>
 <table>
 	<tr>
-		<th>Title</th>
-		<th>Number of People</th>
-		<th>Start Date</th>
-		<th>End Date</th>
-		<th>Point Hours</th>
-		<th>Location</th>
-		<th>Event</th>
-		<th>Actions</th>
+		<th><view:message key="form.activity.label.title" /></th>
+		<th><view:message key="form.activity.label.number" /></th>
+		<th><view:message key="form.activity.label.startdate" /></th>
+		<th><view:message key="form.activity.label.enddate" /></th>
+		<th><view:message key="form.activity.label.hours" /></th>
+		<th><view:message key="form.activity.label.location" /></th>
+		<th><view:message key="form.label.event" /></th>
+		<th><view:message key="form.label.actions" /></th>
 	</tr>
 	<cfloop query="variables.activities">
 		<tr>
@@ -63,12 +66,13 @@
 			<td>#variables.activity.pointHours#</td>
 			<td>#variables.activity.location#</td>
 			<!--- <td>#variables.activity.event().getName()#</td> --->
-			<td><view:a event="activity.edit" p:id="#variables.activity.id#" label="Edit" /></td>
+			<view:message key="links.edit" var="variables.edit" />
+			<td><view:a event="activity.edit" p:id="#variables.activity.id#" label="#variables.edit#" /></td>
 		</tr>	
 	</cfloop>
 <cfelse>
 	<tr>
-		<td colspan="6">No activities found</td>
+		<td colspan="6"><view:message key="message.noRecords" arguments="#variables.activityName#"/></td>
 	</tr>
 </cfif>	
 </table>

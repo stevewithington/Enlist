@@ -31,8 +31,8 @@
 	<cfimport prefix="tags" taglib="/enlist/customtags" />
 
 	<cfset copyToScope("${event.chapters}") />
-	
-	<view:meta type="title" content="List Chapters" />
+	<view:message key="meta.title.chapter" var="variables.title" />
+	<view:meta type="title" content="#variables.title#" />
 </cfsilent>
 
 
@@ -45,9 +45,9 @@
 			<table id="chapters" class="table table-striped table-bordered">
 				<thead>
 					<tr>
-						<th>Chapter</th>
-						<th>Location</th>
-						<th>Status</th>
+						<th><view:message key="form.chapter.label.chapter"/></th>
+						<th><view:message key="form.chapter.label.location"></th>
+						<th><view:message key="form.chapter.label.status"></th>
 					</tr>
 				</thead>
 				<tbody id="chaptersList">
