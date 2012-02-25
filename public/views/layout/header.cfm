@@ -62,12 +62,21 @@ Notes:
 				     <li><view:a event="user.search" ><view:message key="links.event.search" arguments="User" /></view:a></li>
 				    </ul>
 				</li>
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+>>>>>>> fbdb0266e34165a4e8dc367b2ca35002113f861a
 			   <li class="dropdown">
 				    <a href="index.cfm?event=event.list">
 				    Event
 				    </a>
 				</li>		
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> d02d2dee9b76217567f43e74e054dd0cbb7b06f7
+>>>>>>> fbdb0266e34165a4e8dc367b2ca35002113f861a
 			   <li class="dropdown" id="menu2">
 				    <a href="#menu2"
 				          class="dropdown-toggle"
