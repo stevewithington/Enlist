@@ -33,11 +33,13 @@
 	<cfset copyToScope("${event.navigation}") />
 	
 	<cfif NOT Len(variables.navigation.getId())>
-		<cfset variables.type = "New" />
-		<cfset variables.title = "New Navigation Link" />
+		<!--- <cfset variables.type = "New" /> --->
+		<!--- same as --->
+		<view:message key="form.nav.add.type" var="variables.type" />
+		<view:message key="form.nav.add.title" var="variables.title" />
 	<cfelse>
-		<cfset variables.type = "Edit" />
-		<cfset variables.title = "Edit Navigation Link | #variables.navigation.getName()#" />
+		<view:message key="form.nav.edit.type" var="variables.type" />
+		<view:message key="form.nav.edit.title" var="variables.title" variables="#variables.navigation.getName()#" />
 	</cfif>
 	
 	<view:meta type="title" content="#variables.title#" />
@@ -51,28 +53,29 @@
 <cfoutput>
 
 <ul class="nav nav-pills">
-  <li <cfif arguments.event.getArg('event') eq 'navigation.edit'>class="active"</cfif>><view:a event="navigation.edit">Create Navigation Item</view:a></li>
-  <li <cfif arguments.event.getArg('event') eq 'navigation.list'>class="active"</cfif>><view:a event="navigation.list">List Navigation Items</view:a></li>
+  <li <cfif arguments.event.getArg('event') eq 'navigation.edit'>class="active"</cfif>><view:a event="navigation.edit"><view:message key="links.nav.create" /></view:a></li>
+  <li <cfif arguments.event.getArg('event') eq 'navigation.list'>class="active"</cfif>><view:a event="navigation.list"><view:message key="links.nav.list" /></view:a></li>
 </ul>	
 	
-<tags:displaymessage />
-<tags:displayerror />
+<!--- <tags:displaymessage />
+<tags:displayerror /> --->
 
 <h3>#variables.title#</h3>
 
 <form:form actionEvent="navigation.save" bind="navigation" id="navForm">
 	<table>
 		<tr>
-			<th>Name:</th>
+			<th><view:message key="form.nav.label.name" />:</th>
 			<td><form:input path="name" size="40" maxlength="200" class="required" /></td>
 		</tr>
 		<tr>
-			<th>Location:</th>
+			<th><view:message key="form.nav.label.location" />:</th>
 			<td><form:input path="eventName" size="40" maxlength="200" class="required" /></td>
 		</tr>
 		<tr>
 			<td><form:hidden name="id" path="id" value="#event.getArg( "navigation" ).getID()#" /></td>
-			<td colspan="3"><form:button type="submit" name="save" value="Save Navigation Link" /></td>
+			<view:message key="buttons.nav.save" var="variables.save" />
+			<td colspan="3"><form:button type="submit" name="save" value="#variables.save#" /></td>
 		</tr>
 	</table>
 </form:form>

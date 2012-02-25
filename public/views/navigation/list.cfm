@@ -34,28 +34,28 @@ Notes:
 <cfoutput>
 	
 <ul class="nav nav-pills">
-  <li <cfif arguments.event.getArg('event') eq 'navigation.edit'>class="active"</cfif>><view:a event="navigation.edit">Create Navigation Item</view:a></li>
-  <li <cfif arguments.event.getArg('event') eq 'navigation.list'>class="active"</cfif>><view:a event="navigation.list">List Navigation Items</view:a></li>
+  <li <cfif arguments.event.getArg('event') eq 'navigation.edit'>class="active"</cfif>><view:a event="navigation.edit"><view:message key="links.nav.create" /></view:a></li>
+  <li <cfif arguments.event.getArg('event') eq 'navigation.list'>class="active"</cfif>><view:a event="navigation.list"><view:message key="links.nav.list" /></view:a></li>
 </ul>
 
 <h3>Navigation Link List</h3>
 
 <table>
 	<tr>
-		<th>Name</th>
-		<th>Event</th>
-		<th>Actions</th>
+		<th><view:message key="form.nav.label.name" /></th>
+		<th><view:message key="form.nav.label.event" /></th>
+		<th><view:message key="form.nav.label.actions" /></th>
 	</tr>
 <cfloop array="#variables.navigations#" index="link">
 	<tr>
 		<td>#variables.link.getName()#</td>
 		<td>#variables.link.geteventName()#</td>
 		<td>
-			<view:a event="navigation.edit" p:id="#variables.link.getID()#">Edit</view:a> | <view:a event="navigation.delete" p:id="#variables.link.getID()#" onClick="return confirm('Sure?')">Delete</view:a>
+			<view:a event="navigation.edit" p:id="#variables.link.getID()#"><view:message key="links.nav.edit" /></view:a> | <view:a event="navigation.delete" p:id="#variables.link.getID()#" onClick="return confirm('Sure?')"><view:message key="links.nav.delete" /></view:a>
 		</td>
 	</tr>	
 </cfloop> 
 </table>
 
-<p><view:a event="navigation.edit">Create a new navigation link</view:a></p>
+<p><view:a event="navigation.edit"><view:message key="links.nav.create"/></view:a></p>
 </cfoutput>

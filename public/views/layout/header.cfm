@@ -57,9 +57,9 @@ Notes:
 				          <b class="caret"></b>
 				    </a>
 				    <ul class="dropdown-menu">
-				     <li><view:a event="user.edit" >Add User</view:a></li>
-				     <li><view:a event="user.list" >List Users</view:a></li>
-				     <li><view:a event="user.search" >Search User</view:a></li>
+				     <li><view:a event="user.edit" ><view:message key="links.event.edit" arguments="User" /></view:a></li>
+				     <li><view:a event="user.list" ><view:message key="links.event.list" arguments="User" /></view:a></li>
+				     <li><view:a event="user.search" ><view:message key="links.event.search" arguments="User" /></view:a></li>
 				    </ul>
 				</li>
 			   <li class="dropdown" id="menu2">
@@ -70,22 +70,22 @@ Notes:
 				          <b class="caret"></b>
 				    </a>
 				    <ul class="dropdown-menu">
-				     <li><view:a event="event.edit" >Add Event</view:a></li>
-				     <li><view:a event="event.list" >List Events</view:a></li>
-				     <li><view:a event="event.search" >Search Events</view:a></li>
+				     <li><view:a event="event.edit" ><view:message key="links.event.edit" arguments="Events" /></view:a></li>
+				     <li><view:a event="event.list" ><view:message key="links.event.list" arguments="Events" /></view:a></li>
+				     <li><view:a event="event.search" ><view:message key="links.event.search" arguments="Events" /></view:a></li>
 				    </ul>
 				</li>
 			    <li class="dropdown" id="menu3">
 				    <a href="#menu3"
 				          class="dropdown-toggle"
 				          data-toggle="dropdown">
-				          Actvites
+				          Actvities
 				          <b class="caret"></b>
 				    </a>
 				    <ul class="dropdown-menu">
-				     <li><view:a event="activity.edit" >Add Activity</view:a></li>
-				     <li><view:a event="activity.list" >List Activity</view:a></li>
-				     <li><view:a event="activity.search" >Search Activity</view:a></li>
+				     <li><view:a event="activity.edit" ><view:message key="links.event.edit" arguments="Actvities" /></view:a></li>
+				     <li><view:a event="activity.list" ><view:message key="links.event.list" arguments="Actvities" /></view:a></li>
+				     <li><view:a event="activity.search" ><view:message key="links.event.search" arguments="Actvities" /></view:a></li>
 				    </ul>
 				</li>
 
@@ -97,8 +97,8 @@ Notes:
 				          <b class="caret"></b>
 				    </a>
 				    <ul class="dropdown-menu">
-				     <li><view:a event="chapter.edit" >Add Chapter</view:a></li>
-				     <li><view:a event="chapter.list" >List Chapters</view:a></li>
+				     <li><view:a event="chapter.edit" ><view:message key="links.event.edit" arguments="Chapters" /></view:a></li>
+				     <li><view:a event="chapter.list" ><view:message key="links.event.list" arguments="Chapters" /></view:a></li>
 				    </ul>
 				</li>
 				<li><view:a event="activityvolunteer.list"><view:message key="nav.activities"/></view:a></li>
