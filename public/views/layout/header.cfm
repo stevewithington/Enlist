@@ -38,7 +38,7 @@ Notes:
 	<div class="span12"><img alt="" width="172" height="70" src="/img/Enlist_Logo.png"/></div>
 </div>
 
-<div class="row">
+<div class="row" style="margin-top:12px;">
 	<div class="clear"></div>
 </div>
 
@@ -47,7 +47,7 @@ Notes:
 	  <div class="navbar-inner">
 	    <div class="container">
 	     <ul class="nav nav-tabs">
-				<li class="active"><view:a event="home" ><view:message key="nav.home" /></view:a></li>
+				<li <cfif arguments.event.getArg('event') eq 'home'>class="active"</cfif> ><view:a event="home" ><view:message key="nav.home" /></view:a></li>
 			<!--- <cfif variables.googleUserService.isUserLoggedIn()> --->
 			   <li class="dropdown" id="menu1">
 				    <a href="#"

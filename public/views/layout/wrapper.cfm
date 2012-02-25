@@ -49,7 +49,7 @@
 
 <body>
 	
-<div class="container-fluid">
+<div class="container-fluid" style="margin: 12px auto;width:960px;">
   <div class="row">
 	<div id="top" class="span12">
        #event.getArg("layout.header")#<br>
