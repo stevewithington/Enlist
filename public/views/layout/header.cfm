@@ -29,35 +29,30 @@ Notes:
 	<cfimport prefix="view" taglib="/MachII/customtags/view" />
 	<cfset copyToScope("eventName=${event.getName()},${properties.udfs}") />
 </cfsilent>
-<cfoutput>
-<view:script src="/bootstrap/js/bootstrap.js">
-	$('.dropdown-toggle').dropdown();
-</view:script>
+
+
+<script src="/bootstrap/js/bootstrap.js"></script>
+
+<script>
+	$('.dropdown-toggle').dropdown()
+</script>
+	
 
 <div class="row">
 	<div class="span12"><img alt="" width="172" height="70" src="/img/Enlist_Logo.png"/></div>
-</div>
+</div>	
 
 <div class="row">
+	<div class="clear"></div>
+</div>
+
+<div class="row">		
 	<div class="navbar">
 	  <div class="navbar-inner">
 	    <div class="container">
 	     <ul class="nav nav-tabs">
 				<li class="active"><view:a event="home" ><view:message key="nav.home" /></view:a></li>
 			<!--- <cfif variables.googleUserService.isUserLoggedIn()> --->	
-			  <li class="dropdown" id="menu1">
-			    <a class="dropdown-toggle" data-toggle="dropdown" href="#menu1">
-			      Dropdown
-			      <b class="caret"></b>
-			    </a>
-			    <ul class="dropdown-menu">
-			      <li><a href="">Action</a></li>
-			      <li><a href="">Another action</a></li>
-			      <li><a href="">Something else here</a></li>
-			      <li class="divider"></li>
-			      <li><a href="">Separated link</a></li>
-			    </ul>
-			  </li>
 			   <li class="dropdown" id="menu1">
 				    <a href="#"
 				          class="dropdown-toggle"
@@ -66,13 +61,10 @@ Notes:
 				          <b class="caret"></b>
 				    </a>
 				    <ul class="dropdown-menu">
-				     <li><view:a event="user.add" >Add User</view:a></li>
+				     <li><view:a event="user.edit" >Add User</view:a></li>
 				     <li><view:a event="user.list" >List Users</view:a></li>
 				     <li><view:a event="user.search" >Search User</view:a></li>
 				    </ul>
-				</li>
-			   <li class="dropdown">
-				    <a href="index.cfm?event=event.list"
 				</li>		
 			   <li class="dropdown" id="menu2">
 				    <a href="#menu2"
@@ -82,7 +74,7 @@ Notes:
 				          <b class="caret"></b>
 				    </a>
 				    <ul class="dropdown-menu">
-				     <li><view:a event="event.add" >Add Event</view:a></li>
+				     <li><view:a event="event.edit" >Add Event</view:a></li>
 				     <li><view:a event="event.list" >List Events</view:a></li>
 				     <li><view:a event="event.search" >Search Events</view:a></li>
 				    </ul>
@@ -109,21 +101,8 @@ Notes:
 				          <b class="caret"></b>
 				    </a>
 				    <ul class="dropdown-menu">
-				     <li><view:a event="chapter.add" >Add Chapter</view:a></li>
+				     <li><view:a event="chapter.edit" >Add Chapter</view:a></li>
 				     <li><view:a event="chapter.list" >List Chapters</view:a></li>
-				    </ul>
-				</li>
-			    <li class="dropdown" id="menu4">
-				    <a href="#menu4"
-				          class="dropdown-toggle"
-				          data-toggle="dropdown">
-				          Navigation
-				          <b class="caret"></b>
-				    </a>
-				    <ul class="dropdown-menu">
-				     <li>Add Navigation Item</li>
-				     <li>Edit Navigation Item</li>
-				     <li>Remove Navigation Item</li>
 				    </ul>
 				</li>
 				<li><view:a event="activityvolunteer.list"><view:message key="nav.activities"/></view:a></li>  
@@ -135,6 +114,9 @@ Notes:
 			</ul>
 	    </div>
 	  </div>
-	</div>
+	</div>	
 </div>
 
+<div class="row">
+	<div class="clear"></div>
+</div>
