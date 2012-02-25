@@ -105,18 +105,6 @@ Notes:
 				     <li><view:a event="chapter.list" >List Chapters</view:a></li>
 				    </ul>
 				</li>
-			    <li class="dropdown" id="menu5">
-				    <a href="#menu5"
-				          class="dropdown-toggle"
-				          data-toggle="dropdown">
-				          Navigation
-				          <b class="caret"></b>
-				    </a>
-				    <ul class="dropdown-menu">
-				     <li><view:a event="navigation.edit" >Add Navigation Item</view:a></li>
-				     <li><view:a event="navigation.list" >List Navigation Items</view:a></li>
-				    </ul>
-				</li>
 				<li><view:a event="activityvolunteer.list"><view:message key="nav.activities"/></view:a></li>  
 				<li><view:a event="register"><view:message key="nav.registration"/></view:a></li>
 				<li><a href="" id="logout"><view:message key="nav.logout"/></a></li>
