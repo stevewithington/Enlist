@@ -64,11 +64,12 @@ Notes:
 	<cffunction name="getEventsAsStruct" output="false" access="public" returntype="struct"
 		hint="This method returns a struct of ID:Name for use in the form:select tag">
 
-		<cfset var events = StructNew() />
+		<cfset var qryEvents = getEvents() />
+		<cfset var events = {} />
 		<cfset var thisEvent = "" />
 
-		<cfloop array="#getEvents()#" index="thisEvent">
-			<cfset events[ thisEvent.getId() ] = thisEvent.getName() />
+		<cfloop query="qryEvents">
+			<cfset events[qryEvents.id] = qryEvents.name />
 		</cfloop>
 
 		<cfreturn events />
