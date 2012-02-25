@@ -37,13 +37,32 @@
 	<property name="docs.outputPath" value="docs/code" />
 	<property name="docs.projectPath" value="docs/code/project" />
 
-	<taskdef name="mxunittask" classname="org.mxunit.ant.MXUnitAntTask" classpath="${project.mxunit}/ant/lib/mxunit-ant.jar"/> 
+	<taskdef name="mxunittask" 
+		classname="org.mxunit.ant.MXUnitAntTask" 
+		classpath="${project.mxunit}/ant/lib/mxunit-ant.jar"/> 
 
 	<target name="usage" description="Usage instructions">
-		<echo message="Instructions for Usage:"/>
+		<echo message="---------------------------------------------"/>
+		<echo message="Instructions for Usage"/>
+		<echo message="---------------------------------------------"/>
+		<echo message="Targets:"/>
+		<echo message="   - Build: Builds a complete application"/>
+		<echo message="   - Test: Runs MXUnit tests"/>
+		<echo message="   - BuildDocs: Builds the NaturalDocs documentation"/>
+		<echo message="   - PackageAsWar: Builds the NaturalDocs documentation"/>
+	</target>
+	
+	<target name="build" description="Builds a complete application">
+		<echo message="---------------------------------------------"/>
+		<echo message="Running Build"/>
+		<echo message="---------------------------------------------"/>
+		
 	</target>
 
 	<target name="test" description="Run MXUnit Tests">
+		<echo message="---------------------------------------------"/>
+		<echo message="Running Unit Tests"/>
+		<echo message="---------------------------------------------"/>
 		<mxunittask server="${server.name}" port="${server.port}" defaultrunner="/tests/mxunit/Runner.cfc" verbose="true">
 			<directory remoteMethod="run" path="/tests/mxunit/event" componentPath="tests.mxunit.event"/>
 			<directory remoteMethod="run" path="/tests/mxunit/security" componentPath="tests.mxunit.security"/>
