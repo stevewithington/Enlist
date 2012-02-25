@@ -53,18 +53,17 @@ Notes:
 		<th>Status</th>
 		<th>Actions</th>
 	</tr>
-
-<cfif ArrayLen(users)>
-<cfloop array="#variables.users#" index="user">
-	<tr>
-		<td>#user.getFirstName()#</td>
-		<td>#user.getLastName()#</td>
-		<td>#user.getGoogleEmail()#</td>
-		<td>#user.getRole()#</td>
-		<td>#user.getStatus()#</td>
-		<td><view:a event="user.edit" p:id="#user.getID()#">Edit</view:a></td>
-	</tr>
-</cfloop>
+<cfif users.RecordCount GT 0>
+	<cfloop query="users">
+		<tr>
+			<td>#users.FirstName#</td>
+			<td>#users.LastName#</td>
+			<td>#users.GoogleEmail#</td>
+			<td>#users.Role#</td>
+			<td>#users.Status#</td>
+			<td><view:a event="user.edit" p:id="#users.id#">Edit</view:a></td>
+		</tr>
+	</cfloop>
 <cfelse>
 	<tr>
 		<td colspan="6">No users found</td>

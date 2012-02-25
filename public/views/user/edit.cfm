@@ -112,6 +112,7 @@ Notes:
 				<form:input path="zip" size="11" maxlength="10" />
 			</td>
 		</tr>
+		<cfif chapters.RecordCount GT 0>
 			<tr>
 				<th><label id="chapterId">Chapter</label></th>
 				<td>
@@ -122,6 +123,7 @@ Notes:
 					</form:select>
 				</td>
 			</tr>
+		</cfif>
 		<tr>
 			<td><form:hidden name="id" path="id" /></td>
 			<td colspan="3"><form:button type="submit" name="save" value="Save User" /></td>

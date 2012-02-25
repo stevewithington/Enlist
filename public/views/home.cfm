@@ -30,37 +30,37 @@ Notes:
 	<view:meta type="title" content="Home" />
 </cfsilent>
 <cfoutput>
-<h2>Welcome to Enlist for #getProperty('setting').getOrgName()#</h2>
+<h2><view:message key="message.hello" arguments="#getProperty('setting').getOrgName()#"/></h2>
 <p>#getProperty('setting').getOrgName()# is #getProperty('setting').getOrgDesc()#</p>
 
-<h3>Let's assume everyone's an admin for now and build this stuff out ...</h3>
+<h3><view:message key="message.description" /></h3>
 
 <tags:displaymesssage />
 
 <p><strong>Users</strong></p>
 <ul>
-	<li><a href="#BuildUrl('user.edit')#">Add New User</a></li>
-	<li><a href="#BuildUrl('user.list')#">List All Users</a></li>
-	<li><a href="#BuildUrl('user.search')#">Search Users</a></li>
+	<li><a href="#BuildUrl('user.edit')#"><view:message key="event.new" arguments="User"/></a></li>
+	<li><a href="#BuildUrl('user.list')#"><view:message key="event.list" arguments="User"/></a></li>
+	<li><a href="#BuildUrl('user.search')#"><view:message key="event.search" arguments="User"/></a></li>
 </ul>
 
 <p><strong>Events</strong></p>
 <ul>
-	<li><a href="#BuildUrl('event.edit')#">Add New Event</a></li>
-	<li><a href="#BuildUrl('event.list')#">List All Events</li>
-	<li><a href="#BuildUrl('event.search')#">Search Events</a></li>
+	<li><a href="#BuildUrl('event.edit')#"><view:message key="event.new" arguments="Events" /></a></li>
+	<li><a href="#BuildUrl('event.list')#"><view:message key="event.list" arguments="Events" /></li>
+	<li><a href="#BuildUrl('event.search')#"><view:message key="event.search" arguments="Events" /></a></li>
 </ul>
 
 <p><strong>Activities</strong></p>
 <ul>
-	<li><a href="#BuildUrl('activity.edit')#">Add New Activity</a></li>
-	<li><a href="#BuildUrl('activity.list')#">List All Activities</a></li>
-	<li><a href="#BuildUrl('activity.search')#">Search Activities</a></li>
+	<li><a href="#BuildUrl('activity.edit')#"><view:message key="event.new" arguments="Activities" /></a></li>
+	<li><a href="#BuildUrl('activity.list')#"><view:message key="event.list" arguments="Activities" /></a></li>
+	<li><a href="#BuildUrl('activity.search')#"><view:message key="event.search" arguments="Activities" /></a></li>
 </ul>
 
 <p><strong>Chapters</strong></p>
 <ul>
-	<li><a href="#BuildUrl('chapter.edit')#">Add New Chapter</a></li>
-	<li><a href="#BuildUrl('chapter.list')#">List All Chapters</a></li>
+	<li><a href="#BuildUrl('chapter.edit')#"><view:message key="event.new" arguments="Chapter" /></a></li>
+	<li><a href="#BuildUrl('chapter.list')#"><view:message key="event.list" arguments="Chapter" /></a></li>
 </ul>
 </cfoutput>

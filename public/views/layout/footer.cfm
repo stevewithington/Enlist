@@ -29,5 +29,5 @@ Notes:
 	<cfimport prefix="view" taglib="/MachII/customtags/view" />
 </cfsilent>
 <cfoutput>
-<p><view:a event="sys.about">Powered by Enlist - Volunteer Management</view:a></p>
+<p><view:a event="sys.about"><view:message key="message.footer" /></view:a></p>
 </cfoutput>

@@ -32,7 +32,7 @@ Notes:
 	<!---
 	PROPERTIES
 	--->
-	<cfset variables.id = "" />
+	<cfset variables.id = 0 />
 	<cfset variables.name = "" />
 	<cfset variables.startDate = "" />
 	<cfset variables.endDate = "" />

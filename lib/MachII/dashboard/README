@@ -6,8 +6,8 @@
 /_/  /_/\__,_/\___/_/ /_/     /___/___/  
 
 Project: Dashboard Module
-Version: 1.9.0.2706
-Built-on: 2011-03-24 18:36:57
+Version: 1.9.0.2872
+Built-on: 2012-02-24 14:47:44
 $Id: README 2464 2010-09-24 06:30:41Z peterjfarrell $
 ------------------------------------------------
 If version number and built-on are placeholders, you are using a bleeding
