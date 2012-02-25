@@ -27,6 +27,7 @@
 	Notes:
 	--->
 	<cfimport prefix="view" taglib="/MachII/customtags/view" />
+	<cfimport prefix="tags" taglib="/enlist/customtags" />
 	<cfset copyToScope("${event.activities}") />	
 	
 	<cfif event.getName() EQ "activity.doSearch">
@@ -40,36 +41,46 @@
 <cfoutput>
 
 <h3>#variables.title#</h3>
-
-<cfif variables.activities.RecordCount GT 0>
 <br><br>
-<table>
-	<tr>
-		<th>Title</th>
-		<th>Number of People</th>
-		<th>Start Date</th>
-		<th>End Date</th>
-		<th>Point Hours</th>
-		<th>Location</th>
-		<th>Event</th>
-		<th>Actions</th>
-	</tr>
-	<cfloop query="variables.activities">
-		<tr>
-			<td>#variables.activity.title#</td>
-			<td>#variables.activity.numPeople#</td>
-			<td>#variables.activity.startDate#</td>
-			<td>#variables.activity.endDate#</td>
-			<td>#variables.activity.pointHours#</td>
-			<td>#variables.activity.location#</td>
-			<!--- <td>#variables.activity.event().getName()#</td> --->
-			<td><view:a event="activity.edit" p:id="#variables.activity.id#" label="Edit" /></td>
-		</tr>	
-	</cfloop>
+<cfif variables.activities.recordcount gte 1>	
+<tags:datatable>
+<div class="content">	
+	<div class="row">
+		<div class="span12">
+			<table id="chapters" class="table table-striped table-bordered">
+				<thead>
+					<tr>
+						<th>Title</th>
+						<th>Number of People</th>
+						<th>Start Date</th>
+						<th>End Date</th>
+						<th>Point Hours</th>
+						<th>Location</th>
+						<th>Event</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody id="chaptersList">
+					<cfloop query="variables.activities">
+						<tr>
+							<td>#variables.activity.title#</td>
+							<td>#variables.activity.numPeople#</td>
+							<td>#variables.activity.startDate#</td>
+							<td>#variables.activity.endDate#</td>
+							<td>#variables.activity.pointHours#</td>
+							<td>#variables.activity.location#</td>
+							<!--- <td>#variables.activity.event().getName()#</td> --->
+							<td><view:a event="activity.edit" p:id="#variables.activity.id#" label="Edit" /></td>
+						</tr>	
+					</cfloop>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="clear"><br><br></div>
+</div>
+</tags:datatable>
 <cfelse>
-	<tr>
-		<td colspan="6">No activities found</td>
-	</tr>
-</cfif>	
-</table>
+<div>No activites found.</div>
+</cfif>
 </cfoutput>

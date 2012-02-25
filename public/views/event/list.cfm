@@ -27,6 +27,7 @@
 	Notes:
 	--->
 	<cfimport prefix="view" taglib="/MachII/customtags/view" />
+	<cfimport prefix="tags" taglib="/enlist/customtags" />
 	<cfset copyToScope("${event.events}") />
 	
 	<cfif event.getName() EQ "event.doSearch">
@@ -35,47 +36,49 @@
 		<cfset variables.title = "List Events" />
 	</cfif>
 	<view:meta type="title" content="#variables.title#" />
-	
-	<view:asset package="jquery-tablesorter" />
-	<view:script>
-		$(document).ready(function() {
-				$("#eventList").tablesorter( { widgets: ['zebra'], headers: { 5:{sorter: false}}} );
-			}
-		);
-	</view:script>
 </cfsilent>
 
 <cfoutput><h3>#variables.title#</h3></cfoutput>
+<br><br>
 <cfif events.RecordCount GT 0>
-<table id="eventList" class="tablesorter">
-	<thead>
-		<tr>
-			<th>Status</th>
-			<th>Event</th>
-			<th>Start Date</th>
-			<th>End Date</th>
-			<th>Location</th>
-			<th>Actions</th>
-		</tr>
-	</thead>
-	<tbody>
-		<cfoutput query="events">
-			<tr>
-				<td>#status#</td>
-				<td>#name#</td>
-				<td>#dateFormat(startDate, "m/d/yyyy")#</td>
-				<td>#dateFormat(endDate, "m/d/yyyy")#</td>
-				<td>#location#</td>
-				<td>
-					<view:a event="event.edit" p:id="#id#">Edit</view:a> | 
-					<view:a event="activity.doSearch" p:eventId="#id#">Activities</view:a>
-				</td>
-			</tr>	
-		</cfoutput>
+	
+<tags:datatable>
+<div class="content">	
+	<div class="row">
+		<div class="span12">
+			<table id="chapters" class="table table-striped table-bordered">
+				<thead>
+					<tr>
+						<th>Status</th>
+						<th>Event</th>
+						<th>Start Date</th>
+						<th>End Date</th>
+						<th>Location</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody id="chaptersList">
+					<cfoutput query="events">
+						<tr>
+							<td>#status#</td>
+							<td>#name#</td>
+							<td>#dateFormat(startDate, "m/d/yyyy")#</td>
+							<td>#dateFormat(endDate, "m/d/yyyy")#</td>
+							<td>#location#</td>
+							<td>
+								<view:a event="event.edit" p:id="#id#">Edit</view:a> | 
+								<view:a event="activity.doSearch" p:eventId="#id#">Activities</view:a>
+							</td>
+						</tr>	
+					</cfoutput>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="clear"><br><br></div>
+</div>
+</tags:datatable>
 <cfelse>
-	<tr>
-		<td colspan="6">No events found</td>
-	</tr>
+<div>No events found.</div>
 </cfif>
-	</tbody>
-</table>
+

@@ -28,7 +28,7 @@ Notes:
 --->
 	<<cfimport prefix="view" taglib="/MachII/customtags/view" />
 	<cfimport prefix="form" taglib="/MachII/customtags/form" />
-	<cfimport prefix="tags" taglib="/customtags" />
+	<cfimport prefix="tags" taglib="/enlist/customtags" />
 	<cfset copyToScope("${event.users}") />
 	
 	<cfif event.getName() EQ "user.doSearch">
@@ -42,30 +42,41 @@ Notes:
 <!--- <p><view:a event="user.search" class="btn">Search Users</view:a>&nbsp;<view:a event="user.edit" class="btn">Create a new user</view:a></p> --->
 
 <h3>#variables.title#</h3>
-<cfif users.RecordCount GT 0>
-<table>
-	<tr>
-		<th>First Name</th>
-		<th>Last Name</th>
-		<th>Google Email</th>
-		<th>Role</th>
-		<th>Status</th>
-		<th>Actions</th>
-	</tr>
-	<cfloop query="users">
-		<tr>
-			<td>#users.FirstName#</td>
-			<td>#users.LastName#</td>
-			<td>#users.GoogleEmail#</td>
-			<td>#users.Role#</td>
-			<td>#users.Status#</td>
-			<td><view:a event="user.edit" p:id="#users.id#">Edit</view:a></td>
-		</tr>
-	</cfloop>
+<cfif users.recordcount gte 1>
+<tags:datatable>
+<div class="content">	
+	<div class="row">
+		<div class="span12">
+			<table id="chapters" class="table table-striped table-bordered">
+				<thead>
+					<tr>
+						<th>First Name</th>
+						<th>Last Name</th>
+						<th>Google Email</th>
+						<th>Role</th>
+						<th>Status</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody id="chaptersList">
+					<cfloop query="users">
+						<tr>
+							<td>#users.FirstName#</td>
+							<td>#users.LastName#</td>
+							<td>#users.GoogleEmail#</td>
+							<td>#users.Role#</td>
+							<td>#users.Status#</td>
+							<td><view:a event="user.edit" p:id="#users.id#">Edit</view:a></td>
+						</tr>
+					</cfloop>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="clear"><br><br></div>
+</div>
+</tags:datatable>
 <cfelse>
-	<tr>
-		<td colspan="6">No users found</td>
-	</tr>
+<div>No users found.</div>
 </cfif>
-</cfoutput>
-</table>
+</cfoutput>	
