@@ -25,6 +25,21 @@ $Id$
 
 Notes:
 --->
+
+<!---
+	Class: ActivityListener
+	Listener for activities in the system. Activities are some thing that can be done
+	by one or more people at a specific event. They have a date range, as well as a
+	point value and location.
+
+	Extends:
+		MachII.framework.Listener
+
+	Depends:
+		- <enlist.model.event.activity.ActivityService>
+		- <enlist.model.event.EventService>
+		- SessionFacade
+--->
 <cfcomponent
 	displayname="ActivityListener"
 	extends="MachII.framework.Listener"
@@ -60,16 +75,33 @@ Notes:
 		<cfreturn result/>
 	</cffunction>
 
+	<!---
+		Function: getActivity
+		Retrieves an activity, either by ID from the event, or a new, empty <Activity> bean.
+
+		Visibility:
+			public
+
+		Parameters:
+			event - A <MachII.framework.Event> object
+
+		Returns:
+			An instance of an <enlist.model.event.activity.Activity> bean
+	--->
 	<cffunction name="getActivity" access="public" returntype="enlist.model.event.activity.Activity" output="false">
 		<cfargument name="event" type="MachII.framework.Event" required="true" />
 
+		<cfset var bean = "" />
+
 		<cfscript>
 			if (not arguments.event.isArgDefined("activity")) {
-				return getActivityService().getActivity(arguments.event.getArg("id", ""));
+				bean = getActivityService().getActivity(arguments.event.getArg("id", ""));
 			} else {
-				return arguments.event.getArg("activity");
+				bean = arguments.event.getArg("activity");
 			}
 		</cfscript>
+
+		<cfreturn bean />
 	</cffunction>
 
 	<!---

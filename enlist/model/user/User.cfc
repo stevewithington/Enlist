@@ -67,7 +67,7 @@ Notes:
 		<cfargument name="city" type="string" required="false" default="" />
 		<cfargument name="state" type="string" required="false" default="" />
 		<cfargument name="zip" type="string" required="false" default="" />
-		<cfargument name="importHashCode" type="UUID" required="false" default="#CreateUUID()#" />
+		<cfargument name="importHashCode" type="string" required="false" default="#CreateUUID()#" />
 
 		<cfset setInstanceMemento(arguments) />
 
@@ -269,7 +269,7 @@ Notes:
 	</cffunction>
 
 	<cffunction name="setImportHashCode" access="public" returntype="void" output="false">
-		<cfargument name="importHashCode" type="UUID" required="true" />
+		<cfargument name="importHashCode" type="string" required="true" />
 		<cfset variables.importHashCode = arguments.importHashCode />
 	</cffunction>
 	<cffunction name="getImportHashCode" access="public" returntype="UUID" output="false">

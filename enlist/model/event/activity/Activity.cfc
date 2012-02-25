@@ -25,6 +25,25 @@ $Id$
 
 Notes:
 --->
+
+<!---
+	Class: Activity
+	A bean representing an individual activity. Activities are some thing that can be done
+	by one or more people at a specific event. They have a date range, as well as a
+	point value and location.
+
+	Properties:
+		- id
+		- title
+		- description
+		- numPeople
+		- startDate
+		- endDate
+		- pointHours
+		- location
+		- eventId
+		- event
+--->
 <cfcomponent
 	displayname="Activity"
 	output="false">
@@ -56,7 +75,20 @@ Notes:
 	<cfset variables.event = CreateObject( "component", "enlist.model.event.Event") />
 	
 	<!---
-	INITIALIZATION / CONFIGURATION
+		Constructor: init
+		Initializes this bean.
+
+		Parameters:
+			id - ID for this entity. Defaults to ""
+			title - Title of this activity. Defaults to ""
+			description - A longer description for this activity. Defaults to ""
+			numPeople - Number of people involved. Defaults to ""
+			startDate - The start date for this activity. Defaults to ""
+			endDate - The end date for this activity. Defaults to ""
+			pointHours - The number of points hours for this activity. Defaults to ""
+			location - The location where this activity is to occur. Defaults to ""
+			eventId - ID of the event this activity is related to. Defaults to ""
+			event - An event bean for the event this activity is related to. 
 	--->
 	<cffunction name="init" access="public" output="false" returntype="enlist.model.event.activity.Activity">
 		<cfargument name="id" type="string" required="false" default="" />
@@ -75,8 +107,21 @@ Notes:
 	   <cfreturn this />
 	</cffunction>
 
+
 	<!---
-	PUBLIC FUNCTIONS
+		PUBLIC FUNCTIONS
+	--->
+
+	<!---
+		Function: validate
+		Validates that the data for this bean is indeed correct. This will record a
+		structure that contains keys for any fields that have errors.
+
+		Visibility:
+			public
+
+		Returns:
+			A structure whose keys are fields of this bean that contain errors
 	--->
 	<cffunction name="validate" access="public" returntype="struct" output="false">
 		<cfscript>
@@ -114,7 +159,18 @@ Notes:
 			return errors;
 		</cfscript>
 	</cffunction>
-	
+
+	<!---
+		Function: setInstanceMemento
+		Takes a structure and applies the values to the properties of
+		this bean.
+
+		Visibility:
+			public
+
+		Parameters:
+			data - A structure containing values to populate this bean
+	--->	
 	<cffunction name="setInstanceMemento" access="public" returntype="void" output="false">
 		<cfargument name="data" type="struct" required="true" />
 	
@@ -131,6 +187,7 @@ Notes:
 			<cfset setEvent(arguments.data.event) />
 		</cfif>
 	</cffunction>
+	
 	<cffunction name="getInstanceMemento" access="public" returntype="struct" output="false">
 
 		<cfset var data = StructNew() />

@@ -39,12 +39,9 @@
 <script type="text/javascript" charset="utf-8">
 	$(document).ready(function() {
 
-		$('#chapters').dataTable( {
-			"sPaginationType": "full_numbers",
-			"sType":"title-numeric"
-		} );
+		$('#chapters').dataTable();
 
-		//link datable rows to chapter.edit
+		//link datatable rows to chapter.edit
 		$('#chaptersList tr').live('click', function() {
 			var thisId = $(this).find('td[id]').attr("id");
 			window.location = '/index.cfm/?event=chapter.edit&id=' + thisId;
@@ -56,7 +53,6 @@
 
 <cfoutput>
 <p><view:a event="chapter.edit">Create a new chapter</view:a></p>
-<div>
 	<table id="chapters">
 		<thead>
 			<tr>
@@ -82,6 +78,5 @@
 			</tr>
 		</tfoot>
 	</table>
-</div>
 <p><view:a event="chapter.edit">Create a new chapter</view:a></p>
 </cfoutput>

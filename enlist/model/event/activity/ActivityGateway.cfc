@@ -25,24 +25,22 @@ $Id$
 
 Notes:
 --->
-<cfcomponent 
-	displayname="ActivityGateway" 
-	output="false" 
-	extends="enlist.model.BaseGateway">	
+<cfcomponent displayname="ActivityGateway" output="false">	
 	
 	<!---
-	INITIALIZATION / CONFIGURATION
+		INITIALIZATION / CONFIGURATION
 	--->
 	<cffunction name="init" access="public" returntype="ActivityGateway" output="false" hint="Initializes the gateway.">
 		<cfreturn this />
 	</cffunction>
 
-    <!---
-	DEPENDENCIES
+	<!---
+		DEPENDENCIES
 	--->
     <cffunction name="getEventService" access="public" returntype="enlist.model.event.EventService" output="false">
         <cfreturn variables.eventService />
     </cffunction>
+
     <cffunction name="setEventService" access="public" returntype="void" output="false">
         <cfargument name="eventService" type="enlist.model.event.EventService" required="true" />
         <cfset variables.eventService = arguments.eventService />
@@ -51,13 +49,37 @@ Notes:
 	<cffunction name="getUserService" returntype="enlist.model.user.UserService" access="public" output="false">
 		<cfreturn variables.userService />
 	</cffunction>
+
 	<cffunction name="setUserService" returntype="void" access="public" output="false">
 		<cfargument name="userService" type="enlist.model.user.UserService" required="true" />
 		<cfset variables.userService = arguments.userService />
 	</cffunction>
 
-    <!---
-	PUBLIC FUNCTIONS
+	<!---
+		PUBLIC FUNCTIONS
+	--->
+
+	<!---
+		Function: list
+		A method for getting a list of activities. You are able to filter the query from
+		a series of filters.
+
+		Visibility:
+			public
+
+		Parameters:
+			id - Filter query results by a specific ID
+			title - Filter query where title is like this clause
+			description - Filter query by description
+			numPeople - Filter by number of people at this activity
+			startDate - Filter by the activity start date
+			endDate - Filter by the activity end date
+			pointHours - Filter by number of point hours for this activity
+			location - Filter by location
+			eventId - Filter by the event this activity is tied to
+
+		Returns:
+			A query of activities
 	--->
 	<cffunction name="list" access="public" returntype="query" output="false" hint="Lists all activities.">
 		<cfargument name="id" type="string" required="false" default="0" />
@@ -110,11 +132,93 @@ Notes:
 					AND a.endDate=<cfqueryparam value="#arguments.endDate#" cfsqltype="CF_SQL_DATE" />
 				</cfif>
 		</cfquery>
-		<!---<cfreturn addEventNamesToActivities(super.list()) />--->
-
+	
 		<cfreturn qryActivities />
 	</cffunction>
-	
+
+	<!---
+		Function: read
+		Reads an individual entity from the database into an <Activity> bean. Expects
+		an ID to read from the database. If an ID is not passed in a new, blank
+		bean is returned.
+
+		Author:
+			Adam Presley
+
+		Visibility:
+			public
+
+		Parameters:
+			id - ID of the activity entity to read. Defaults to zero (0)
+
+		Returns:
+			An <Activity> bean
+	--->
+	<cffunction name="read" returntype="enlist.model.event.activity.Activity" access="public" output="false">
+		<cfargument name="id" type="string" required="false" default="0" />
+
+		<cfset var qryActivity = "" />
+		<cfset var bean = "" />
+		<cfset var memento = {} />
+		<cfset var columnName = "" />
+
+		<cfset bean = createObject("component", "enlist.model.event.activity.Activity").init() />
+
+		<cfif arguments.id GT 0>
+			<cfquery name="qryActivity">
+				SELECT 
+					  a.id
+					, a.title
+					, a.description
+					, a.numPeople
+					, a.startDate
+					, a.endDate
+					, a.pointHours
+					, a.location
+					, a.eventId
+
+				FROM activity AS a
+				WHERE a.id=<cfqueryparam value="#arguments.id#" cfsqltype="CF_SQL_INTEGER" />
+			</cfquery>
+
+			<cfif qryActivity.recordCount>
+				<cfloop list="#qryActivity.columnList#" index="columnName">
+					<cfset memnto[columnName] = qryActivity[columnName] />
+				</cfloop>
+
+				<cfset bean.setInstanceMemento(memento) />
+				<cfset bean.setEvent(variables.eventService.getEvent(bean.getEventId())) />
+			</cfif>
+		</cfif>
+
+		<cfreturn bean />
+	</cffunction>
+
+	<!---
+		Function: save
+		Persists an <enlist.model.event.activity.Activity> bean to the database.
+
+		Author:
+			Adam Presley
+
+		Visiblity:
+			public
+
+		Parameters:
+			bean - <enlist.model.event.activity.Activity> bean with ID populated
+	--->
+	<cffunction name="save" returntype="void" access="public" output="false">
+		<cfargument name="bean" type="enlist.model.event.activity.Activity" required="true" />
+
+		<cfset var qrySaveActivity = "" />
+<!--- 
+		<cfquery name="qrySaveActivity">
+			
+		</cfquery>
+ --->		
+		<cfreturn arguments.bean />
+	</cffunction>
+
 	<cffunction name="listByPropertyMap" access="public" returntype="array" output="false">
 		<cfreturn addEventNamesToActivities(super.listByPropertyMap(arguments)) />
 	</cffunction>

@@ -43,12 +43,23 @@ Notes:
 	  <div class="navbar-inner">
 	    <div class="container">
 	     <ul class="nav nav-tabs">
-
-				<li class="active"><view:a event="home" ><view:message key="nav.home" /></view:a></li>
 				<li class="active"><view:a event="home" ><view:message key="nav.home" /></view:a></li>
 			<!--- <cfif variables.googleUserService.isUserLoggedIn()> --->	
-			   <li class="dropdown">
-				    <a href="index.cfm?event=event.list"
+			  <li class="dropdown" id="menu1">
+			    <a class="dropdown-toggle" data-toggle="dropdown" href="#menu1">
+			      Dropdown
+			      <b class="caret"></b>
+			    </a>
+			    <ul class="dropdown-menu">
+			      <li><a href="">Action</a></li>
+			      <li><a href="">Another action</a></li>
+			      <li><a href="">Something else here</a></li>
+			      <li class="divider"></li>
+			      <li><a href="">Separated link</a></li>
+			    </ul>
+			  </li>
+			   <li class="dropdown" id="menu1">
+				    <a href="#"
 				          class="dropdown-toggle"
 				          data-toggle="dropdown">
 				          Users
@@ -62,6 +73,9 @@ Notes:
 				</li>
 			   <li class="dropdown">
 				    <a href="index.cfm?event=event.list"
+				</li>		
+			   <li class="dropdown" id="menu2">
+				    <a href="#menu2"
 				          class="dropdown-toggle"
 				          data-toggle="dropdown">
 				          Events
@@ -73,8 +87,8 @@ Notes:
 				     <li><view:a event="event.search" >Search Events</view:a></li>
 				    </ul>
 				</li>
-			    <li class="dropdown">
-				    <a href="index.cfm?event=event.list"
+			    <li class="dropdown" id="menu3">
+				    <a href="#menu3"
 				          class="dropdown-toggle"
 				          data-toggle="dropdown">
 				          Actvites
@@ -86,8 +100,9 @@ Notes:
 				     <li><view:a event="activity.search" >Search Activity</view:a></li>
 				    </ul>
 				</li>
-			    <li class="dropdown">
-				    <a href="index.cfm?event=chapter.list"
+
+			    <li class="dropdown" id="menu4">
+				    <a href="#menu4"
 				          class="dropdown-toggle"
 				          data-toggle="dropdown">
 				          Chapters
@@ -98,8 +113,8 @@ Notes:
 				     <li><view:a event="chapter.list" >List Chapters</view:a></li>
 				    </ul>
 				</li>
-			    <li class="dropdown">
-				    <a href="index.cfm?event=event.list"
+			    <li class="dropdown" id="menu4">
+				    <a href="#menu4"
 				          class="dropdown-toggle"
 				          data-toggle="dropdown">
 				          Navigation
@@ -122,4 +137,4 @@ Notes:
 	  </div>
 	</div>
 </div>
-</cfoutput>
+
