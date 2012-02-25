@@ -49,6 +49,12 @@
 	</view:script>
 </cfsilent>
 <cfoutput>
+
+<ul class="nav nav-pills">
+  <li <cfif arguments.event.getArg('event') eq 'navigation.edit'>class="active"</cfif>><view:a event="navigation.edit">Create Navigation Item</view:a></li>
+  <li <cfif arguments.event.getArg('event') eq 'navigation.list'>class="active"</cfif>><view:a event="navigation.list">List Navigation Items</view:a></li>
+</ul>	
+	
 <tags:displaymessage />
 <tags:displayerror />
 
