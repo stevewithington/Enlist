@@ -29,7 +29,7 @@ Notes:
 	<cfimport prefix="view" taglib="/MachII/customtags/view" />
 	<cfset copyToScope("eventName=${event.getName()},${properties.udfs}") />
 </cfsilent>
-<cfoutput>
+
 <view:script src="/bootstrap/js/bootstrap.js">
 	$('.dropdown-toggle').dropdown();
 </view:script>
@@ -72,7 +72,9 @@ Notes:
 				    </ul>
 				</li>
 			   <li class="dropdown">
-				    <a href="index.cfm?event=event.list"
+				    <a href="index.cfm?event=event.list">
+				    Event
+				    </a>
 				</li>		
 			   <li class="dropdown" id="menu2">
 				    <a href="#menu2"
