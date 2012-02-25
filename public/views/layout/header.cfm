@@ -49,7 +49,7 @@ Notes:
 	     <ul class="nav nav-tabs">
 				<li <cfif arguments.event.getArg('event') eq 'home'>class="active"</cfif> ><view:a event="home" ><view:message key="nav.home" /></view:a></li>
 			<!--- <cfif variables.googleUserService.isUserLoggedIn()> --->
-			   <li class="dropdown" id="menu1">
+			   <li  <cfif arguments.event.getArg('event') eq 'user.edit' OR  arguments.event.getArg('event') eq 'user.list' OR arguments.event.getArg('event') eq 'user.search' >class="dropdown active"<cfelse >class="dropdown"</cfif>  id="menu1">
 				    <a href="#"
 				          class="dropdown-toggle"
 				          data-toggle="dropdown">
@@ -62,7 +62,7 @@ Notes:
 				     <li><view:a event="user.search" ><view:message key="links.event.search" arguments="User" /></view:a></li>
 				    </ul>
 				</li>
-			   <li class="dropdown" id="menu2">
+			   <li <cfif arguments.event.getArg('event') eq 'event.edit' OR  arguments.event.getArg('event') eq 'event.list' OR arguments.event.getArg('event') eq 'event.search' >class="dropdown active"<cfelse >class="dropdown"</cfif>  id="menu2">
 				    <a href="#menu2"
 				          class="dropdown-toggle"
 				          data-toggle="dropdown">
@@ -75,7 +75,7 @@ Notes:
 				     <li><view:a event="event.search" ><view:message key="links.event.search" arguments="Events" /></view:a></li>
 				    </ul>
 				</li>
-			    <li class="dropdown" id="menu3">
+			    <li <cfif arguments.event.getArg('event') eq 'activity.edit' OR  arguments.event.getArg('event') eq 'activity.list' OR arguments.event.getArg('event') eq 'activity.search' >class="dropdown active"<cfelse >class="dropdown"</cfif>  id="menu3">
 				    <a href="#menu3"
 				          class="dropdown-toggle"
 				          data-toggle="dropdown">
@@ -89,7 +89,7 @@ Notes:
 				    </ul>
 				</li>
 
-			    <li class="dropdown" id="menu4">
+			    <li <cfif arguments.event.getArg('event') eq 'chapter.edit' OR  arguments.event.getArg('event') eq 'chapter.list' OR arguments.event.getArg('event') eq 'chapter.search' >class="dropdown active"<cfelse >class="dropdown"</cfif>  id="menu4">
 				    <a href="#menu4"
 				          class="dropdown-toggle"
 				          data-toggle="dropdown">
