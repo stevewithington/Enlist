@@ -57,12 +57,7 @@ Notes:
 		});
 	</view:script>
 </cfsilent>
-<cfoutput>
-<ul class="nav nav-pills">
-  <li <cfif arguments.event.getArg('event') eq 'activity.edit'>class="active"</cfif>><view:a event="activity.edit">Create Activity</view:a></li>
-  <li <cfif arguments.event.getArg('event') eq 'activity.list'>class="active"</cfif>><view:a event="activity.list">List Activities</view:a></li>
-  <li <cfif arguments.event.getArg('event') eq 'activity.search'>class="active"</cfif>><view:a event="activity.search">Search Activities</view:a></li>
-</ul>	
+<cfoutput>	
 	
 <tags:displaymessage />
 <tags:displayerror />

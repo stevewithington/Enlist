@@ -1,53 +1,37 @@
-<cfsilent>
-	<!---
-	
-	    Enlist - Volunteer Management Software
-	    Copyright (C) 2011 GreatBizTools, LLC
-	
-	    This program is free software: you can redistribute it and/or modify
-	    it under the terms of the GNU General Public License as published by
-	    the Free Software Foundation, either version 3 of the License, or
-	    (at your option) any later version.
-	
-	    This program is distributed in the hope that it will be useful,
-	    but WITHOUT ANY WARRANTY; without even the implied warranty of
-	    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-	    GNU General Public License for more details.
-	
-	    You should have received a copy of the GNU General Public License
-	    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-	    
-	    Linking this library statically or dynamically with other modules is
-	    making a combined work based on this library.  Thus, the terms and
-	    conditions of the GNU General Public License cover the whole
-	    combination.
-	
-	$Id: nav.cfm 181 2011-06-16 04:56:27Z peterjfarrell $
-	
-	Notes:
-	--->
-	<cfimport prefix="view" taglib="/MachII/customtags/view" />
-</cfsilent>
+<cfimport prefix="view" taglib="/MachII/customtags/view" />
 
-<cfscript>
-	
-	
-	//array of NavigationLink objects should come from user.getNavigaiton() or somethinglike that
-	/* navLinks = arrayNew(1); //event.getArg('User').getNavigation();  */
-	navLinks = event.getArg('navigations');
-	displayNavigation(navLinks);
-</cfscript>
-
-<cffunction name="displayNavigation" returntype="any" access="public" output="true">
-	<cfargument name="links" type="any" required="true" />
-	
-	<cfset var link = "" />
-	
-	<ul class="nav nav-pills nav-stacked">
-	<cfloop index="link" from="1" to="#arrayLen(arguments.links)#">
-		<cfoutput>
-		<li><view:a event="#arguments.links[link].getEventName()#">#arguments.links[link].getName()#</view:a></li>
-		</cfoutput>
-	</cfloop>
+<!--- SUBNAV FOR USERS --->
+<cfif arguments.event.getArg('event') eq 'user.edit' OR arguments.event.getArg('event') eq 'user.list'  OR  arguments.event.getArg('event') eq 'user.search'>
+	<ul class="nav nav-pills">
+		<li <cfif arguments.event.getArg('event') eq 'user.edit'>class="active"</cfif>><view:a event="user.edit">Create User</view:a></li>
+		<li <cfif arguments.event.getArg('event') eq 'user.list'>class="active"</cfif>><view:a event="user.list">List Users</view:a></li>
+		<li <cfif arguments.event.getArg('event') eq 'user.search'>class="active"</cfif>><view:a event="user.search">Search Users</view:a></li>
 	</ul>
-</cffunction>
+</cfif>
+
+
+<!--- SUBNAV FOR EVENTS --->
+<cfif arguments.event.getArg('event') eq 'event.edit' OR  arguments.event.getArg('event') eq 'event.list'  OR  arguments.event.getArg('event') eq 'event.search'>
+	<ul class="nav nav-pills">
+		<li <cfif arguments.event.getArg('event') eq 'event.edit'>class="active"</cfif>><view:a event="event.edit">Create Event</view:a></li>
+		<li <cfif arguments.event.getArg('event') eq 'event.list'>class="active"</cfif>><view:a event="event.list">List Events</view:a></li>
+		<li <cfif arguments.event.getArg('event') eq 'event.search'>class="active"</cfif>><view:a event="event.search">Search Events</view:a></li>
+	</ul>
+</cfif>	
+
+<!--- SUBNAV FOR ACTIVITES --->
+<cfif arguments.event.getArg('event') eq 'activity.edit' OR  arguments.event.getArg('event') eq 'activity.list'  OR  arguments.event.getArg('event') eq 'activity.search'>
+	<ul class="nav nav-pills">
+		<li <cfif arguments.event.getArg('event') eq 'activity.edit'>class="active"</cfif>><view:a event="activity.edit">Create Activity</view:a></li>
+		<li <cfif arguments.event.getArg('event') eq 'activity.list'>class="active"</cfif>><view:a event="activity.list">List Activities</view:a></li>
+		<li <cfif arguments.event.getArg('event') eq 'activity.search'>class="active"</cfif>><view:a event="activity.search">Search Activities</view:a></li>
+	</ul>
+</cfif>
+
+<!--- SUBNAV FOR CHAPTERS --->
+<cfif arguments.event.getArg('event') eq 'chapter.edit' OR  arguments.event.getArg('event') eq 'chapter.list'>
+	<ul class="nav nav-pills">
+		<li <cfif arguments.event.getArg('event') eq 'chapter.edit'>class="active"</cfif>><view:a event="chapter.edit">Create Chapter</view:a></li>
+		<li <cfif arguments.event.getArg('event') eq 'chapter.list'>class="active"</cfif>><view:a event="chapter.list">List Chapters</view:a></li>
+	</ul>
+</cfif>

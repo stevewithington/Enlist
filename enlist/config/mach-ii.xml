@@ -381,9 +381,9 @@ Notes:
 	<!-- SUBROUTINES -->
 	<subroutines>
 		<subroutine name="doMainLayout">
+			<view-page name="layout.nav" contentArg="layout.subnav" />
 			<view-page name="layout.header" contentArg="layout.header" />
 			<call-method bean="navigationLinkService" method="getNavigationLinks" resultArg="navigations" />
-			<view-page name="layout.nav" contentArg="layout.nav" />
 			<view-page name="layout.footer" contentArg="layout.footer" />
 			<view-page name="layout.wrapper" />
 		</subroutine>

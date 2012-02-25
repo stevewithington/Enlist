@@ -40,11 +40,6 @@ Notes:
 </cfsilent>
 <cfoutput>
 <!--- <p><view:a event="user.search" class="btn">Search Users</view:a>&nbsp;<view:a event="user.edit" class="btn">Create a new user</view:a></p> --->
-<ul class="nav nav-pills">
-  <li <cfif arguments.event.getArg('event') eq 'user.edit'>class="active"</cfif>><view:a event="user.edit">Create User</view:a></li>
-  <li <cfif arguments.event.getArg('event') eq 'user.list'>class="active"</cfif>><view:a event="user.list">List Users</view:a></li>
-  <li <cfif arguments.event.getArg('event') eq 'user.search'>class="active"</cfif>><view:a event="user.search">Search Users</view:a></li>
-</ul>	
 
 <h3>#variables.title#</h3>
 

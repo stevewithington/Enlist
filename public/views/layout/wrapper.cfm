@@ -52,12 +52,14 @@
 <div class="container-fluid">
   <div class="row">
 	<div id="top" class="span12">
-       #event.getArg("layout.header")#
+       #event.getArg("layout.header")#<br>
 	</div>
   </div>
   <div class="row-fluid">
     <div class="span12">
-      <!--Body content-->
+      	<!--SubNav content-->
+		#event.getArg('layout.subnav', "no subnav defined")#
+		<!--Body content-->
 		#event.getArg("layout.content")#
     </div>
   </div>

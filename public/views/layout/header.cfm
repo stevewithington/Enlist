@@ -62,14 +62,6 @@ Notes:
 				     <li><view:a event="user.search" >Search User</view:a></li>
 				    </ul>
 				</li>
-<<<<<<< HEAD
-			   <li class="dropdown">
-				    <a href="index.cfm?event=event.list">
-				    Event
-				    </a>
-				</li>		
-=======
->>>>>>> d02d2dee9b76217567f43e74e054dd0cbb7b06f7
 			   <li class="dropdown" id="menu2">
 				    <a href="#menu2"
 				          class="dropdown-toggle"
@@ -121,6 +113,4 @@ Notes:
 	</div>
 </div>
 
-<div class="row">
-	<div class="clear"></div>
-</div>
+
