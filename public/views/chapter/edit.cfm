@@ -47,6 +47,12 @@
 	</view:script>
 </cfsilent>
 <cfoutput>
+	
+<ul class="nav nav-pills">
+  <li <cfif arguments.event.getArg('event') eq 'chapter.edit'>class="active"</cfif>><view:a event="chapter.edit">Create Chapter</view:a></li>
+  <li <cfif arguments.event.getArg('event') eq 'chapter.list'>class="active"</cfif>><view:a event="chapter.list">List Chapters</view:a></li>
+</ul>	
+	
 <tags:displaymessage />
 <tags:displayerror />
 
@@ -73,7 +79,7 @@
 		</tr>
 		<tr>
 			<td><form:hidden name="id" path="id" /></td>
-			<td colspan="3"><form:button type="submit" name="save" value="Save Chapter" /></td>
+			<td colspan="3"><form:button type="submit" name="save" value="Save Chapter" class="btn-primary"  /></td>
 		</tr>
 	</table>
 </form:form>

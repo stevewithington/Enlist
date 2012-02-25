@@ -62,6 +62,12 @@
 <tags:displaymessage />
 <tags:displayerror />
 
+<ul class="nav nav-pills">
+  <li <cfif arguments.event.getArg('event') eq 'event.edit'>class="active"</cfif>><view:a event="event.edit">Create Event</view:a></li>
+  <li <cfif arguments.event.getArg('event') eq 'event.list'>class="active"</cfif>><view:a event="event.list">List Events</view:a></li>
+  <li <cfif arguments.event.getArg('event') eq 'event.search'>class="active"</cfif>><view:a event="event.search">Search Events</view:a></li>
+</ul>	
+
 <h3>#variables.type# Event</h3>
 
 <form:form actionEvent="event.save" bind="theEvent" id="eventForm">
@@ -90,7 +96,7 @@
 		</tr>
 		<tr>
 			<td><form:hidden name="id" path="id" /></td>
-			<td colspan="3"><form:button type="submit" name="save" value="Save Event" /></td>
+			<td colspan="3"><form:button type="submit" name="save" value="Save Event" class="btn-primary"  /></td>
 		</tr>
 	</table>
 </form:form>

@@ -31,47 +31,13 @@ Notes:
 	A bean representing an individual activity. Activities are some thing that can be done
 	by one or more people at a specific event. They have a date range, as well as a
 	point value and location.
-
-	Properties:
-		- id
-		- title
-		- description
-		- numPeople
-		- startDate
-		- endDate
-		- pointHours
-		- location
-		- eventId
-		- event
 --->
-<cfcomponent
-	displayname="Activity"
-	output="false">
-
-	<!--- PROPERTIES --->
-	<cfproperty name="id" type="string" />
-	<cfproperty name="title" type="string"/>
-	<cfproperty name="description" type="string" />
-	<cfproperty name="numPeople" type="string"/>
-	<cfproperty name="startDate" type="string"/>
-	<cfproperty name="endDate" type="string"/>
-	<cfproperty name="pointHours" type="string"/>
-	<cfproperty name="location" type="string"/>
-	<cfproperty name="eventId" type="string" />
-	<cfproperty name="event" type="enlist.model.event.Event" />
-
-	<cfset variables.id = "" />
-	<cfset variables.title = ""/>
-	<cfset variables.description = ""/>
-	<cfset variables.numPeople = ""/>
-	<cfset variables.startDate = ""/>
-	<cfset variables.endDate = ""/>
-	<cfset variables.pointHours = ""/>
-	<cfset variables.location = ""/>
-	<cfset variables.eventId = "" />
-	<!--- This is an admitted hack that was discussed by Dave Shuck/Kurt Weirsma.  It will likely come out. 
-	Feel free to find and discuss an alternative! 
-	-dshuck --->
+<cfcomponent displayname="Activity" extends="enlist.model.BaseBean" output="false">
+	<!---
+		This is an admitted hack that was discussed by Dave Shuck/Kurt Weirsma.  It will likely come out. 
+		Feel free to find and discuss an alternative! 
+		-dshuck
+	--->
 	<cfset variables.event = CreateObject( "component", "enlist.model.event.Event") />
 	
 	<!---
@@ -102,9 +68,7 @@ Notes:
 		<cfargument name="eventId" type="string" required="false" default="" />
 		<cfargument name="event" type="enlist.model.event.Event" required="false" />
 
-		<cfset setInstanceMemento(arguments) />
-
-	   <cfreturn this />
+		<cfreturn super.init(arguments) />
 	</cffunction>
 
 

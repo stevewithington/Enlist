@@ -32,7 +32,11 @@ Notes:
 	<view:meta type="title" content="Navigation Link List" />
 </cfsilent>
 <cfoutput>
-<p><view:a event="navigation.edit">Create a new navigation link</view:a></p>
+	
+<ul class="nav nav-pills">
+  <li <cfif arguments.event.getArg('event') eq 'navigation.edit'>class="active"</cfif>><view:a event="navigation.edit">Create Navigation Item</view:a></li>
+  <li <cfif arguments.event.getArg('event') eq 'navigation.list'>class="active"</cfif>><view:a event="navigation.list">List Navigation Items</view:a></li>
+</ul>
 
 <h3>Navigation Link List</h3>
 

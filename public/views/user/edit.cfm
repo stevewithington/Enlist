@@ -48,6 +48,12 @@ Notes:
 	</view:script>
 </cfsilent>
 <cfoutput>
+<ul class="nav nav-pills">
+  <li <cfif arguments.event.getArg('event') eq 'user.edit'>class="active"</cfif>><view:a event="user.edit">Create User</view:a></li>
+  <li <cfif arguments.event.getArg('event') eq 'user.list'>class="active"</cfif>><view:a event="user.list">List Users</view:a></li>
+  <li <cfif arguments.event.getArg('event') eq 'user.search'>class="active"</cfif>><view:a event="user.search">Search Users</view:a></li>
+</ul>		
+	
 <tags:displaymessage />
 <tags:displayerror />
 
@@ -126,7 +132,7 @@ Notes:
 		</cfif>
 		<tr>
 			<td><form:hidden name="id" path="id" /></td>
-			<td colspan="3"><form:button type="submit" name="save" value="Save User" /></td>
+			<td colspan="3"><form:button type="submit" name="save" value="Save User" class="btn-primary" /></td>
 		</tr>
 	</table>
 </form:form>

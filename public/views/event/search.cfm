@@ -38,6 +38,12 @@
 	</view:script>	
 </cfsilent>
 <cfoutput>
+	
+<ul class="nav nav-pills">
+  <li <cfif arguments.event.getArg('event') eq 'event.edit'>class="active"</cfif>><view:a event="event.edit">Create Event</view:a></li>
+  <li <cfif arguments.event.getArg('event') eq 'event.list'>class="active"</cfif>><view:a event="event.list">List Events</view:a></li>
+  <li <cfif arguments.event.getArg('event') eq 'event.search'>class="active"</cfif>><view:a event="event.search">Search Events</view:a></li>
+</ul>		
 
 <h3>Search Events</h3>
 

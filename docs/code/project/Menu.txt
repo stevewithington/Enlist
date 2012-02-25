@@ -65,6 +65,8 @@ Group: Public  {
    File: unit_test.js  (/home/psykoprogrammer/Dropbox/code/coldfusion/Enlist/public/views/thirdParty/DataTables-1.9.0/media/unit_testing/unit_test.js)
    }  # Group: Public
 
+File: BaseBean  (/home/psykoprogrammer/Dropbox/code/coldfusion/Enlist/enlist/model/BaseBean.cfc)
+
 Group: Index  {
 
    Index: Everything
