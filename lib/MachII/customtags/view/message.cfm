@@ -65,6 +65,8 @@ Notes:
 	<!--- Enforce required attributes --->
 	<cfset ensureByName("key") />
 
+
+
 	<!--- Setup defaults --->
 	<cfparam name="attributes.argumentSeparator" type="string"
 		default="," />
@@ -87,6 +89,14 @@ Notes:
 
 	<!--- Store the output to whatever variable 'var' is pointing to --->
 	<cfif Len(attributes.var)>
+		<!---
+			If the user wants to put in the "variables", we must use the caller scope since
+			this is a custom tag
+		--->
+		<cfif attributes.var.toLowercase().startsWith("variables.")>
+			<cfset attributes.var = ReplaceNoCase(attributes.var, "variables.", "caller.", "one") />
+		</cfif>
+
 		<cfset SetVariable(attributes.var, variables.output) />
 	</cfif>
 
