@@ -25,10 +25,7 @@ $Id$
 
 Notes:
 --->
-<cfcomponent 
-	displayname="ActivityGateway" 
-	output="false" 
-	extends="enlist.model.BaseGateway">	
+<cfcomponent displayname="ActivityGateway" output="false">	
 	
 	<!---
 	INITIALIZATION / CONFIGURATION
@@ -114,7 +111,65 @@ Notes:
 
 		<cfreturn qryActivities />
 	</cffunction>
-	
+
+	<!---
+		Function: read
+		Reads an individual entity from the database into an <Activity> bean. Expects
+		an ID to read from the database. If an ID is not passed in a new, blank
+		bean is returned.
+
+		Author:
+			Adam Presley
+
+		Visibility:
+			public
+
+		Parameters:
+			id - ID of the activity entity to read. Defaults to zero (0)
+
+		Returns:
+			An <Activity> bean
+	--->
+	<cffunction name="read" returntype="enlist.model.event.activity.Activity" access="public" output="false">
+		<cfargument name="id" type="string" required="false" default="0" />
+
+		<cfset var qryActivity = "" />
+		<cfset var bean = "" />
+		<cfset var memento = {} />
+		<cfset var columnName = "" />
+
+		<cfset bean = createObject("component", "enlist.model.event.activity.Activity").init() />
+
+		<cfif arguments.id GT 0>
+			<cfquery name="qryActivity">
+				SELECT 
+					  a.id
+					, a.title
+					, a.description
+					, a.numPeople
+					, a.startDate
+					, a.endDate
+					, a.pointHours
+					, a.location
+					, a.eventId
+
+				FROM activity AS a
+				WHERE a.id=<cfqueryparam value="#arguments.id#" cfsqltype="CF_SQL_INTEGER" />
+			</cfquery>
+
+			<cfif qryActivity.recordCount>
+				<cfloop list="#qryActivity.columnList#" index="columnName">
+					<cfset memnto[columnName] = qryActivity[columnName] />
+				</cfloop>
+
+				<cfset bean.setInstanceMemento(memento) />
+				<cfset bean.setEvent(variables.eventService.getEvent(bean.getEventId())) />
+			</cfif>
+		</cfif>
+
+		<cfreturn bean />
+	</cffunction>
+
 	<cffunction name="listByPropertyMap" access="public" returntype="array" output="false">
 		<cfreturn addEventNamesToActivities(super.listByPropertyMap(arguments)) />
 	</cffunction>
