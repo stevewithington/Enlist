@@ -42,7 +42,7 @@ Notes:
 <!--- <p><view:a event="user.search" class="btn">Search Users</view:a>&nbsp;<view:a event="user.edit" class="btn">Create a new user</view:a></p> --->
 
 <h3>#variables.title#</h3>
-
+<cfif users.RecordCount GT 0>
 <table>
 	<tr>
 		<th>First Name</th>
@@ -52,7 +52,6 @@ Notes:
 		<th>Status</th>
 		<th>Actions</th>
 	</tr>
-<cfif users.RecordCount GT 0>
 	<cfloop query="users">
 		<tr>
 			<td>#users.FirstName#</td>
@@ -70,5 +69,3 @@ Notes:
 </cfif>
 </cfoutput>
 </table>
-
-<p><view:a event="user.edit">Create a new user</view:a></p>

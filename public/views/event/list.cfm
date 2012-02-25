@@ -45,10 +45,8 @@
 	</view:script>
 </cfsilent>
 
-<p><view:a event="event.edit">Create a new event</view:a></p>
-
 <cfoutput><h3>#variables.title#</h3></cfoutput>
-
+<cfif events.RecordCount GT 0>
 <table id="eventList" class="tablesorter">
 	<thead>
 		<tr>
@@ -74,7 +72,10 @@
 				</td>
 			</tr>	
 		</cfoutput>
+<cfelse>
+	<tr>
+		<td colspan="6">No events found</td>
+	</tr>
+</cfif>
 	</tbody>
 </table>
-
-<p><view:a event="event.edit">Create a new event</view:a></p>

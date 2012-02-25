@@ -65,7 +65,7 @@
   </div>
   </div class="row">
     <div id="footer" class="span12">
-      #event.getArg("layout.footer")#
+     <br><br> #event.getArg("layout.footer")#
     </div>
   </div>
 </div>	

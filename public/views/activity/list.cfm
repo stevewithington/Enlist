@@ -38,10 +38,11 @@
 
 </cfsilent>
 <cfoutput>
-		
-<p><view:a event="activity.edit">Create a new activity</view:a></p>
 
 <h3>#variables.title#</h3>
+
+<cfif variables.activities.RecordCount GT 0>
+<br><br>
 <table>
 	<tr>
 		<th>Title</th>
@@ -65,7 +66,10 @@
 			<td><view:a event="activity.edit" p:id="#variables.activity.id#" label="Edit" /></td>
 		</tr>	
 	</cfloop>
+<cfelse>
+	<tr>
+		<td colspan="6">No activities found</td>
+	</tr>
+</cfif>	
 </table>
-
-<p><view:a event="activity.edit">Create a new activity</view:a></p>
 </cfoutput>
