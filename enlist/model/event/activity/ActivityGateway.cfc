@@ -105,8 +105,11 @@ Notes:
 				, a.pointHours
 				, a.location
 				, a.eventId
+				, e.name AS eventName
 
 			FROM activity AS a
+				INNER JOIN event AS e ON e.id=a.eventId
+
 			WHERE 1=1
 				<cfif arguments.id GT 0>
 					AND a.id=<cfqueryparam value="#arguments.id#" cfsqltype="CF_SQL_INTEGER" />
@@ -183,10 +186,10 @@ Notes:
 
 			<cfif qryActivity.recordCount>
 				<cfloop list="#qryActivity.columnList#" index="columnName">
-					<cfset memnto[columnName] = qryActivity[columnName] />
+					<cfset memento[columnName] = qryActivity[columnName] />
 				</cfloop>
 
-				<cfset bean.setInstanceMemento(memento) />
+				<cfset bean.setMemento(memento) />
 				<cfset bean.setEvent(variables.eventService.getEvent(bean.getEventId())) />
 			</cfif>
 		</cfif>

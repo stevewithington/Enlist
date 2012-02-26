@@ -40,7 +40,7 @@ Notes:
 	<cfelse>
 		<view:message key="buttons.save" var="variables.save" arguments="request.event" />
 		<view:message key="meta.title.activity.edit" var="variables.type" arguments="#variables.activity.getTitle()#" />
-		<view:meta type="title" content="#variables.title#"  />
+		<view:meta type="title" content="#variables.activity.getTitle()#"  />
 	</cfif>
 
 	<view:script>

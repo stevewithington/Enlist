@@ -73,7 +73,7 @@
 							<td>#variables.activities.endDate#</td>
 							<td>#variables.activities.pointHours#</td>
 							<td>#variables.activities.location#</td>
-							<!--- <td>#variables.activity.event().getName()#</td> --->
+							<td>#variables.activities.eventName#</td>
 							<view:message key="links.edit" var="variables.edit" />
 							<td><view:a event="activity.edit" p:id="#variables.activities.id#" label="#variables.edit#" /></td>
 						</tr>	
