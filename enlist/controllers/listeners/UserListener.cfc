@@ -67,11 +67,6 @@ Notes:
 			var existingUser = getUserService().getUserByAltEmail(user.getAltEmail());
 			var errors = StructNew();
 
-			// set a default message if necessary since this is hit a couple of different ways
-			if (not arguments.event.isArgDefined("message")) {
-				arguments.event.setArg("message", "User saved");
-			}
-
 			// if this isn't an update make sure the user isn't already registered
 			if (user.getID() eq "" and existingUser.getID() neq "") {
 				errors.alreadyRegistered = "A user is already registered with this application using this email address.";
@@ -81,12 +76,12 @@ Notes:
 			}
 
 			if (not StructIsEmpty(errors)) {
-				arguments.event.setArg("message", "Please correct the following errors:");
 				arguments.event.setArg("errors", errors);
-				redirectEvent("fail", "", true);
+				redirectEvent("fail", "", true, event.getArgs());
 			} else {
 				arguments.event.removeArg("user");
-				redirectEvent("pass", "", true);
+				arguments.event.setArg("message", "User saved!");
+				redirectEvent("pass", "", true, event.getArgs());
 			}
 		</cfscript>
 	</cffunction>

@@ -48,11 +48,10 @@ Notes:
 	</view:script>
 </cfsilent>
 <cfoutput>		
-	
-<tags:displaymessage />
-<tags:displayerror />
 
-<h3>#variables.title#</h3>
+<div>
+	<h3>#variables.title#</h3>
+</div>
 
 <form:form actionEvent="user.save" bind="user" id="userForm">
 	<table>
