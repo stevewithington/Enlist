@@ -31,7 +31,8 @@
 	<cfimport prefix="tags" taglib="/enlist/customtags" />
 
 	<cfset copyToScope("${event.chapter}") />
-	<view:message key="">
+	
+	<view:message key="event.chapter" var="variables.eventName">
 	<cfif NOT Len(variables.chapter.getId())>
 		<view:message key="buttons.chapter.save" var="variables.save" />
 		<view:message key="links.event.new" var="variables.type" />
@@ -55,7 +56,7 @@
 <tags:displaymessage />
 <tags:displayerror />
 
-<h3>#variables.type# Chapter</h3><br>
+<h3>#variables.title#</h3><br>
 
 <form:form actionEvent="chapter.save" bind="chapter" id="chapterForm">
 	<table>
