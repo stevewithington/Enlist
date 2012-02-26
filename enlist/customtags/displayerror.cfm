@@ -29,9 +29,10 @@ Notes:
 	<cfparam name="attributes.errors" type="struct" default="#request.event.getArg("errors", StructNew())#" />
 	<cfif (not StructIsEmpty(attributes.errors))>
 		<cfloop collection="#attributes.errors#" item="error">
-			<p class="alert alert-error">
+			<div class="alert alert-error">
+				 <a class="close" data-dismiss="alert">x</a>
 				<cfoutput>#attributes.errors[error]#</cfoutput>
-			</p>
+			</div>
 		</cfloop>
 	</cfif>
 </cfif>
