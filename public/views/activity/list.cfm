@@ -38,6 +38,7 @@
 	</cfif>
 	<!--- setting a variable name into the variables scope from i18n --->
 	<view:message key="event.activity" var="variables.activityName"/>
+
 	<view:meta type="title" content="#variables.title#" />
 	
 </cfsilent>
@@ -45,7 +46,6 @@
 
 <h3>#variables.title#</h3>
 <br><br>
-<<<<<<< HEAD
 <cfif variables.activities.recordcount gte 1>	
 <tags:datatable>
 <div class="content">	
@@ -54,14 +54,14 @@
 			<table id="chapters" class="table table-striped table-bordered">
 				<thead>
 					<tr>
-						<th>Title</th>
-						<th>Number of People</th>
-						<th>Start Date</th>
-						<th>End Date</th>
-						<th>Point Hours</th>
-						<th>Location</th>
-						<th>Event</th>
-						<th>Actions</th>
+						<th><view:message key="form.activity.label.title" /></th>
+						<th><view:message key="form.activity.label.number" /></th>
+						<th><view:message key="form.activity.label.startdate" /></th>
+						<th><view:message key="form.activity.label.enddate" /></th>
+						<th><view:message key="form.activity.label.hours" /></th>
+						<th><view:message key="form.activity.label.location" /></th>
+						<th><view:message key="form.label.events" /></th>
+						<th><view:message key="form.label.actions" /></th>
 					</tr>
 				</thead>
 				<tbody id="chaptersList">
@@ -74,7 +74,8 @@
 							<td>#variables.activity.pointHours#</td>
 							<td>#variables.activity.location#</td>
 							<!--- <td>#variables.activity.event().getName()#</td> --->
-							<td><view:a event="activity.edit" p:id="#variables.activity.id#" label="Edit" /></td>
+							<view:message key="links.edit" var="variables.edit" />
+							<td><view:a event="activity.edit" p:id="#variables.activity.id#" label="#variables.edit#" /></td>
 						</tr>	
 					</cfloop>
 				</tbody>
@@ -85,38 +86,6 @@
 </div>
 </tags:datatable>
 <cfelse>
-<div>No activites found.</div>
+<div><view:message key="message.noRecords" /></div>
 </cfif>
-=======
-<table>
-	<tr>
-		<th><view:message key="form.activity.label.title" /></th>
-		<th><view:message key="form.activity.label.number" /></th>
-		<th><view:message key="form.activity.label.startdate" /></th>
-		<th><view:message key="form.activity.label.enddate" /></th>
-		<th><view:message key="form.activity.label.hours" /></th>
-		<th><view:message key="form.activity.label.location" /></th>
-		<th><view:message key="form.label.event" /></th>
-		<th><view:message key="form.label.actions" /></th>
-	</tr>
-	<cfloop query="variables.activities">
-		<tr>
-			<td>#variables.activity.title#</td>
-			<td>#variables.activity.numPeople#</td>
-			<td>#variables.activity.startDate#</td>
-			<td>#variables.activity.endDate#</td>
-			<td>#variables.activity.pointHours#</td>
-			<td>#variables.activity.location#</td>
-			<!--- <td>#variables.activity.event().getName()#</td> --->
-			<view:message key="links.edit" var="variables.edit" />
-			<td><view:a event="activity.edit" p:id="#variables.activity.id#" label="#variables.edit#" /></td>
-		</tr>	
-	</cfloop>
-<cfelse>
-	<tr>
-		<td colspan="6"><view:message key="message.noRecords" arguments="#variables.activityName#"/></td>
-	</tr>
-</cfif>	
-</table>
->>>>>>> andrewleaf/master
 </cfoutput>

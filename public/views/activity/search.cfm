@@ -30,7 +30,9 @@ Notes:
 	<cfimport prefix="form" taglib="/MachII/customtags/form" />
 	<cfset copyToScope("${event.events}") />
 	<view:message key="event.activity" var="variables.activityName"/>
-	<view:meta type="title" content="Search Activities" />
+	<view:message key="links.event.search" var="variables.string" arguments="#variables.activityName#"/>
+
+	<view:meta type="title" content="#variables.string#" />
 
 	<view:script>
 		$(function() {
@@ -41,7 +43,7 @@ Notes:
 </cfsilent>
 <cfoutput>	
 	
-<h3>Search Activities</h3>
+<h3>#variables.string#</h3>
 <form:form actionEvent="activity.doSearch">
 	<table>
 		<tr>

@@ -29,7 +29,10 @@
 	<cfimport prefix="form" taglib="/MachII/customtags/form" />
 	<cfimport prefix="view" taglib="/MachII/customtags/view" />
 	<cfset copyToScope("statuses=${properties.eventStatuses}") />
-	
+	<view:message key="event.events" var="variables.activityName"/>
+	<view:message key="links.event.search" var="variables.string" arguments="#variables.activityName#"/>
+
+	<view:meta type="title" content="#variables.string#" />
 	<view:script>
 		$(function() {
 			$( "#startDate" ).datepicker();
@@ -39,7 +42,7 @@
 </cfsilent>
 <cfoutput>		
 
-<h3>Search Events</h3>
+<h3>#variables.string#</h3>
 
 <form:form actionEvent="event.doSearch">
 	<table>
