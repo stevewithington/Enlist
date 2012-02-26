@@ -32,6 +32,42 @@ Notes:
 
 <view:script src="/bootstrap/js/bootstrap.js">
 	$('.dropdown-toggle').dropdown();
+	jQuery.validator.setDefaults({errorPlacement: function(errormsg, element)
+			{
+				// Set positioning based on the elements position in the form
+				var elem = $(element),
+					corners = ['right center', 'left center'],
+					flipIt = elem.parents('span.left').length > 0;
+
+				// Check we have a valid error message
+				if(!errormsg.is(':empty')) {
+					// Apply the tooltip only if it isn't valid
+					elem.filter(':not(.valid)').qtip({
+						overwrite: false,
+						content: errormsg,
+						position: {
+							my: corners[ flipIt ? 0 : 1 ],
+							at: corners[ flipIt ? 1 : 0 ],
+							viewport: $(window)
+						},
+						show: {
+							event: false,
+							ready: true
+						},
+						hide: false,
+						style: {
+							classes: 'ui-tooltip-red' // Make it red... the classic error colour!
+						}
+					})
+
+					// If we have a tooltip on this element already, just update its content
+					.qtip('option', 'content.text', errormsg);
+				}
+
+				// If the error is empty, remove the qTip
+				else { elem.qtip('destroy'); }
+			},
+			success: $.noop,});
 </view:script>
 
 <div class="row">

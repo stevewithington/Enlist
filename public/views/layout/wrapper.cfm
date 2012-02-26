@@ -43,6 +43,8 @@
 	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 	<view:style href="/bootstrap/css/bootstrap.css" media="screen"/>
 	<view:style href="south-street/jquery-ui-1.8.9.custom.css" media="screen"/>
+	<view:style href="addyosmani-bootstrap/jquery-ui-1.8.16.custom.css" media="screen"/>
+	<view:style href="addyosmani-bootstrap/jquery.ui.1.8.16.ie.css" media="screen"/>
 	<view:link type="icon" href="/favicon.ico" />
 	<view:asset package="jquery" outputType="inline" />
 	<view:asset package="datatables" outputType="inline" />
@@ -61,9 +63,11 @@
     <div class="span12">
       	<!--SubNav content-->
 		#event.getArg('layout.subnav', "no subnav defined")#
+		
 		<!--Messages content-->
 		<tags:displaymessage />
 		<tags:displayerror />
+		
 		<!--Body content-->
 		#event.getArg("layout.content")#
     </div>

@@ -32,11 +32,14 @@
 
 	<cfset copyToScope("${event.chapter}") />
 	
+	<view:message key="event.chapter" var="variables.eventName">
 	<cfif NOT Len(variables.chapter.getId())>
+		<view:message key="buttons.chapter.save" var="variables.save" />
 		<view:message key="links.event.new" var="variables.type" />
 		<view:message key="meta.title.charter.add" var="variables.title" />
 		<view:meta type="title" content="#variables.title#" />
 	<cfelse>
+		<view:message key="buttons.save" var="variables.save" arguments="#variables.chapter.getDisplayName()#"/>
 		<view:message key="links.edit" var="variables.type" />
 		<view:message key="meta.title.charter.edit" var="variables.title" arguments="#variables.chapter.getDisplayName()#"/>
 		<view:meta type="title" content="#variables.title#"  />
@@ -53,20 +56,20 @@
 <tags:displaymessage />
 <tags:displayerror />
 
-<h3>#variables.type# Chapter</h3><br>
+<h3>#variables.title#</h3><br>
 
 <form:form actionEvent="chapter.save" bind="chapter" id="chapterForm">
 	<table>
 		<tr>
-			<th>Name</th>
+			<th><view:message key="form.chapter.label.name"/></th>
 			<td><form:input path="name" size="40" maxlength="200" class="required" /></td>
 		</tr>
 		<tr>
-			<th>Location</th>
+			<th><view:message key="form.chapter.label.location"/></th>
 			<td><form:input path="location" size="40" maxlength="200" class="required" /></td>
 		</tr>
 		<tr>
-			<th>Status</th>
+			<th><view:message key="form.chapter.label.status"/></th>
 			<td>
 				<form:select path="statusCode">
 					<form:option value="Active" />
@@ -76,7 +79,7 @@
 		</tr>
 		<tr>
 			<td><form:hidden name="id" path="id" /></td>
-			<td colspan="3"><form:button type="submit" name="save" value="Save Chapter" class="btn-primary"  /></td>
+			<td colspan="3"><form:button type="submit" name="save" value="#variables.save#" class="btn-primary"  /></td>
 		</tr>
 	</table>
 </form:form>

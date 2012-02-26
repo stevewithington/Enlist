@@ -28,8 +28,8 @@ Notes:
 --->
 	<cfimport prefix="view" taglib="/MachII/customtags/view" />
 	<cfset copyToScope("${event.navigations}") />
-	
-	<view:meta type="title" content="Navigation Link List" />
+	<view:message key="event.chapter" var="variables.eventName"/>
+	<view:meta type="title" content="#variables.eventName#" />
 </cfsilent>
 <cfoutput>
 	
@@ -38,7 +38,7 @@ Notes:
   <li <cfif arguments.event.getArg('event') eq 'navigation.list'>class="active"</cfif>><view:a event="navigation.list"><view:message key="links.nav.list" /></view:a></li>
 </ul>
 
-<h3>Navigation Link List</h3>
+<h3><view:message key="links.event.list" arguments="#variables.eventName#"/></h3>
 
 <table>
 	<tr>

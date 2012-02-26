@@ -48,6 +48,14 @@
 			<td><form:input path="lastName" size="40" maxlength="200" /></td>
 		</tr>
 		<tr>
+			<th>Identi.ca</th>
+			<td><form:input path="identicaUsername" size="40" maxlength="200" /></td>
+		</tr>
+		<tr>
+			<th>Twitter</th>
+			<td><form:input path="twitter" size="40" maxlength="200" /></td>
+		</tr>
+		<tr>
 			<th>Phone</th>
 			<td><form:input path="phone" size="40" maxlength="40" /></td>
 		</tr>

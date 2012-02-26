@@ -43,7 +43,12 @@ Notes:
 </cfsilent>
 <cfoutput>	
 	
+<<<<<<< HEAD
 <h3>#variables.string#</h3>
+=======
+<h3>Search Activities</h3><br>
+
+>>>>>>> de88cbab1bbbe4de2c1e79301cca820bdd49ad77
 <form:form actionEvent="activity.doSearch">
 	<table>
 		<tr>

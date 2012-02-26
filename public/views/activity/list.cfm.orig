@@ -30,6 +30,7 @@
 	<cfimport prefix="tags" taglib="/enlist/customtags" />
 	<cfset copyToScope("${event.activities}") />
 	
+
 	<cfif event.getName() EQ "activity.doSearch">
 		<view:message key="meta.title.activity.listSearch" var="variables.title" />
 	<cfelse>
@@ -42,10 +43,14 @@
 	
 </cfsilent>
 <cfoutput>
-<p><view:a event="activity.edit">Create a new activity</view:a></p>
 
+<<<<<<< HEAD
 <h3>#variables.title#</h3>
 <br><br>
+=======
+<h3>#variables.title#</h3><br>
+<<<<<<< HEAD
+>>>>>>> de88cbab1bbbe4de2c1e79301cca820bdd49ad77
 <cfif variables.activities.recordcount gte 1>	
 <tags:datatable>
 <div class="content">	
