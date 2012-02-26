@@ -27,8 +27,9 @@ $Id: index.cfm 181 2011-06-16 04:56:27Z peterjfarrell $
 Notes:
 --->
 	<cfimport prefix="view" taglib="/MachII/customtags/view" />
-	<view:meta type="title" content="Volunteer Home" />
+	<view:message key="meta.title.volunteer.home" var="variables.eventName">
+	<view:meta type="title" content="#variables.eventName#" />
 </cfsilent>
 <cfoutput>
-<h2>Volunteer Home</h2>
+<h2>#variables.eventName#</h2>
 </cfoutput>

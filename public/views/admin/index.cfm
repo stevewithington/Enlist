@@ -27,8 +27,9 @@
 	Notes:
 	--->
 	<cfimport prefix="view" taglib="/MachII/customtags/view" />
-	<view:meta type="title" content="Admin Home" />
+	<view:message key="meta.title.admin" var="variables.eventName">
+	<view:meta type="title" content="#variables.eventName#" />
 </cfsilent>
 <cfoutput>
-<h2>Admin Home</h2>
+<h2>#variables.eventName#</h2>
 </cfoutput>
