@@ -68,8 +68,8 @@
 							<tr>
 								<td>#variables.activities.title#</td>
 								<td>#variables.activities.numPeople#</td>
-								<td>#variables.activities.startDate#</td>
-								<td>#variables.activities.endDate#</td>
+								<td>#dateFormat(variables.activities.startDate, "MM/dd/yyyy")#</td>
+								<td>#dateFormat(variables.activities.endDate, "MM/dd/yyyy")#</td>
 								<td>#variables.activities.pointHours#</td>
 								<td>#variables.activities.location#</td>
 								<td>#variables.activities.eventName#</td>
