@@ -34,6 +34,7 @@
 
 	--->
 	<cfimport prefix="view" taglib="/MachII/customtags/view" />
+	<cfimport prefix="tags" taglib="/Enlist/customtags" />
 </cfsilent>
 <cfoutput>
 <view:doctype />
@@ -59,6 +60,9 @@
     <div class="span12">
       	<!--SubNav content-->
 		#event.getArg('layout.subnav', "no subnav defined")#
+		<!--Messages content-->
+		<tags:displaymessage />
+		<tags:displayerror />
 		<!--Body content-->
 		#event.getArg("layout.content")#
     </div>

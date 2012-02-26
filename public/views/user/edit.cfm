@@ -48,11 +48,10 @@ Notes:
 	</view:script>
 </cfsilent>
 <cfoutput>		
-	
-<tags:displaymessage />
-<tags:displayerror />
 
-<h3>#variables.title#</h3>
+<div>
+	<h3>#variables.title#</h3><br>
+</div>
 
 <form:form actionEvent="user.save" bind="user" id="userForm">
 	<table>
@@ -83,6 +82,10 @@ Notes:
 		<tr>
 			<th><label id="altEmail">Email *</label></th>
 			<td><form:input path="altEmail" size="40" maxlength="200" class="required" /></td>
+		</tr>
+		<tr>
+			<th><label id="twitterUsername">Twitter</label></th>
+			<td><form:input path="twitterUsername" size="40" maxlength="50" /></td>
 		</tr>
 		<tr>
 			<th><label id="phone">Phone</label></th>

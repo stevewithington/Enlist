@@ -55,7 +55,7 @@
 <tags:displaymessage />
 <tags:displayerror />
 
-<h3>#variables.type# Chapter</h3>
+<h3>#variables.type# Chapter</h3><br>
 
 <form:form actionEvent="chapter.save" bind="chapter" id="chapterForm">
 	<table>

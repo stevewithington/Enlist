@@ -44,10 +44,9 @@
 	<view:meta type="title" content="#variables.title#" />
 </cfsilent>
 
-<cfoutput><h3>#variables.title#</h3></cfoutput>
-<br><br>
-<cfif events.RecordCount GT 0>
-	
+<cfoutput><h3>#variables.title#</h3></cfoutput><br>
+
+<cfif events.RecordCount GT 0>	
 <tags:datatable>
 <div class="content">	
 	<div class="row">

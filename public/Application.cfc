@@ -95,6 +95,15 @@ $Id$
 			<cfset reloadConfig() />
 		</cfif>
 
+		<!--- TODO: remove before putting into production --->
+		<cfif StructKeyExists(url, "recreateDb")>
+			<cfquery datasource="enlist">
+				drop all objects;
+			</cfquery>
+			<cfset datasourceDelete("enlist") />
+			<cfset onApplicationStart() />
+		</cfif>
+
 		<cfset super.onRequestStart(arguments.targetPage) />
 	</cffunction>
 

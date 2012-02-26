@@ -28,11 +28,10 @@ Notes:
 --->
 	<cfimport prefix="view" taglib="/MachII/customtags/view" />
 	<cfimport prefix="form" taglib="/MachII/customtags/form" />
-	<cfimport prefix="tags" taglib="/customtags" />
+	<cfimport prefix="tags" taglib="/Enlist/customtags" />
 	<view:meta type="title" content="Register" />
 	
-	<cfset copyToScope("states=${properties.usStates},${event.chapters},${event.user},${event.altEmail}") />
-	<cfset variables.user.setaltEmail(altEmail) />
+	<cfset copyToScope("states=${properties.usStates},${event.chapters},${event.user}") />
 	
 	<view:script>
 	$(document).ready(function(){
@@ -89,20 +88,20 @@ Notes:
 				<form:input path="zip" size="11" maxlength="10" />
 			</td>
 		</tr>
-		<cfif ArrayLen( chapters )>
+		<cfif chapters.RecordCount GT 0>
 			<tr>
 				<th><label id="chapterId">Chapter</label></th>
 				<td>
 					<form:select path="chapterId">
-						<cfloop from="1" to="#arrayLen(chapters)#" index="i">
-							<form:option value="#chapters[i].getID()#" label="#chapters[i].getName()#" />
+						<cfloop query="chapters">
+							<form:option value="#chapters.ID#" label="#chapters.Name#" />
 						</cfloop>
 					</form:select>
 				</td>
 			</tr>
 		</cfif>
 		<tr>
-			<td><form:hidden name="altEmail" path="altEmail" /></td>
+			<td></td>
 			<td><form:button type="submit" name="save" value="Save Registration Info" /></td>
 		</tr>
 	</table>

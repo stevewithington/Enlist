@@ -38,6 +38,8 @@
 
 <cfoutput>
 
+<h3>List Chapters</h3><br>
+
 <tags:datatable>
 <div class="content">	
 	<div class="row">
