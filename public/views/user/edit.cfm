@@ -85,6 +85,10 @@ Notes:
 			<td><form:input path="altEmail" size="40" maxlength="200" class="required" /></td>
 		</tr>
 		<tr>
+			<th><label id="twitterUsername">Twitter</label></th>
+			<td><form:input path="twitterUsername" size="40" maxlength="50" /></td>
+		</tr>
+		<tr>
 			<th><label id="phone">Phone</label></th>
 			<td><form:input path="phone" size="40" maxlength="40" /></td>
 		</tr>
