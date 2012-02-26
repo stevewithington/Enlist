@@ -43,8 +43,7 @@
 </cfsilent>
 <cfoutput>
 
-<h3>#variables.title#</h3>
-<br><br>
+<h3>#variables.title#</h3><br>
 <<<<<<< HEAD
 <cfif variables.activities.recordcount gte 1>	
 <tags:datatable>

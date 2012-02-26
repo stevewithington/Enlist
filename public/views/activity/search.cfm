@@ -41,7 +41,8 @@ Notes:
 </cfsilent>
 <cfoutput>	
 	
-<h3>Search Activities</h3>
+<h3>Search Activities</h3><br>
+
 <form:form actionEvent="activity.doSearch">
 	<table>
 		<tr>

@@ -62,7 +62,7 @@
 <tags:displaymessage />
 <tags:displayerror />
 
-<h3>#variables.type# Event</h3>
+<h3>#variables.type# Event</h3><br>
 
 <form:form actionEvent="event.save" bind="theEvent" id="eventForm">
 	<table>

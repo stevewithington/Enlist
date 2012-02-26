@@ -64,7 +64,8 @@ Notes:
 <tags:displaymessage />
 <tags:displayerror />
 
-<h3>#variables.type# Activity</h3>
+<h3>#variables.type# Activity</h3><br>
+
 <form:form actionEvent="activity.save" bind="activity" id="actForm">
 	<table>
 		<tr>

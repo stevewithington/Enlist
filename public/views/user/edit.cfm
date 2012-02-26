@@ -50,7 +50,7 @@ Notes:
 <cfoutput>		
 
 <div>
-	<h3>#variables.title#</h3>
+	<h3>#variables.title#</h3><br>
 </div>
 
 <form:form actionEvent="user.save" bind="user" id="userForm">

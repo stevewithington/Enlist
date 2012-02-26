@@ -39,7 +39,7 @@
 </cfsilent>
 <cfoutput>		
 
-<h3>Search Events</h3>
+<h3>Search Events</h3><br>
 
 <form:form actionEvent="event.doSearch">
 	<table>
