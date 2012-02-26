@@ -164,7 +164,7 @@ Notes:
 	</cffunction>
 
 	<cffunction name="getStartDate" returntype="string" access="public" output="false">
-		<cfreturn variables.instance.startDate />
+		<cfreturn dateFormat(variables.instance.startDate, "MM/dd/yyyy") />
 	</cffunction>
 	
 	<cffunction name="setStartDate" returntype="void" access="public" output="false">
@@ -173,7 +173,7 @@ Notes:
 	</cffunction>
 
 	<cffunction name="getEndDate" returntype="string" access="public" output="false">
-		<cfreturn variables.instance.endDate />
+		<cfreturn dateFormat(variables.instance.endDate, "MM/dd/yyyy") />
 	</cffunction>
 	
 	<cffunction name="setEndDate" returntype="void" access="public" output="false">
