@@ -42,50 +42,49 @@ Notes:
 <cfoutput>	
 	
 <h3>Search Activities</h3>
-<form:form actionEvent="activity.doSearch">
-	<table>
-		<tr>
-			<th><view:message key="form.activity.label.event" /></th>
-			<td>
+<form:form actionEvent="activity.doSearch" class="form-horizontal" >
+	<fieldset>
+		<div class="control-group">
+			<label class="control-label" for="eventID"><view:message key="form.activity.label.event" /></label>
+			<div class="controls">
 				<view:message key="form.activity.label.select" var="variables.labelSelect"/>
 				<form:select path="eventId" items="#variables.events#">
 					<form:option value="" label="#variables.labelSelect#" />
 				</form:select>
-			</td>
-		</tr>
-		<tr>
-			<th><view:message key="form.activity.label.title" /></th>
-			<td><form:input path="title" size="40" maxlength="200" /></td>
-		</tr>
- 		<tr>
-			<th><view:message key="form.activity.label.description" /></th>
-			<td><form:input path="description" size="40" maxlength="200" /></td>
-		</tr>
-		<tr>
-			<th><view:message key="form.activity.label.number" /></th>
-			<td><form:input path="numPeople" size="40" maxlength="4" /></td>
-		</tr>
-		<tr>
-			<th><view:message key="form.activity.label.startdate" /></th>
-			<td><form:input path="startDate" size="40" maxlength="10" /></td>
-		</tr>
-		<tr>
-			<th><view:message key="form.activity.label.enddate" /></th>
-			<td><form:input path="endDate" size="40" maxlength="10" /></td>
-		</tr>
-		<tr>
-			<th><view:message key="form.activity.label.hours" /></th>
-			<td><form:input path="pointHours" size="40" maxlength="4" /></td>
-		</tr>
-		<tr>
-			<th><view:message key="form.activity.label.location" /></th>
-			<td><form:input path="location" size="40" maxlength="20" /></td>
-		</tr>
-		<tr>
-			<td></td>
-			<view:message key="buttons.save" var="variables.save" arguments="#variables.activityName#" />
-			<td><form:button type="submit" name="search" value="#variables.save#" class="btn-primary"/></td>
-		</tr>
-	</table>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="title"><view:message key="form.activity.label.title" /></label>
+			<div class="controls"><form:input path="title" maxlength="200" /></div>
+		</div>
+ 		<div class="control-group">
+			<label class="control-label" for="description"><view:message key="form.activity.label.description" /></label>
+			<div class="controls"><form:input path="description" maxlength="200" /></div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="numPeople"><view:message key="form.activity.label.number" /></label>
+			<div class="controls"><form:input path="numPeople" maxlength="4" /></div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="startate"><view:message key="form.activity.label.startdate" /></label>
+			<div class="controls"><form:input path="startDate" maxlength="10" /></div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="endDate"><view:message key="form.activity.label.enddate" /></label>
+			<div class="controls"><form:input path="endDate" maxlength="10" /></div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="pointHours"><view:message key="form.activity.label.hours" /></label>
+			<div class="controls"><form:input path="pointHours" maxlength="4" /></div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="location"><view:message key="form.activity.label.location" /></label>
+			<div class="controls"><form:input path="location" maxlength="20" /></div>
+		</div>
+		<view:message key="buttons.save" var="variables.save" arguments="#variables.activityName#" />
+		<div class="form-actions">
+			<form:button type="submit" name="search" value="#variables.save#" class="btn btn-primary"/>
+		</div>
+	</fieldset>
 </form:form>
 </cfoutput>
