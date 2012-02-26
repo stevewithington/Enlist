@@ -97,7 +97,8 @@ Notes:
 			if (not arguments.event.isArgDefined("activity")) {
 				bean = getActivityService().getActivity(arguments.event.getArg("id", ""));
 			} else {
-				bean = arguments.event.getArg("activity");
+				//bean = arguments.event.getArg("activity");
+				bean = getActivityService().getActivity();
 			}
 		</cfscript>
 

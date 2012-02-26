@@ -46,6 +46,7 @@
 	<view:link type="icon" href="/favicon.ico" />
 	<view:asset package="jquery" outputType="inline" />
 	<view:asset package="datatables" outputType="inline" />
+	<view:asset package="enlist-js" outputType="inline" />
 </head>
 
 <body>

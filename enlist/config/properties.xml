@@ -114,6 +114,11 @@ Notes:
 								<element value="tablesorter/style.css" />
 							</array>
 						</key>
+						<key name="enlist-js">
+							<array>
+								<element value="libraries/enlist.js" />
+							</array>
+						</key>
 					</struct>
 				</parameter>
 			</parameters>
