@@ -52,7 +52,8 @@ $Id$
 	--->
 	<cfset MACHII_CONFIG_PATH = ExpandPath("/enlist/config/mach-ii.xml") />
 	<cfset MACHII_HANDLE_ONLOAD = false />
-
+	<cfset MACHII_CONFIG_MODE = 1 />
+	
 	<!---
 		Most of the rest of the properties, methods, etc. have "intelligent defaults"
 		set in MachII.mach-ii (which Application.cfc extends). The typical Mach-II

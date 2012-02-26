@@ -43,9 +43,12 @@
 	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 	<view:style href="/bootstrap/css/bootstrap.css" media="screen"/>
 	<view:style href="south-street/jquery-ui-1.8.9.custom.css" media="screen"/>
+	<view:style href="addyosmani-bootstrap/jquery-ui-1.8.16.custom.css" media="screen"/>
+	<view:style href="addyosmani-bootstrap/jquery.ui.1.8.16.ie.css" media="screen"/>
 	<view:link type="icon" href="/favicon.ico" />
 	<view:asset package="jquery" outputType="inline" />
 	<view:asset package="datatables" outputType="inline" />
+	<view:asset package="enlist-js" outputType="inline" />
 </head>
 
 <body>

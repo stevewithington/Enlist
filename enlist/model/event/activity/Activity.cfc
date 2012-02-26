@@ -34,13 +34,6 @@ Notes:
 --->
 <cfcomponent displayname="Activity" extends="enlist.model.BaseBean" output="false">
 	<!---
-		This is an admitted hack that was discussed by Dave Shuck/Kurt Weirsma.  It will likely come out. 
-		Feel free to find and discuss an alternative! 
-		-dshuck
-	--->
-	<cfset variables.event = CreateObject( "component", "enlist.model.event.Event") />
-	
-	<!---
 		Constructor: init
 		Initializes this bean.
 
@@ -68,7 +61,13 @@ Notes:
 		<cfargument name="eventId" type="string" required="false" default="" />
 		<cfargument name="event" type="enlist.model.event.Event" required="false" />
 
-		<cfreturn super.init(arguments) />
+		<cfset this = super.init(argumentCollection = arguments) />
+
+		<cfif !structKeyExists(arguments, "event")>
+			<cfset variables.instance.event = createObject("component", "enlist.model.event.Event").init() />
+		</cfif>
+
+		<cfreturn this />
 	</cffunction>
 
 
@@ -124,127 +123,101 @@ Notes:
 		</cfscript>
 	</cffunction>
 
-	<!---
-		Function: setInstanceMemento
-		Takes a structure and applies the values to the properties of
-		this bean.
-
-		Visibility:
-			public
-
-		Parameters:
-			data - A structure containing values to populate this bean
-	--->	
-	<cffunction name="setInstanceMemento" access="public" returntype="void" output="false">
-		<cfargument name="data" type="struct" required="true" />
-	
-		<cfset setId( arguments.data.id ) />
-		<cfset setTitle(arguments.data.title)/>
-		<cfset setDescription(arguments.data.description) />
-		<cfset setNumPeople(arguments.data.numPeople) />
-		<cfset setStartDate(arguments.data.startDate) />
-		<cfset setEndDate(arguments.data.endDate) />
-		<cfset setPointHours(arguments.data.pointHours) />
-		<cfset setLocation(arguments.data.location) />
-		<cfset setEventId(arguments.data.eventId) />
-		<cfif StructKeyExists(arguments.data, "event")>
-			<cfset setEvent(arguments.data.event) />
-		</cfif>
-	</cffunction>
-	
-	<cffunction name="getInstanceMemento" access="public" returntype="struct" output="false">
-
-		<cfset var data = StructNew() />
-		<cfset var fieldname = "" />
-
-		<cfloop list="id,title,description,numPeople,startDate,endDate,pointHours,location,eventId" index="fieldname">
-			<cfset data[fieldname] = variables[fieldname] />
-		</cfloop>
-
-		<cfreturn data />
-	</cffunction>
 
 	<!---
-	ACCESSORS / MUTATORS
+		ACCESSORS / MUTATORS
 	--->
 	<cffunction name="getId" access="public" returntype="string" output="false">
-		<cfreturn variables.id />
-	 </cffunction>
-	 <cffunction name="setId" access="public" returntype="void" output="false">
+		<cfreturn variables.instance.id />
+	</cffunction>
+	
+	<cffunction name="setId" access="public" returntype="void" output="false">
 		<cfargument name="id" type="string" required="true" />
-		<cfset variables.id = arguments.id />
-	 </cffunction>
+		<cfset variables.instance.id = arguments.id />
+	</cffunction>
 
 	<cffunction name="getTitle" returntype="string" access="public" output="false">
-		<cfreturn variables.title />
+		<cfreturn variables.instance.title />
 	</cffunction>
+	
 	<cffunction name="setTitle" returntype="void" access="public" output="false">
 		<cfargument name="title" type="string" required="true" />
-		<cfset variables.title = arguments.title />
+		<cfset variables.instance.title = arguments.title />
 	</cffunction>
 
 	<cffunction name="getDescription" returntype="string" access="public" output="false">
-		<cfreturn variables.description />
+		<cfreturn variables.instance.description />
 	</cffunction>
+	
 	<cffunction name="setDescription" returntype="void" access="public" output="false">
 		<cfargument name="description" type="string" required="true" />
-		<cfset variables.description = arguments.description />
+		<cfset variables.instance.description = arguments.description />
 	</cffunction>
 
 	<cffunction name="getNumPeople" returntype="string" access="public" output="false">
-		<cfreturn variables.numPeople />
+		<cfreturn variables.instance.numPeople />
 	</cffunction>
+	
 	<cffunction name="setNumPeople" returntype="void" access="public" output="false">
 		<cfargument name="numPeople" type="string" required="true" />
-		<cfset variables.numPeople = arguments.numPeople />
+		<cfset variables.instance.numPeople = arguments.numPeople />
 	</cffunction>
 
 	<cffunction name="getStartDate" returntype="string" access="public" output="false">
-		<cfreturn variables.startDate />
+		<cfreturn variables.instance.startDate />
 	</cffunction>
+	
 	<cffunction name="setStartDate" returntype="void" access="public" output="false">
 		<cfargument name="startDate" type="string" required="true" />
-		<cfset variables.startDate = arguments.startDate />
+		<cfset variables.instance.startDate = arguments.startDate />
 	</cffunction>
 
 	<cffunction name="getEndDate" returntype="string" access="public" output="false">
-		<cfreturn variables.endDate />
+		<cfreturn variables.instance.endDate />
 	</cffunction>
+	
 	<cffunction name="setEndDate" returntype="void" access="public" output="false">
 		<cfargument name="endDate" type="string" required="true" />
-		<cfset variables.endDate = arguments.endDate />
+		<cfset variables.instance.endDate = arguments.endDate />
 	</cffunction>
 
 	<cffunction name="getPointHours" returntype="string" access="public" output="false">
-		<cfreturn variables.pointHours />
+		<cfreturn variables.instance.pointHours />
 	</cffunction>
+	
 	<cffunction name="setPointHours" returntype="void" access="public" output="false">
 		<cfargument name="pointHours" type="string" required="true" />
-		<cfset variables.pointHours = arguments.pointHours />
+		<cfset variables.instance.pointHours = arguments.pointHours />
 	</cffunction>
 
 	<cffunction name="getLocation" returntype="string" access="public" output="false">
-		<cfreturn variables.location />
+		<cfreturn variables.instance.location />
 	</cffunction>
+	
 	<cffunction name="setLocation" returntype="void" access="public" output="false">
 		<cfargument name="location" type="string" required="true" />
-		<cfset variables.location = arguments.location />
+		<cfset variables.instance.location = arguments.location />
 	</cffunction>
 
 	<cffunction name="getEvent" access="public" returntype="enlist.model.event.Event" output="false">
-		<cfreturn variables.event />
+		<cfreturn variables.instance.event />
 	</cffunction>
+	
 	<cffunction name="setEvent" access="public" returntype="void" output="false">
 		<cfargument name="event" type="any" required="true" />
-		<cfset variables.event = arguments.event />
+		<cfset variables.instance.event = arguments.event />
 	</cffunction>
 	
 	<cffunction name="getEventId" access="public" returntype="string" output="false">
-		<cfreturn variables.eventId />
-	</cffunction>
-	<cffunction name="setEventId" access="public" returntype="void" output="false">
-		<cfargument name="eventId" type="string" required="true" />
-		<cfset variables.eventId = arguments.eventId />
+		<cfreturn variables.instance.eventId />
 	</cffunction>
 	
+	<cffunction name="setEventId" access="public" returntype="void" output="false">
+		<cfargument name="eventId" type="string" required="true" />
+		<cfset variables.instance.eventId = arguments.eventId />
+	</cffunction>
+	
+	<cffunction name="save" returntype="void" access="public" output="false">
+		
+	</cffunction>
 </cfcomponent>

@@ -80,11 +80,17 @@
 		</tr>
 		<tr>
 			<th nowrap="nowrap"><view:message key="form.events.label.startdate" /></th>
-			<td><form:input path="startDate" id="startDate" size="10" maxlength="200" class="required" /></td>
+			<td>
+				<form:input path="startDate" id="startDate" size="10" maxlength="200" class="required" />
+				<a href="javascript:void(0);" onclick="javascript:$('##startDate').datepicker( 'show' )"><span class="icon-calendar"></span></a>
+			</td>
 		</tr>
 		<tr>
 			<th nowrap="nowrap"><view:message key="form.events.label.enddate" /></th>
-			<td><form:input path="endDate" id="endDate" size="10" maxlength="200" class="required" /></td>
+			<td>
+				<form:input path="endDate" id="endDate" size="10" maxlength="200" class="required" />
+				<a href="javascript:void(0);" onclick="javascript:$('##endDate').datepicker( 'show' )"><span class="icon-calendar"></span></a>
+			</td>
 		</tr>
 		<tr>
 			<th nowrap="nowrap"><view:message key="form.events.label.status" /></th>
