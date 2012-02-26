@@ -47,63 +47,62 @@ Notes:
 <!--- Output any errors if we have some --->
 <tags:displayerror />
 
-<form:form actionEvent="register_process" bind="user" id="registerForm">
-	<table>
-		<tr>
-			<th style="width:40%;"><label id="firstName">First Name *</label></th>
-			<td style="width:60%;"><form:input path="firstName" size="40" maxlength="200"  class="required" /></td>
-		</tr>
-		<tr>
-			<th><label id="lastName">Last Name *</label></th>
-			<td><form:input path="lastName" size="40" maxlength="200" class="required" /></td>
-		</tr>
-		<tr>
-			<th><label id="altEmail">Email *</label></th>
-			<td>
-				<form:input path="altEmail" size="40" maxlength="200" />
-			</td>
-		</tr>
-		<tr>
-			<th><label id="phone">Phone</label></th>
-			<td><form:input path="phone" size="40" maxlength="40" /></td>
-		</tr>
-		<tr>
-			<th><label id="address1">Address 1</label></th>
-			<td><form:input path="address1" size="40" maxlength="200" /></td>
-		</tr>
-		<tr>
-			<th><label id="address2">Address 2</label></th>
-			<td><form:input path="address2" size="40" maxlength="200" /></td>
-		</tr>
-		<tr>
-			<th><label id="city">City</label></th>
-			<td><form:input path="city" size="40" maxlength="200" /></td>
-		</tr>
-		<tr>
-			<th><label id="state">State / Zip</label></th>
-			<td>
+<form:form actionEvent="register_process" bind="user" id="registerForm" class="form-horizontal" >
+	<fieldset>
+		<div class="control-group">
+			<label class="control-label" for="firstName">First Name *</label>
+			<div class="controls"><form:input path="firstName" maxlength="200"  class="required" /></div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="lastName">Last Name *</label>
+			<div class="controls"><form:input path="lastName" maxlength="200" class="required" /></div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="altEmail">Email *</label>
+			<div class="controls">
+				<form:input path="altEmail" maxlength="200" />
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="phone">Phone</label>
+			<div class="controls"><form:input path="phone" maxlength="40" /></div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="address1">Address 1</label>
+			<div class="controls"><form:input path="address1" maxlength="200" /></div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="address2">Address 2</label>
+			<div class="controls"><form:input path="address2" maxlength="200" /></div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="city">City</label>
+			<div class="controls"><form:input path="city" maxlength="200" /></div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="state">State / Zip</label>
+			<div class="controls">
 				<form:select path="state" items="#states#" labelKey="abbr" valueKey="abbr">
 					<form:option value="" label="" />
 				</form:select>&nbsp;
 				<form:input path="zip" size="11" maxlength="10" />
-			</td>
-		</tr>
+			</div>
+		</div>
 		<cfif chapters.RecordCount GT 0>
-			<tr>
-				<th><label id="chapterId">Chapter</label></th>
-				<td>
+			<div class="control-group">
+				<label class="control-label" for="chapterId">Chapter</label>
+				<div class="controls">
 					<form:select path="chapterId">
 						<cfloop query="chapters">
 							<form:option value="#chapters.ID#" label="#chapters.Name#" />
 						</cfloop>
 					</form:select>
-				</td>
-			</tr>
+				</div>
+			</div>
 		</cfif>
-		<tr>
-			<td></td>
-			<td><form:button type="submit" name="save" value="Save Registration Info" /></td>
-		</tr>
-	</table>
+		<div class="form-actions">
+			<form:button type="submit" name="save" class="btn btn-primary" value="Save Registration Info" />
+		</div>
+	</fieldset>
 </form:form>
 </cfoutput>
