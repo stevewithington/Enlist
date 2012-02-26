@@ -67,15 +67,15 @@
 				<tbody id="chaptersList">
 					<cfloop query="variables.activities">
 						<tr>
-							<td>#variables.activity.title#</td>
-							<td>#variables.activity.numPeople#</td>
-							<td>#variables.activity.startDate#</td>
-							<td>#variables.activity.endDate#</td>
-							<td>#variables.activity.pointHours#</td>
-							<td>#variables.activity.location#</td>
-							<!--- <td>#variables.activity.event().getName()#</td> --->
+							<td>#variables.activities.title#</td>
+							<td>#variables.activities.numPeople#</td>
+							<td>#variables.activities.startDate#</td>
+							<td>#variables.activities.endDate#</td>
+							<td>#variables.activities.pointHours#</td>
+							<td>#variables.activities.location#</td>
+							<td>#variables.activities.eventName#</td>
 							<view:message key="links.edit" var="variables.edit" />
-							<td><view:a event="activity.edit" p:id="#variables.activity.id#" label="#variables.edit#" /></td>
+							<td><view:a event="activity.edit" p:id="#variables.activities.id#" label="#variables.edit#" /></td>
 						</tr>	
 					</cfloop>
 				</tbody>

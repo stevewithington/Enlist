@@ -105,8 +105,11 @@ Notes:
 				, a.pointHours
 				, a.location
 				, a.eventId
+				, e.name AS eventName
 
 			FROM activity AS a
+				INNER JOIN event AS e ON e.id=a.eventId
+
 			WHERE 1=1
 				<cfif arguments.id GT 0>
 					AND a.id=<cfqueryparam value="#arguments.id#" cfsqltype="CF_SQL_INTEGER" />
@@ -183,10 +186,10 @@ Notes:
 
 			<cfif qryActivity.recordCount>
 				<cfloop list="#qryActivity.columnList#" index="columnName">
-					<cfset memnto[columnName] = qryActivity[columnName] />
+					<cfset memento[columnName] = qryActivity[columnName] />
 				</cfloop>
 
-				<cfset bean.setInstanceMemento(memento) />
+				<cfset bean.setMemento(memento) />
 				<cfset bean.setEvent(variables.eventService.getEvent(bean.getEventId())) />
 			</cfif>
 		</cfif>
@@ -207,15 +210,63 @@ Notes:
 		Parameters:
 			bean - <enlist.model.event.activity.Activity> bean with ID populated
 	--->
-	<cffunction name="save" returntype="void" access="public" output="false">
+	<cffunction name="save" returntype="enlist.model.event.activity.Activity" access="public" output="false">
 		<cfargument name="bean" type="enlist.model.event.activity.Activity" required="true" />
 
 		<cfset var qrySaveActivity = "" />
-<!--- 
-		<cfquery name="qrySaveActivity">
+		<cfset var qryGetId = "" />
+
+		<cfif len(arguments.bean.getId())>
+			<cfquery name="qrySaveActivity">
+				UPDATE activity SET
+					  title=<cfqueryparam value="#arguments.bean.getTitle()#" cfsqltype="CF_SQL_VARCHAR" maxlength="100" />
+					, description=<cfqueryparam value="#arguments.bean.getDescription()#" cfsqltype="CF_SQL_VARCHAR" maxlength="1000" />
+					, numPeople=<cfqueryparam value="#arguments.bean.getNumPeople()#" cfsqltype="CF_SQL_INTEGER" />
+					, startDate=<cfqueryparam value="#arguments.bean.getStartDate()#" cfsqltype="CF_SQL_TIMESTAMP" />
+					, endDate=<cfqueryparam value="#arguments.bean.getEndDate()#" cfsqltype="CF_SQL_TIMESTAMP" />
+					, pointHours=<cfqueryparam value="#arguments.bean.getPointHours()#" cfsqltype="CF_SQL_NUMERIC" scale="2" />
+					, location=<cfqueryparam value="#arguments.bean.getLocation()#" cfsqltype="CF_SQL_VARCHAR" maxlength="255" />
+					, eventId=<cfqueryparam value="#arguments.bean.getEvent().getId()#" cfsqltype="CF_SQL_INTEGER" />
+
+				WHERE
+					id=<cfqueryparam value="#arguments.bean.getId()#" cfsqltype="CF_SQL_INTEGER" />
+			</cfquery>
 			
-		</cfquery>
- --->		
+		<cfelse>
+			<cfquery name="qrySaveActivity">
+				INSERT INTO activity (
+					  title
+					, description
+					, numPeople
+					, startDate
+					, endDate
+					, pointHours
+					, location
+					, eventId
+				) VALUES (
+					<cfqueryparam value="#arguments.bean.getTitle()#" cfsqltype="CF_SQL_VARCHAR" maxlength="100" />
+					, <cfqueryparam value="#arguments.bean.getDescription()#" cfsqltype="CF_SQL_VARCHAR" maxlength="1000" />
+					, <cfqueryparam value="#arguments.bean.getNumPeople()#" cfsqltype="CF_SQL_INTEGER" />
+					, <cfqueryparam value="#arguments.bean.getStartDate()#" cfsqltype="CF_SQL_TIMESTAMP" />
+					, <cfqueryparam value="#arguments.bean.getEndDate()#" cfsqltype="CF_SQL_TIMESTAMP" />
+					, <cfqueryparam value="#arguments.bean.getPointHours()#" cfsqltype="CF_SQL_NUMERIC" scale="2" />
+					, <cfqueryparam value="#arguments.bean.getLocation()#" cfsqltype="CF_SQL_VARCHAR" maxlength="255" />
+					, <cfqueryparam value="#arguments.bean.getEvent().getId()#" cfsqltype="CF_SQL_INTEGER" />
+				)
+			</cfquery>
+
+			<!---
+				Not sure if H2 supports multi-statments in a single query command, but my first
+				try did not work, so I've made it a seperate call for now.
+				- Adam P
+			--->
+			<cfquery name="qryGetId">
+				SELECT last_insert_id() AS newId
+			</cfquery>
+
+			<cfset arguments.bean.setId(qryGetId.newId) />
+		</cfif>
+
 		<cfreturn arguments.bean />
 	</cffunction>
 
