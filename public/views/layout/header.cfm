@@ -57,7 +57,7 @@ Notes:
 				          <b class="caret"></b>
 				    </a>
 				    <ul class="dropdown-menu">
-				     <li><view:a event="user.edit" ><view:message key="links.event.edit" arguments="User" /></view:a></li>
+				     <li><view:a event="user.edit" ><view:message key="links.event.new" arguments="User" /></view:a></li>
 				     <li><view:a event="user.list" ><view:message key="links.event.list" arguments="User" /></view:a></li>
 				     <li><view:a event="user.search" ><view:message key="links.event.search" arguments="User" /></view:a></li>
 				    </ul>
@@ -70,7 +70,7 @@ Notes:
 				          <b class="caret"></b>
 				    </a>
 				    <ul class="dropdown-menu">
-				     <li><view:a event="event.edit" ><view:message key="links.event.edit" arguments="Events" /></view:a></li>
+				     <li><view:a event="event.edit" ><view:message key="links.event.new" arguments="Events" /></view:a></li>
 				     <li><view:a event="event.list" ><view:message key="links.event.list" arguments="Events" /></view:a></li>
 				     <li><view:a event="event.search" ><view:message key="links.event.search" arguments="Events" /></view:a></li>
 				    </ul>
@@ -83,7 +83,7 @@ Notes:
 				          <b class="caret"></b>
 				    </a>
 				    <ul class="dropdown-menu">
-				     <li><view:a event="activity.edit" ><view:message key="links.event.edit" arguments="Actvities" /></view:a></li>
+				     <li><view:a event="activity.edit" ><view:message key="links.event.new" arguments="Actvities" /></view:a></li>
 				     <li><view:a event="activity.list" ><view:message key="links.event.list" arguments="Actvities" /></view:a></li>
 				     <li><view:a event="activity.search" ><view:message key="links.event.search" arguments="Actvities" /></view:a></li>
 				    </ul>
@@ -97,7 +97,7 @@ Notes:
 				          <b class="caret"></b>
 				    </a>
 				    <ul class="dropdown-menu">
-				     <li><view:a event="chapter.edit" ><view:message key="links.event.edit" arguments="Chapters" /></view:a></li>
+				     <li><view:a event="chapter.edit" ><view:message key="links.event.new" arguments="Chapters" /></view:a></li>
 				     <li><view:a event="chapter.list" ><view:message key="links.event.list" arguments="Chapters" /></view:a></li>
 				    </ul>
 				</li>
