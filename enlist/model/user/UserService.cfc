@@ -80,10 +80,10 @@ Notes:
 		<cfreturn getGateway().getUser( altEmail = arguments.altEmail ) />
 	</cffunction>
 
-	<cffunction name="getUserByAltEmail" access="public" returntype="any" output="false"
-		hint="Gets an User from the datastore by Email.">
-		<cfargument name="altEmail" type="string" required="true" />
-		<cfreturn getGateway().getUser( altEmail = arguments.altEmail ) />
+	<cffunction name="getUserByTwitterUsername" access="public" returntype="any" output="false"
+		hint="Gets an User from the datastore by TwitterUsername.">
+		<cfargument name="twitterUsername" type="string" required="true" />
+		<cfreturn getGateway().getUser( twitterUsername = arguments.twitterUsername ) />
 	</cffunction>
 
 	<cffunction name="logoutUser" access="public" returntype="void" output="false">
