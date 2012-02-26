@@ -42,50 +42,49 @@
 	
 </cfsilent>
 <cfoutput>
-<p><view:a event="activity.edit">Create a new activity</view:a></p>
 
 <h3>#variables.title#</h3>
 <br><br>
 <cfif variables.activities.recordcount gte 1>	
-<tags:datatable>
-<div class="content">	
-	<div class="row">
-		<div class="span12">
-			<table id="chapters" class="table table-striped table-bordered">
-				<thead>
-					<tr>
-						<th><view:message key="form.activity.label.title" /></th>
-						<th><view:message key="form.activity.label.number" /></th>
-						<th><view:message key="form.activity.label.startdate" /></th>
-						<th><view:message key="form.activity.label.enddate" /></th>
-						<th><view:message key="form.activity.label.hours" /></th>
-						<th><view:message key="form.activity.label.location" /></th>
-						<th><view:message key="form.label.events" /></th>
-						<th><view:message key="form.label.actions" /></th>
-					</tr>
-				</thead>
-				<tbody id="chaptersList">
-					<cfloop query="variables.activities">
+	<tags:datatable>
+	<div class="content">	
+		<div class="row">
+			<div class="span12">
+				<table id="chapters" class="table table-striped table-bordered">
+					<thead>
 						<tr>
-							<td>#variables.activities.title#</td>
-							<td>#variables.activities.numPeople#</td>
-							<td>#variables.activities.startDate#</td>
-							<td>#variables.activities.endDate#</td>
-							<td>#variables.activities.pointHours#</td>
-							<td>#variables.activities.location#</td>
-							<td>#variables.activities.eventName#</td>
-							<view:message key="links.edit" var="variables.edit" />
-							<td><view:a event="activity.edit" p:id="#variables.activities.id#" label="#variables.edit#" /></td>
-						</tr>	
-					</cfloop>
-				</tbody>
-			</table>
+							<th><view:message key="form.activity.label.title" /></th>
+							<th><view:message key="form.activity.label.number" /></th>
+							<th><view:message key="form.activity.label.startdate" /></th>
+							<th><view:message key="form.activity.label.enddate" /></th>
+							<th><view:message key="form.activity.label.hours" /></th>
+							<th><view:message key="form.activity.label.location" /></th>
+							<th><view:message key="form.label.events" /></th>
+							<th><view:message key="form.label.actions" /></th>
+						</tr>
+					</thead>
+					<tbody id="chaptersList">
+						<cfloop query="variables.activities">
+							<tr>
+								<td>#variables.activities.title#</td>
+								<td>#variables.activities.numPeople#</td>
+								<td>#variables.activities.startDate#</td>
+								<td>#variables.activities.endDate#</td>
+								<td>#variables.activities.pointHours#</td>
+								<td>#variables.activities.location#</td>
+								<td>#variables.activities.eventName#</td>
+								<view:message key="links.edit" var="variables.edit" />
+								<td><view:a event="activity.edit" p:id="#variables.activities.id#" label="#variables.edit#" /></td>
+							</tr>	
+						</cfloop>
+					</tbody>
+				</table>
+			</div>
 		</div>
+		<div class="clear"><br><br></div>
 	</div>
-	<div class="clear"><br><br></div>
-</div>
-</tags:datatable>
+	</tags:datatable>
 <cfelse>
-<div><view:message key="message.noRecords" /></div>
+	<div><view:message key="message.noRecords" /></div>
 </cfif>
 </cfoutput>
