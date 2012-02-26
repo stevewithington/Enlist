@@ -15,7 +15,7 @@
 	SECTION: Functions
 --->
 <cfcomponent displayname="BaseBean" output="false">
-	
+
 	<cfset variables.instance = {} />
 
 

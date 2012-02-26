@@ -36,7 +36,7 @@ Notes:
 	<cfif NOT Len(variables.activity.getId())>
 		<view:message key="button.activity.save" var="variables.save" />
 		<view:message key="meta.title.activity.add" var="variables.type" />
-		<view:meta type="title" content="#variables.title#" />
+		<view:meta type="title" content="#variables.activity.getTitle()#" />
 	<cfelse>
 		<view:message key="button.save" var="variables.save" arguments="request.event" />
 		<view:message key="meta.title.activity.edit" var="variables.type" arguments="#variables.activity.getTitle()#" />
@@ -62,16 +62,20 @@ Notes:
 	</view:script>
 </cfsilent>
 <cfoutput>	
-	
+
+<!---
+	Commenting this out for now. Blows up pretty hardcore in OpenBD.
+	- Adam
 <tags:displaymessage />
 <tags:displayerror />
+--->
 
 <h3>#variables.type# Activity</h3><br>
 
-<form:form actionEvent="activity.save" bind="activity" id="actForm">
+<form:form actionEvent="activity.save" bind="#activity#" id="actForm">
 	<table>
 		<tr>
-			<th><view:message key="form.activity.label." /></th>
+			<th><view:message key="form.activity.label.event" /></th>
 			<td>
 				<form:select path="eventId" items="#variables.events#" bind="#variables.activity.getEvent().getId()#" class="required">
 					<form:option value="" label="Choose an event" />

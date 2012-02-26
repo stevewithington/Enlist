@@ -163,8 +163,7 @@ Notes:
 		<cfset var columnName = "" />
 
 		<cfset bean = createObject("component", "enlist.model.event.activity.Activity").init() />
-		<cfdump var="#bean#" expand="true" />
-		<cfabort />
+
 		<cfif arguments.id GT 0>
 			<cfquery name="qryActivity">
 				SELECT 

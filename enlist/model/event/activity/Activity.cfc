@@ -34,13 +34,6 @@ Notes:
 --->
 <cfcomponent displayname="Activity" extends="enlist.model.BaseBean" output="false">
 	<!---
-		This is an admitted hack that was discussed by Dave Shuck/Kurt Weirsma.  It will likely come out. 
-		Feel free to find and discuss an alternative! 
-		-dshuck
-	--->
-	<cfset variables.event = CreateObject( "component", "enlist.model.event.Event") />
-	
-	<!---
 		Constructor: init
 		Initializes this bean.
 
@@ -68,7 +61,12 @@ Notes:
 		<cfargument name="eventId" type="string" required="false" default="" />
 		<cfargument name="event" type="enlist.model.event.Event" required="false" />
 
-		<cfset this = super.init(arguments) />
+		<cfset this = super.init(argumentCollection = arguments) />
+
+		<cfif !structKeyExists(arguments, "event")>
+			<cfset variables.instance.event = createObject("component", "enlist.model.event.Event").init() />
+		</cfif>
+
 		<cfreturn this />
 	</cffunction>
 
@@ -219,4 +217,7 @@ Notes:
 		<cfset variables.instance.eventId = arguments.eventId />
 	</cffunction>
 	
+	<cffunction name="save" returntype="void" access="public" output="false">
+		
+	</cffunction>
 </cfcomponent>
