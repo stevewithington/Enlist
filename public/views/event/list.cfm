@@ -31,17 +31,22 @@
 	<cfset copyToScope("${event.events}") />
 	
 	<cfif event.getName() EQ "event.doSearch">
-		<cfset variables.title = "Event Search Results" />
+		<view:message key="buttons.chapter.save" var="variables.save" />
+		<view:message key="links.event.search" var="variables.title" arguments="Events" />
+		<view:meta type="title" content="#variables.title#" />
+		<!--- <cfset variables.title = "Event Search Results" /> --->
 	<cfelse>
-		<cfset variables.title = "List Events" />
+		<view:message key="buttons.chapter.save" var="variables.save" />
+		<view:message key="links.event.list" var="variables.title" arguments="Events"/>
+		<view:meta type="title" content="#variables.title#" />
+		<!--- <cfset variables.title = "List Events" /> --->
 	</cfif>
 	<view:meta type="title" content="#variables.title#" />
 </cfsilent>
 
-<cfoutput><h3>#variables.title#</h3></cfoutput>
-<br><br>
-<cfif events.RecordCount GT 0>
-	
+<cfoutput><h3>#variables.title#</h3></cfoutput><br>
+
+<cfif events.RecordCount GT 0>	
 <tags:datatable>
 <div class="content">	
 	<div class="row">
@@ -49,12 +54,12 @@
 			<table id="chapters" class="table table-striped table-bordered">
 				<thead>
 					<tr>
-						<th>Status</th>
-						<th>Event</th>
-						<th>Start Date</th>
-						<th>End Date</th>
-						<th>Location</th>
-						<th>Actions</th>
+						<th><view:message key="form.events.label.status" /></th>
+						<th><view:message key="form.events.label.event" /></th>
+						<th><view:message key="form.events.label.startdate" /></th>
+						<th><view:message key="form.events.label.enddate" /></th>
+						<th><view:message key="form.events.label.location" /></th>
+						<th><view:message key="form.label.actions" /></th>
 					</tr>
 				</thead>
 				<tbody id="chaptersList">
@@ -66,8 +71,8 @@
 							<td>#dateFormat(endDate, "m/d/yyyy")#</td>
 							<td>#location#</td>
 							<td>
-								<view:a event="event.edit" p:id="#id#">Edit</view:a> | 
-								<view:a event="activity.doSearch" p:eventId="#id#">Activities</view:a>
+								<view:a event="event.edit" p:id="#id#"><view:message key="links.edit"/></view:a> | 
+								<view:a event="activity.doSearch" p:eventId="#id#">><view:message key="sideBar.Activity"/></view:a>
 							</td>
 						</tr>	
 					</cfoutput>
@@ -79,6 +84,6 @@
 </div>
 </tags:datatable>
 <cfelse>
-<div>No events found.</div>
+<div><veiw:message key="message.noRecords"></div>
 </cfif>
 

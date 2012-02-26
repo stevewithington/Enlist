@@ -28,6 +28,6 @@ Notes:
 <cfif thisTag.ExecutionMode IS "start">
 	<cfparam name="attributes.message" type="string" default="#request.event.getArg("message")#" />
 	<cfif Len(attributes.message)>
-		<cfoutput><p class="alert">#attributes.message#</p></cfoutput>
+		<cfoutput><p class="alert alert-success">#attributes.message#</p></cfoutput>
 	</cfif>
 </cfif>

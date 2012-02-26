@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>      
 <!--
 
     Enlist - Volunteer Management Software
@@ -322,7 +322,7 @@ Notes:
 			<notify listener="navigationLinkListener" method="saveNavigationLink" />
 		</event-handler>
 		
-		<!-- USERS -->
+		<!-- USERS -->  
 		<event-handler event="user.list" access="public">
 			<call-method bean="userService" method="getUsers" resultArg="users" />
 			<view-page name="user.list" contentArg="layout.content"/>
@@ -336,7 +336,7 @@ Notes:
 		</event-handler>
 		<event-handler event="user.save" access="public">
 			<event-bean name="user" type="enlist.model.user.User" autopopulate="true" reinit="false"  />
-			<event-mapping event="pass" mapping="home" />
+			<event-mapping event="pass" mapping="user.list" />
 			<event-mapping event="fail" mapping="user.edit" />
 			<notify listener="userListener" method="saveUser" />
 		</event-handler>

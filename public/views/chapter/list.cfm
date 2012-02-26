@@ -31,12 +31,15 @@
 	<cfimport prefix="tags" taglib="/enlist/customtags" />
 
 	<cfset copyToScope("${event.chapters}") />
+	<view:message key="event.chapter" var="variables.eventName"/>
 	<view:message key="meta.title.chapter" var="variables.title" />
 	<view:meta type="title" content="#variables.title#" />
 </cfsilent>
 
 
 <cfoutput>
+
+<h3><view:message key="links.event.list" arguments="#variables.eventName#"/></h3><br>
 
 <tags:datatable>
 <div class="content">	

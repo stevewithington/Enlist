@@ -30,7 +30,9 @@
 	<cfimport prefix="view" taglib="/MachII/customtags/view" />
 	<cfimport prefix="tags" taglib="/customtags" />
 	
-	<view:meta type="title" content="Edit Application Settings" />
+	<view:message key="event.setting" var="variables.activityName"/>
+	<view:message key="links.event.edit" var="variables.title" arguments="#variables.activityName#" />
+	<view:meta type="title" content="#variables.title#" />
 	
 	<view:script>
 		$(document).ready(function(){
@@ -42,32 +44,32 @@
 <tags:displaymessage />
 <tags:displayerror />
 
-<h3>Edit Application Settings</h3>
+<h3>#variables.title#</h3>
 
 <form:form actionEvent="setting.save" bind="setting" id="settingForm">
 	<table>
 		<tr>
-			<th>Organization Name:</th>
+			<th><view:message key="form.setting.label.orgname" />:</th>
 			<td><form:input path="orgName" size="40" maxlength="200" class="required" /></td>
 		</tr>
 		<tr>
-			<th>Description:</th>
+			<th><view:message key="form.setting.label.description" />:</th>
 			<td><form:textarea path="orgDesc" class="required" /></td>
 		</tr>
 		<tr>
-			<th nowrap="nowrap">Address:</th>
+			<th nowrap="nowrap"><view:message key="form.setting.label.address" />:</th>
 			<td><form:textarea path="orgAddress" class="required" /></td>
 		</tr>
 		<tr>
-			<th nowrap="nowrap">Points Name:</th>
+			<th nowrap="nowrap"><view:message key="form.setting.label.pointname" />:</th>
 			<td><form:input path="pointName" size="10" maxlength="200"  class="required" /></td>
 		</tr>
 		<tr>
-			<th nowrap="nowrap">Default Point Value:</th>
+			<th nowrap="nowrap"><view:message key="form.setting.label.pointvalue" />:</th>
 			<td><form:input path="defaultPointValue" size="10" maxlength="200" class="required" /></td>
 		</tr>
 		<tr>
-			<th nowrap="nowrap">Send Emails:</th>
+			<th nowrap="nowrap"><view:message key="form.setting.label.email" />:</th>
 			<td>
 				<form:select path="sendEmail">
 					<form:option value="true" label="Yes" />
@@ -77,7 +79,8 @@
 		</tr>
 		<tr>
 			<td><form:hidden name="id" path="id" /></td>
-			<td colspan="3"><form:button type="submit" name="save" value="Save Setting" /></td>
+			<view:message key="buttons.save" var="variables.save" arguments="#variables.activityName#"/>
+			<td colspan="3"><form:button type="submit" name="save" value="#variables.activityName#" /></td>
 		</tr>
 	</table>
 </form:form>

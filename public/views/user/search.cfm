@@ -35,7 +35,7 @@
 </cfsilent>
 <cfoutput>	
 
-<h3>Search Users</h3>
+<h3>Search Users</h3><br>
 	
 <form:form actionEvent="user.doSearch">
 	<table>
