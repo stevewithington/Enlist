@@ -52,7 +52,7 @@ Notes:
 		<cfargument name="event" type="MachII.framework.Event" required="true" />
 
 		<cfset getEmailService().send(
-			to:event.getArg("user").getGoogleEmail(),
+			to:event.getArg("user").getAltEmail(),
 			from:getProperty("defaultEmail"),
 			subject:"New User Notification",
 			message: event.getArg("email.message")

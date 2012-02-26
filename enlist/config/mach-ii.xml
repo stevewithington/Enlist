@@ -349,7 +349,6 @@ Notes:
 			<call-method bean="userService" method="getUsersBySearch" resultArg="users">
 				<arg name="firstName" value="${event.firstName:''}" />
 				<arg name="lastName" value="${event.lastName:''}" />
-				<arg name="googleEmail" value="${event.googleEmail:''}" />
 				<arg name="phone" value="${event.phone:''}" />
 				<arg name="address1" value="${event.address1:''}" />
 				<arg name="address2" value="${event.address2:''}" />

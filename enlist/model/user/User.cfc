@@ -39,7 +39,6 @@ Notes:
 	<cfset variables.chapterId = "" />
 	<cfset variables.firstName = "" />
 	<cfset variables.lastName = "" />
-	<cfset variables.googleEmail = "" />
 	<cfset variables.altEmail = "" />
 	<cfset variables.phone = "" />
 	<cfset variables.address1 = "" />
@@ -59,7 +58,6 @@ Notes:
 		<cfargument name="chapterId" type="string" required="false" default="" />
 		<cfargument name="firstName" type="string" required="false" default="" />
 		<cfargument name="lastName" type="string" required="false" default="" />
-		<cfargument name="googleEmail" type="string" required="false" default="" />
 		<cfargument name="altEmail" type="string" required="false" default="" />
 		<cfargument name="phone" type="string" required="false" default="" />
 		<cfargument name="address1" type="string" required="false" default="" />
@@ -90,7 +88,6 @@ Notes:
 		<cfset setChapterId(arguments.data.chapterId) />
 		<cfset setFirstName(arguments.data.firstName) />
 		<cfset setLastName(arguments.data.lastName) />
-		<cfset setGoogleEmail(arguments.data.googleEmail) />
 		<cfset setAltEmail(arguments.data.altEmail) />
 		<cfset setPhone(arguments.data.phone) />
 		<cfset setAddress1(arguments.data.address1) />
@@ -106,7 +103,7 @@ Notes:
 		<cfset var data = structnew() />
 		<cfset var fieldname = "" />
 
-		<cfloop list="id,status,role,chapterId,firstName,lastName,googleEmail,altEmail,phone,address1,address2,city,state,zip,importHashCode" index="fieldname">
+		<cfloop list="id,status,role,chapterId,firstName,lastName,altEmail,phone,address1,address2,city,state,zip,importHashCode" index="fieldname">
 			<cfset data[fieldname] = variables[fieldname] />
 		</cfloop>
 
@@ -124,15 +121,14 @@ Notes:
 			if (Len(Trim(getLastName())) EQ 0) {
 				errors.lastName = "Last name is required";
 			}
-			
-			if (Len(Trim(getGoogleEmail())) EQ 0 
-				or not IsValid("email", getGoogleEmail())) {
-				errors.googleEmail = "A valid Google email address is required";
+
+			if (Len(Trim(getAltEmail())) EQ 0) {
+				errors.lastName = "Email address is required";
 			}
-			
+						
 			if (Len(Trim(getAltEmail())) GT 0 
 				and not IsValid("email", getAltEmail())) {
-				errors.altEmail = "The alternate email address you provided is not valid";
+				errors.altEmail = "The email address you provided is not valid";
 			}
 			
 			return errors;
@@ -202,14 +198,6 @@ Notes:
 	</cffunction>
 	<cffunction name="getLastName" access="public" returntype="string" output="false">
 		<cfreturn variables.lastName />
-	</cffunction>
-
-	<cffunction name="setGoogleEmail" access="public" returntype="void" output="false">
-		<cfargument name="googleEmail" type="string" required="true" />
-		<cfset variables.googleEmail = trim(arguments.googleEmail) />
-	</cffunction>
-	<cffunction name="getGoogleEmail" access="public" returntype="string" output="false">
-		<cfreturn variables.googleEmail />
 	</cffunction>
 
 	<cffunction name="setAltEmail" access="public" returntype="void" output="false">

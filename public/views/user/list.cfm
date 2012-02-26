@@ -52,7 +52,6 @@ Notes:
 					<tr>
 						<th>First Name</th>
 						<th>Last Name</th>
-						<th>Google Email</th>
 						<th>Role</th>
 						<th>Status</th>
 						<th>Actions</th>
@@ -63,7 +62,6 @@ Notes:
 						<tr>
 							<td>#users.FirstName#</td>
 							<td>#users.LastName#</td>
-							<td>#users.GoogleEmail#</td>
 							<td>#users.Role#</td>
 							<td>#users.Status#</td>
 							<td><view:a event="user.edit" p:id="#users.id#">Edit</view:a></td>

@@ -40,7 +40,7 @@
 		<cfif hasUser()>
 			<cfset user = getUser()/>
 			<cfset summary = listAppend(summary, "id='#user.getId()#'", ";")/>
-			<cfset summary = listAppend(summary, "googleEmail='#user.getGoogleEmail()#'", ";")/>
+			<cfset summary = listAppend(summary, "altEmail='#user.getAltEmail()#'", ";")/>
 			<cfset summary = listAppend(summary, "status='#user.getStatus()#'", ";")/>
 			<cfset summary = listAppend(summary, "role='#user.getRole()#'", ";")/>
 		<cfelse>

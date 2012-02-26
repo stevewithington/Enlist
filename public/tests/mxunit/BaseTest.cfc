@@ -93,7 +93,6 @@ Notes:
 		<cfset volunteer.role = "volunteer" />
 		<cfset volunteer.firstName = "Test" />
 		<cfset volunteer.lastName = "Volunteer" />
-		<cfset volunteer.googleEmail = "enlist-volunteer@gmail.com" />
 		<cfset volunteer.altEmail = "" />
 		<cfset volunteer.importHashCaod = createUUID() />
 		<cfset data.volunteer = volunteer />
@@ -103,7 +102,6 @@ Notes:
 		<cfset coordinator.role = "volunteer,coordinator" />
 		<cfset coordinator.firstName = "Test" />
 		<cfset coordinator.lastName = "Coordinator" />
-		<cfset coordinator.googleEmail = "enlist-coordinator@gmail.com" />
 		<cfset coordinator.altEmail = "" />
 		<cfset coordinator.importHashCaod = createUUID() />
 		<cfset data.coordinator = coordinator />
@@ -113,7 +111,6 @@ Notes:
 		<cfset admin.role = "admin" />
 		<cfset admin.firstName = "Test" />
 		<cfset admin.lastName = "Administrator" />
-		<cfset admin.googleEmail = "enlist-admin@gmail.com" />
 		<cfset admin.altEmail = "" />
 		<cfset admin.importHashCaod = createUUID() />
 		<cfset data.admin = admin />

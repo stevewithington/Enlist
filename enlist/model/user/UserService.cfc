@@ -33,18 +33,13 @@ Notes:
 	<!---
 	PROPERTIES
 	--->
-	<cfset variables.googleUserService = "" />
 
 	<!---
 	INITIALIZATION / CONFIGURATION
 	--->
 	<cffunction name="init" access="public" returntype="UserService" output="false">
 
-		<!--- <cfset var googleUserFactory = CreateObject("java", "com.google.appengine.api.users.UserServiceFactory") /> --->
-
 		<cfset super.init( argumentCollection = arguments ) />
-
-		<!--- <cfset variables.googleUserService = googleUserFactory.getUserService() /> --->
 
 		<cfreturn this />
 	</cffunction>
@@ -68,7 +63,6 @@ Notes:
 		<cfargument name="chapterId" type="string" required="false" default="" />
 		<cfargument name="firstName" type="string" required="false" default="" />
 		<cfargument name="lastName" type="string" required="false" default="" />
-		<cfargument name="googleEmail" type="string" required="false" default="" />
 		<cfargument name="altEmail" type="string" required="false" default="" />
 		<cfargument name="phone" type="string" required="false" default="" />
 		<cfargument name="address1" type="string" required="false" default="" />
@@ -79,10 +73,10 @@ Notes:
 			<cfreturn getGateway().search( argumentCollection = arguments ) />
 	</cffunction>
 
-	<cffunction name="getUserByGoogleEmail" access="public" returntype="any" output="false"
-		hint="Gets an User from the datastore by Google Email.">
-		<cfargument name="googleEmail" type="string" required="true" />
-		<cfreturn getGateway().getUser( googleEmail = arguments.googleEmail ) />
+	<cffunction name="getUserByAltEmail" access="public" returntype="any" output="false"
+		hint="Gets an User from the datastore by Email.">
+		<cfargument name="altEmail" type="string" required="true" />
+		<cfreturn getGateway().getUser( altEmail = arguments.altEmail ) />
 	</cffunction>
 
 	<cffunction name="logoutUser" access="public" returntype="void" output="false">
@@ -99,13 +93,6 @@ Notes:
 	<cffunction name="saveUser" access="public" returntype="any" output="false">
 		<cfargument name="user" type="enlist.model.user.User" required="true">
 
-		<cfif not len( arguments.user.getGoogleEmail() )>
-			<cfif not variables.googleUserService.isUserLoggedIn()>
-				<cfthrow message="Unable to save user without googleEmail." />
-			</cfif>
-			<cfset arguments.user.setGoogleEmail( variables.googleUserService.getCurrentUser().getEmail() ) />
-		</cfif>
-
 		<cfset var errors = arguments.user.validate() />
 
 		<cfif (structIsEmpty(errors))>
@@ -119,12 +106,5 @@ Notes:
 	<!---
 	ACCESSORS
 	--->
-	<!--- <cffunction name="getGoogleUserService" access="public" returntype="any" output="false">
-		<cfreturn variables.googleUserService />
-	</cffunction>
-	<cffunction name="setGoogleUserService" access="public" returntype="void" output="false">
-		<cfargument name="googleUserService" type="any" required="true" />
-		<cfset variables.googleUserService = arguments.googleUserService />
-	</cffunction> --->
 
 </cfcomponent>

@@ -81,12 +81,8 @@ Notes:
 			<td><form:input path="lastName" size="40" maxlength="200" class="required" /></td>
 		</tr>
 		<tr>
-			<th><label id="googleEmail">Google Email *</label></th>
-			<td><form:input path="googleEmail" size="40" maxlength="200" class="required" /></td>
-		</tr>
-		<tr>
-			<th><label id="altEmail">Alternative Email</label></th>
-			<td><form:input path="altEmail" size="40" maxlength="200" /></td>
+			<th><label id="altEmail">Email *</label></th>
+			<td><form:input path="altEmail" size="40" maxlength="200" class="required" /></td>
 		</tr>
 		<tr>
 			<th><label id="phone">Phone</label></th>

@@ -48,10 +48,6 @@
 			<td><form:input path="lastName" size="40" maxlength="200" /></td>
 		</tr>
 		<tr>
-			<th>Google Email</th>
-			<td><form:input path="googleEmail" size="40" maxlength="200" /></td>
-		</tr>
-		<tr>
 			<th>Phone</th>
 			<td><form:input path="phone" size="40" maxlength="40" /></td>
 		</tr>
@@ -77,7 +73,7 @@
 			</td>
 		</tr>
 		<tr>
-			<th>Alternative Email</th>
+			<th>Email</th>
 			<td><form:input path="altEmail" size="40" maxlength="200" /></td>
 		</tr>
 		<cfif chapters.RecordCount GT 0>

@@ -64,7 +64,7 @@ Notes:
 
 		<cfscript>
 			var user = arguments.event.getArg("user");
-			var existingUser = getUserService().getUserByGoogleEmail(user.getGoogleEmail());
+			var existingUser = getUserService().getUserByAltEmail(user.getAltEmail());
 			var errors = StructNew();
 
 			// set a default message if necessary since this is hit a couple of different ways

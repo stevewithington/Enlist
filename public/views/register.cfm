@@ -31,8 +31,8 @@ Notes:
 	<cfimport prefix="tags" taglib="/customtags" />
 	<view:meta type="title" content="Register" />
 	
-	<cfset copyToScope("states=${properties.usStates},${event.chapters},${event.user},${event.googleEmail}") />
-	<cfset variables.user.setgoogleEmail(googleEmail) />
+	<cfset copyToScope("states=${properties.usStates},${event.chapters},${event.user},${event.altEmail}") />
+	<cfset variables.user.setaltEmail(altEmail) />
 	
 	<view:script>
 	$(document).ready(function(){
@@ -59,10 +59,9 @@ Notes:
 			<td><form:input path="lastName" size="40" maxlength="200" class="required" /></td>
 		</tr>
 		<tr>
-			<th><label id="altEmail">Alternative Email</label></th>
+			<th><label id="altEmail">Email *</label></th>
 			<td>
 				<form:input path="altEmail" size="40" maxlength="200" />
-				<p>An additional non-Google email to use for email communications.</p>
 			</td>
 		</tr>
 		<tr>
@@ -103,7 +102,7 @@ Notes:
 			</tr>
 		</cfif>
 		<tr>
-			<td><form:hidden name="googleEmail" path="googleEmail" /></td>
+			<td><form:hidden name="altEmail" path="altEmail" /></td>
 			<td><form:button type="submit" name="save" value="Save Registration Info" /></td>
 		</tr>
 	</table>
