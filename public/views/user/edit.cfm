@@ -85,6 +85,10 @@ Notes:
 			<td><form:input path="altEmail" size="40" maxlength="200" class="required" /></td>
 		</tr>
 		<tr>
+			<th><label id="twitterUsername">Identi.ca</label></th>
+			<td><form:input path="identicaUsername" size="40" maxlength="50" /></td>
+		</tr>
+		<tr>
 			<th><label id="twitterUsername">Twitter</label></th>
 			<td><form:input path="twitterUsername" size="40" maxlength="50" /></td>
 		</tr>

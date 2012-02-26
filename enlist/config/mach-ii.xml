@@ -350,7 +350,8 @@ Notes:
 				<arg name="firstName" value="${event.firstName:''}" />
 				<arg name="lastName" value="${event.lastName:''}" />
 				<arg name="phone" value="${event.phone:''}" />
-				<arg name="twitterUsername" value="${twitterUsername:''}" />
+				<arg name="twitterUsername" value="${event.twitterUsername:''}" />
+				<arg name="identicaUsername" value="${event.identicaUsername:''}" />
 				<arg name="address1" value="${event.address1:''}" />
 				<arg name="address2" value="${event.address2:''}" />
 				<arg name="city" value="${event.city:''}" />

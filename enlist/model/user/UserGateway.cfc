@@ -84,7 +84,7 @@ Notes:
 		
 		<cftransaction>
 		<cfquery name="newuser">
-		INSERT INTO user (	status, role, chapterId, firstName, lastName, altEmail, twitterUsername, phone, address1, address2,
+		INSERT INTO user (	status, role, chapterId, firstName, lastName, altEmail, twitterUsername, identicaUsername, phone, address1, address2,
 		city, state, zip, importHashCode )
 		VALUES (
 			<cfqueryparam cfsqltype="cf_sql_varchar" value="#data.status#" null="#yesnoformat(len(data.status) eq 0)#" maxlength="50">,
@@ -94,6 +94,7 @@ Notes:
 			<cfqueryparam cfsqltype="cf_sql_varchar" value="#data.lastName#" null="#yesnoformat(len(data.lastName) eq 0)#" maxlength="50">,
 			<cfqueryparam cfsqltype="cf_sql_varchar" value="#data.altEmail#" null="#yesnoformat(len(data.altEmail) eq 0)#" maxlength="255">,
 			<cfqueryparam cfsqltype="cf_sql_varchar" value="#data.twitterUsername#" null="#yesnoformat(len(data.twitterUsername) eq 0)#" maxlength="50">,
+			<cfqueryparam cfsqltype="cf_sql_varchar" value="#data.identicaUsername#" null="#yesnoformat(len(data.identicaUsername) eq 0)#" maxlength="50">,
 			<cfqueryparam cfsqltype="cf_sql_varchar" value="#data.phone#" null="#yesnoformat(len(data.phone) eq 0)#" maxlength="50">,
 			<cfqueryparam cfsqltype="cf_sql_varchar" value="#data.address1#" null="#yesnoformat(len(data.address1) eq 0)#" maxlength="50">,
 			<cfqueryparam cfsqltype="cf_sql_varchar" value="#data.address2#" null="#yesnoformat(len(data.address2) eq 0)#" maxlength="50">,
@@ -124,6 +125,7 @@ Notes:
 			lastName = <cfqueryparam cfsqltype="cf_sql_varchar" value="#data.lastName#" null="#yesnoformat(len(data.lastName) eq 0)#" maxlength="50">,
 			altEmail = <cfqueryparam cfsqltype="cf_sql_varchar" value="#data.altEmail#" null="#yesnoformat(len(data.altEmail) eq 0)#" maxlength="255">,
 			twitterUsername = <cfqueryparam cfsqltype="cf_sql_varchar" value="#data.twitterUsername#" null="#yesnoformat(len(data.twitterUsername) eq 0)#" maxlength="50">,
+			identicaUsername = <cfqueryparam cfsqltype="cf_sql_varchar" value="#data.identicaUsername#" null="#yesnoformat(len(data.identicaUsername) eq 0)#" maxlength="50">,
 			phone = <cfqueryparam cfsqltype="cf_sql_varchar" value="#data.phone#" null="#yesnoformat(len(data.phone) eq 0)#" maxlength="50">,
 			address1 = <cfqueryparam cfsqltype="cf_sql_varchar" value="#data.address1#" null="#yesnoformat(len(data.address1) eq 0)#" maxlength="50">,
 			address2 = <cfqueryparam cfsqltype="cf_sql_varchar" value="#data.address2#" null="#yesnoformat(len(data.address2) eq 0)#" maxlength="50">,
@@ -160,6 +162,9 @@ Notes:
 			</cfif>
 			<cfif StructKeyExists(arguments,"twitterUsername") AND Len(arguments.twitterUsername)>
 				AND UPPER(twitterUsername) = <cfqueryparam cfsqltype="cf_sql_varchar" value="#ucase(arguments.twitterUsername)#">
+			</cfif>
+			<cfif StructKeyExists(arguments,"identicaUsername") AND Len(arguments.identicaUsername)>
+				AND UPPER(identicaUsername) = <cfqueryparam cfsqltype="cf_sql_varchar" value="#ucase(arguments.identicaUsername)#">
 			</cfif>
 			<cfif StructKeyExists(arguments,"phone") AND Len(arguments.phone)>
 				AND phone = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.phone#">
