@@ -64,6 +64,7 @@ Notes:
 		<cfargument name="firstName" type="string" required="false" default="" />
 		<cfargument name="lastName" type="string" required="false" default="" />
 		<cfargument name="altEmail" type="string" required="false" default="" />
+		<cfargument name="twitterUsername" type="string" required="false" default="" />
 		<cfargument name="phone" type="string" required="false" default="" />
 		<cfargument name="address1" type="string" required="false" default="" />
 		<cfargument name="address2" type="string" required="false" default="" />
@@ -77,6 +78,12 @@ Notes:
 		hint="Gets an User from the datastore by Email.">
 		<cfargument name="altEmail" type="string" required="true" />
 		<cfreturn getGateway().getUser( altEmail = arguments.altEmail ) />
+	</cffunction>
+
+	<cffunction name="getUserByTwitterUsername" access="public" returntype="any" output="false"
+		hint="Gets an User from the datastore by TwitterUsername.">
+		<cfargument name="twitterUsername" type="string" required="true" />
+		<cfreturn getGateway().getUser( twitterUsername = arguments.twitterUsername ) />
 	</cffunction>
 
 	<cffunction name="logoutUser" access="public" returntype="void" output="false">

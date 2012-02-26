@@ -40,6 +40,7 @@ Notes:
 	<cfset variables.firstName = "" />
 	<cfset variables.lastName = "" />
 	<cfset variables.altEmail = "" />
+	<cfset variables.twitterUsername = "" />
 	<cfset variables.phone = "" />
 	<cfset variables.address1 = "" />
 	<cfset variables.address2 = "" />
@@ -59,6 +60,7 @@ Notes:
 		<cfargument name="firstName" type="string" required="false" default="" />
 		<cfargument name="lastName" type="string" required="false" default="" />
 		<cfargument name="altEmail" type="string" required="false" default="" />
+		<cfargument name="twitterUsername" type="string" required="false" default="" />
 		<cfargument name="phone" type="string" required="false" default="" />
 		<cfargument name="address1" type="string" required="false" default="" />
 		<cfargument name="address2" type="string" required="false" default="" />
@@ -89,6 +91,7 @@ Notes:
 		<cfset setFirstName(arguments.data.firstName) />
 		<cfset setLastName(arguments.data.lastName) />
 		<cfset setAltEmail(arguments.data.altEmail) />
+		<cfset setTwitterUsername(arguments.data.twitterUsername) />
 		<cfset setPhone(arguments.data.phone) />
 		<cfset setAddress1(arguments.data.address1) />
 		<cfset setAddress2(arguments.data.address2) />
@@ -103,7 +106,7 @@ Notes:
 		<cfset var data = structnew() />
 		<cfset var fieldname = "" />
 
-		<cfloop list="id,status,role,chapterId,firstName,lastName,altEmail,phone,address1,address2,city,state,zip,importHashCode" index="fieldname">
+		<cfloop list="id,status,role,chapterId,firstName,lastName,altEmail,twitterUsername,phone,address1,address2,city,state,zip,importHashCode" index="fieldname">
 			<cfset data[fieldname] = variables[fieldname] />
 		</cfloop>
 
@@ -206,6 +209,14 @@ Notes:
 	</cffunction>
 	<cffunction name="getAltEmail" access="public" returntype="string" output="false">
 		<cfreturn variables.altEmail />
+	</cffunction>
+
+	<cffunction name="setTwitterUsername" access="public" returntype="void" output="false">
+		<cfargument name="twitterUsername" type="string" required="true" />
+		<cfset variables.twitterUsername = trim(arguments.twitterUsername) />
+	</cffunction>
+	<cffunction name="getTwitterUsername" access="public" returntype="string" output="false">
+		<cfreturn variables.twitterUsername />
 	</cffunction>
 
 	<cffunction name="setPhone" access="public" returntype="void" output="false">
