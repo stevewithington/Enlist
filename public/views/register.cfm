@@ -64,6 +64,12 @@ Notes:
 			</div>
 		</div>
 		<div class="control-group">
+			<label class="control-label" for="twitterUsername">Twitter Username *</label>
+			<div class="controls">
+				<form:input path="twitterUsername" maxlength="200" />
+			</div>
+		</div>
+		<div class="control-group">
 			<label class="control-label" for="phone">Phone</label>
 			<div class="controls"><form:input path="phone" maxlength="40" /></div>
 		</div>
