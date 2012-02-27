@@ -43,7 +43,6 @@
 		<view:message key="meta.title.events.edit" var="variables.title" arguments="#variables.theEvent.getName()#" />
 		<view:meta type="title" content="#variables.title#" />
 	</cfif>
-
 	<view:script>
 		$(function() {
 			$( "#startDate" ).datetimepicker({
@@ -64,7 +63,7 @@
 			$("#eventForm").validate();
 			$("#endDate").rules("add", {greaterThan: "#startDate"});
 		});
-	</view:script>
+	<view:script>
 </cfsilent>
 <cfoutput>
 <tags:displaymessage />
@@ -93,6 +92,7 @@
 			<label class="control-label" for="startDate">Start Date</label>
 			<div class="controls">
 				<form:input path="startDate" maxlength="200" class="required" />
+				<a href="javascript:void(0);" onclick="javascript:$('##startDate').datepicker( 'show' )"><span class="icon-calendar"></span></a>
 			</div>
 		</div>
 
@@ -100,6 +100,7 @@
 			<label class="control-label" for="endDate">End Date</label>
 			<div class="controls">
 				<form:input path="endDate" id="endDate" maxlength="200" class="required" />
+				<a href="javascript:void(0);" onclick="javascript:$('##endDate').datepicker( 'show' )"><span class="icon-calendar"></span></a>
 			</div>
 		</div>
 
