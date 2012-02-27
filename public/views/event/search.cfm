@@ -44,36 +44,36 @@
 
 <h3>#variables.string#</h3>
 
-<form:form actionEvent="event.doSearch">
-	<table>
-		<tr>
-			<th>Name</th>
-			<td><form:input path="name" size="40" maxlength="200" /></td>
-		</tr>
-		<tr>
-			<th>Location</th>
-			<td><form:input path="location" size="40" maxlength="200" /></td>
-		</tr>
-		<tr>
-			<th>Start Date</th>
-			<td><form:input path="startDate" size="40" maxlength="200" /></td>
-		</tr>
-		<tr>
-			<th>End Date</th>
-			<td><form:input path="endDate" size="40" maxlength="200" /></td>
-		</tr>
-		<tr>
-			<th>Status</th>
-			<td>
+<form:form actionEvent="event.doSearch" class="form-horizontal">
+	<fieldset>
+		<div class="control-group">
+			<label class="control-label" for="name">Name</label>
+			<div class="controls"><form:input path="name" maxlength="200" /></div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="location">Location</label>
+			<div class="controls"><form:input path="location" maxlength="200" /></div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="startDate">Start Date</label>
+			<div class="controls"><form:input path="startDate" maxlength="200" /></div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="endDate">End Date</label>
+			<div class="controls" class="controls"><form:input path="endDate" maxlength="200" /></div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="status">Status</label>
+			<div class="controls">
 				<form:select path="status" items="#statuses#">
 					<form:option label="Any" value="" />
 				</form:select>
-			</td>
-		</tr>
-		<tr>
-			<td></td>
-			<td colspan="3"><form:button type="submit" name="search" value="Search" class="btn-primary" /></td>
-		</tr>
-	</table>
+			</div>
+		</div>
+
+		<div class="form-actions">
+			<form:button type="submit" name="search" value="Search" class="btn btn-primary" />
+		</div>
+	</fieldset>
 </form:form>
 </cfoutput>

@@ -1,0 +1,10 @@
+==== Code ====
+1. Peter Moloney - Twitter Bootstrap
+2. Andrew Leaf - Internationalization
+3. Adam Presley - code doco and activity model
+4. Ryan Stille - user registration and data model
+5. Jeff Borisch - form tweaks
+
+==== Wiki ====
+6. Mike Henke
+7. Curt Gratz
