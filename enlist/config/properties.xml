@@ -106,6 +106,7 @@ Notes:
 								<element value="libraries/jquery/jquery-ui-1.8.16.custom.min.js" />
 								<element value="libraries/jquery/jquery.validate-1.6.0.min.js" />
 								<element value="libraries/jquery/jquery.qtip-2.0-Alpha.min.js" />
+								<element value="libraries/jquery/jquery-ui-timepicker-addon.js" />
 								<element value="qTip/qTip.css" />
 							</array>
 						</key>

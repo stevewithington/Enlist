@@ -29,9 +29,9 @@
 	<cfimport prefix="form" taglib="/MachII/customtags/form" />
 	<cfimport prefix="view" taglib="/MachII/customtags/view" />
 	<cfimport prefix="tags" taglib="/enlist/customtags" />
-	
+
 	<cfset copyToScope("theEvent=${event.theEvent},statuses=${properties.eventStatuses}") />
-	
+
 	<cfif NOT Len(variables.theEvent.getId())>
 		<cfset variables.type = "New" />
 		<view:message key="buttons.chapter.save" var="variables.save" />
@@ -43,13 +43,17 @@
 		<view:message key="meta.title.events.edit" var="variables.title" arguments="#variables.theEvent.getName()#" />
 		<view:meta type="title" content="#variables.title#" />
 	</cfif>
-	
+
 	<view:script>
 		$(function() {
-			$( "#startDate" ).datepicker();
-			$( "#endDate" ).datepicker();
+			$( "#startDate" ).datetimepicker({
+				ampm: true
+			});
+			$( "#endDate" ).datetimepicker({
+				ampm: true
+			});
 		});
-	
+
 		$(document).ready(function(){
 			jQuery.validator.addMethod("greaterThan", function(value, element, params) {
 				if (!/Invalid|NaN/.test(new Date(value))) {
