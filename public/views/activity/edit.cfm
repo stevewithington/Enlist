@@ -72,48 +72,52 @@ Notes:
 
 <h3>#variables.type# Activity</h3><br>
 
-<form:form actionEvent="activity.save" bind="#activity#" id="actForm">
-	<table>
-		<tr>
-			<th><view:message key="form.activity.label.event" /></th>
-			<td>
+<h3>#variables.type# Activity</h3>
+<form:form actionEvent="activity.save" bind="activity" id="actForm" class="form-horizontal">
+	<fieldset>
+		<div class="control-group">
+			<label class="control-label" for="eventId"><view:message key="form.activity.label." /></label>
+			<div class="controls">
 				<form:select path="eventId" items="#variables.events#" bind="#variables.activity.getEvent().getId()#" class="required">
 					<form:option value="" label="Choose an event" />
 				</form:select>
-			</td>
-		</tr>
-		<tr>
-			<th><view:message key="form.activity.label.title" /></th>
-			<td><form:input path="title" size="40" maxlength="200" class="required" /></td>
-		</tr>
- 		<tr>
-			<th><view:message key="form.activity.label.description" /></th>
-			<td><form:textarea path="description" style="width:100%;"/></td>
-		</tr>
-		<tr>
-			<th><view:message key="form.activity.label.number" /></th>
-			<td><form:input path="numPeople" size="40" maxlength="4" class="required" /></td>
-		</tr>
-		<tr>
-			<th><view:message key="form.activity.label.startdate" /></th>
-			<td><form:input path="startDate" size="40" maxlength="10" class="required date" /></td>
-		</tr>
-		<tr>
-			<th><view:message key="form.activity.label.enddate" /></th>
-			<td><form:input path="endDate" size="40" maxlength="10" class="required date" /></td>
-		</tr>
-		<tr>
-			<th><view:message key="form.activity.label.hours" /></th>
-			<td><form:input path="pointHours" size="40" maxlength="4" class="required" /></td>
-		</tr>
-		<tr>
-			<th><view:message key="form.activity.label.location" /></th>
-			<td><form:input path="location" size="40" maxlength="20" class="required" /></td>
-		</tr>
-		<tr>
-			<td><form:hidden path="id" /></td>
-			<td><form:button type="submit" name="save" value="#variables.save#" class="btn-primary"  /></td>
-		</tr>
-	</table>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="title"><view:message key="form.activity.label.title" /></label>
+			<div class="controls"><form:input path="title" maxlength="200" class="required" /></div>
+		</div>
+ 		<div class="control-group">
+			<label class="control-label" for="description"><view:message key="form.activity.label.description" /></label>
+			<div class="controls"><form:textarea path="description" /></div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="numPeople"><view:message key="form.activity.label.number" /></label>
+			<div class="controls"><form:input path="numPeople" maxlength="4" class="required" /></div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="startDate"><view:message key="form.activity.label.startdate" /></label>
+			<div class="controls"><form:input path="startDate" maxlength="10" class="required date" /></div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="endDate"><view:message key="form.activity.label.enddate" /></label>
+			<div class="controls"><form:input path="endDate" maxlength="10" class="required date" /></div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="pointHours"><view:message key="form.activity.label.hours" /></label>
+			<div class="controls"><form:input path="pointHours"  maxlength="4" class="required" /></div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="location"><view:message key="form.activity.label.location" /></label>
+			<div class="controls"><form:input path="location" maxlength="20" class="required" /></div>
+		</div>
+		
+		<form:hidden path="id" />
+		<view:message key="button.save" var="variables.save" arguments="request.event" />
+		<div class="form-actions">
+			<form:button type="submit" name="save" value="#variables.save#" class="btn btn-primary" />
+		</div>
+	
+	</fieldset>
 </form:form>
 </cfoutput>

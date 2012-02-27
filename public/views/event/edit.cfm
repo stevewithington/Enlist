@@ -68,40 +68,51 @@
 
 <h3>#variables.type# Event</h3><br>
 
-<form:form actionEvent="event.save" bind="theEvent" id="eventForm">
-	<table>
-		<tr>
-			<th><view:message key="form.events.label.name" /></th>
-			<td><form:input path="name" size="40" maxlength="200" class="required" /></td>
-		</tr>
-		<tr>
-			<th><view:message key="form.events.label.location" /></th>
-			<td><form:input path="location" size="40" maxlength="200" class="required" /></td>
-		</tr>
-		<tr>
-			<th nowrap="nowrap"><view:message key="form.events.label.startdate" /></th>
-			<td>
-				<form:input path="startDate" id="startDate" size="10" maxlength="200" class="required" />
-				<a href="javascript:void(0);" onclick="javascript:$('##startDate').datepicker( 'show' )"><span class="icon-calendar"></span></a>
-			</td>
-		</tr>
-		<tr>
-			<th nowrap="nowrap"><view:message key="form.events.label.enddate" /></th>
-			<td>
-				<form:input path="endDate" id="endDate" size="10" maxlength="200" class="required" />
-				<a href="javascript:void(0);" onclick="javascript:$('##endDate').datepicker( 'show' )"><span class="icon-calendar"></span></a>
-			</td>
-		</tr>
-		<tr>
-			<th nowrap="nowrap"><view:message key="form.events.label.status" /></th>
-			<td><form:select path="status" items="#statuses#" class="required">
-				<form:option value="" label="Choose a status" />
-			</form:select></td>
-		</tr>
-		<tr>
-			<td><form:hidden name="id" path="id" /></td>
-			<td colspan="3"><form:button type="submit" name="save" value="#variables.save#" class="btn-primary"  /></td>
-		</tr>
-	</table>
+<form:form actionEvent="event.save" bind="theEvent" id="eventForm" class="form-horizontal" >
+			
+	<fieldset>
+		<div class="control-group">
+			<label class="control-label" for="name">Name</label>
+			<div class="controls">
+				<form:input path="name" maxlength="200" class="required" />
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label" for="location">Location</label>
+			<div class="controls">
+				<form:input path="location" maxlength="200" class="required" />
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label" for="startDate">Start Date</label>
+			<div class="controls">
+				<form:input path="startDate" maxlength="200" class="required" />
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label" for="endDate">End Date</label>
+			<div class="controls">
+				<form:input path="endDate" id="endDate" maxlength="200" class="required" />
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label" for="status">Status</label>
+			<div class="controls">
+				<form:select path="status" items="#statuses#" class="required">
+					<form:option value="" label="Choose a status" />
+				</form:select>
+			</div>
+		</div>		
+
+		<form:hidden name="id" path="id" /></td>
+		<div class="form-actions">
+			<form:button type="submit" name="save" value="Save Event" class="btn btn-primary"  />
+		</div>
+	</fieldset>
+
 </form:form>
 </cfoutput>
