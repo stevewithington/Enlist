@@ -63,7 +63,7 @@
 			$("#eventForm").validate();
 			$("#endDate").rules("add", {greaterThan: "#startDate"});
 		});
-	<view:script>
+	</view:script>
 </cfsilent>
 <cfoutput>
 <tags:displaymessage />
