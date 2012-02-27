@@ -57,7 +57,7 @@
 		$(document).ready(function(){
 			jQuery.validator.addMethod("greaterThan", function(value, element, params) {
 				if (!/Invalid|NaN/.test(new Date(value))) {
-					return new Date(value) > new Date($(params).val());
+					return new Date(value) >= new Date($(params).val());
 				}
 				return isNaN(value) && isNaN($(params).val()) || (parseFloat(value) > parseFloat($(params).val()));
 			},'Must be greater than {0}.');
@@ -73,7 +73,7 @@
 <h3>#variables.type# Event</h3><br>
 
 <form:form actionEvent="event.save" bind="theEvent" id="eventForm" class="form-horizontal" >
-			
+
 	<fieldset>
 		<div class="control-group">
 			<label class="control-label" for="name">Name</label>
@@ -110,7 +110,7 @@
 					<form:option value="" label="Choose a status" />
 				</form:select>
 			</div>
-		</div>		
+		</div>
 
 		<form:hidden name="id" path="id" /></td>
 		<div class="form-actions">
