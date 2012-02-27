@@ -61,7 +61,7 @@
 				return isNaN(value) && isNaN($(params).val()) || (parseFloat(value) > parseFloat($(params).val()));
 			},'Must be greater than {0}.');
 			$("#eventForm").validate();
-			$("#endDate").rules("add", {greaterThan: "#startDate"});
+			$("#endDate").rules("add", {greaterThan: "Start Date"});
 		});
 	</view:script>
 </cfsilent>
@@ -91,7 +91,7 @@
 		<div class="control-group">
 			<label class="control-label" for="startDate">Start Date</label>
 			<div class="controls">
-				<form:input path="startDate" maxlength="200" class="required" />
+				<form:input path="startDate" maxlength="200" class="required" style="cursor: pointer;" />
 				<a href="javascript:void(0);" onclick="javascript:$('##startDate').datepicker( 'show' )"><span class="icon-calendar"></span></a>
 			</div>
 		</div>
@@ -99,7 +99,7 @@
 		<div class="control-group">
 			<label class="control-label" for="endDate">End Date</label>
 			<div class="controls">
-				<form:input path="endDate" id="endDate" maxlength="200" class="required" />
+				<form:input path="endDate" id="endDate" maxlength="200" class="required" style="cursor: pointer;" />
 				<a href="javascript:void(0);" onclick="javascript:$('##endDate').datepicker( 'show' )"><span class="icon-calendar"></span></a>
 			</div>
 		</div>
