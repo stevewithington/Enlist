@@ -80,8 +80,8 @@ Notes:
 			<td><form:input path="lastName" size="40" maxlength="200" class="required" /></td>
 		</tr>
 		<tr>
-			<th><label id="altEmail">Email *</label></th>
-			<td><form:input path="altEmail" size="40" maxlength="200" class="required" /></td>
+			<th><label id="email">Email *</label></th>
+			<td><form:input path="email" size="40" maxlength="200" class="required" /></td>
 		</tr>
 		<tr>
 			<th><label id="twitterUsername">Identi.ca</label></th>

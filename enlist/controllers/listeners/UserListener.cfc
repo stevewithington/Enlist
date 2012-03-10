@@ -64,7 +64,7 @@ Notes:
 
 		<cfscript>
 			var user = arguments.event.getArg("user");
-			var existingUser = getUserService().getUserByAltEmail(user.getAltEmail());
+			var existingUser = getUserService().getUserByEmail(user.getEmail());
 			var errors = StructNew();
 
 			// if this isn't an update make sure the user isn't already registered

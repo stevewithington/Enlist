@@ -82,7 +82,7 @@
 		</tr>
 		<tr>
 			<th>Email</th>
-			<td><form:input path="altEmail" size="40" maxlength="200" /></td>
+			<td><form:input path="email" size="40" maxlength="200" /></td>
 		</tr>
 		<cfif chapters.RecordCount GT 0>
 		<tr>

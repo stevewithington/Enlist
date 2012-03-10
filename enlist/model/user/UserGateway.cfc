@@ -29,13 +29,13 @@ Notes:
 
 	<cffunction name="getUser" access="public" returntype="enlist.model.user.User" output="false">
 		<cfargument name="ID" type="numeric" required="false" default="0">
-		<cfargument name="altEmail" type="string" required="false" default="">
+		<cfargument name="email" type="string" required="false" default="">
 
 		<cfset var user = '' />
 		<cfset var userQry = 0 />
 		<cfset var data = structNew() />
 
-		<cfif arguments.ID eq 0 AND arguments.altEmail EQ "">
+		<cfif arguments.ID eq 0 AND arguments.email EQ "">
 			<cfset user = createObject("component", "enlist.model.user.User").init() />
 		<cfelse>
 			<cfquery name="userQry">
@@ -45,7 +45,7 @@ Notes:
 			<cfif val(arguments.id)>
 				id = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.ID#" />
 			<cfelse>
-				altEmail = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.altEmail#">
+				email = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.email#">
 			</cfif>
 			</cfquery>
 			<cfloop list="#userQry.columnList#" index="field">
@@ -84,7 +84,7 @@ Notes:
 		
 		<cftransaction>
 		<cfquery name="newuser">
-		INSERT INTO user (	status, role, chapterId, firstName, lastName, altEmail, twitterUsername, identicaUsername, phone, address1, address2,
+		INSERT INTO user (	status, role, chapterId, firstName, lastName, email, twitterUsername, identicaUsername, phone, address1, address2,
 		city, state, zip, importHashCode )
 		VALUES (
 			<cfqueryparam cfsqltype="cf_sql_varchar" value="#data.status#" null="#yesnoformat(len(data.status) eq 0)#" maxlength="50">,
@@ -92,7 +92,7 @@ Notes:
 			<cfqueryparam cfsqltype="cf_sql_integer" value="#data.chapterID#" null="#yesnoformat(len(data.chapterID) eq 0)#" maxlength="5">,
 			<cfqueryparam cfsqltype="cf_sql_varchar" value="#data.firstName#" null="#yesnoformat(len(data.firstName) eq 0)#" maxlength="50">,
 			<cfqueryparam cfsqltype="cf_sql_varchar" value="#data.lastName#" null="#yesnoformat(len(data.lastName) eq 0)#" maxlength="50">,
-			<cfqueryparam cfsqltype="cf_sql_varchar" value="#data.altEmail#" null="#yesnoformat(len(data.altEmail) eq 0)#" maxlength="255">,
+			<cfqueryparam cfsqltype="cf_sql_varchar" value="#data.email#" null="#yesnoformat(len(data.email) eq 0)#" maxlength="255">,
 			<cfqueryparam cfsqltype="cf_sql_varchar" value="#data.twitterUsername#" null="#yesnoformat(len(data.twitterUsername) eq 0)#" maxlength="50">,
 			<cfqueryparam cfsqltype="cf_sql_varchar" value="#data.identicaUsername#" null="#yesnoformat(len(data.identicaUsername) eq 0)#" maxlength="50">,
 			<cfqueryparam cfsqltype="cf_sql_varchar" value="#data.phone#" null="#yesnoformat(len(data.phone) eq 0)#" maxlength="50">,
@@ -123,7 +123,7 @@ Notes:
 			chapterID = <cfqueryparam cfsqltype="cf_sql_integer" value="#data.chapterID#" null="#yesnoformat(len(data.chapterID) eq 0)#" maxlength="5">,
 			firstName = <cfqueryparam cfsqltype="cf_sql_varchar" value="#data.firstName#" null="#yesnoformat(len(data.firstName) eq 0)#" maxlength="50">,
 			lastName = <cfqueryparam cfsqltype="cf_sql_varchar" value="#data.lastName#" null="#yesnoformat(len(data.lastName) eq 0)#" maxlength="50">,
-			altEmail = <cfqueryparam cfsqltype="cf_sql_varchar" value="#data.altEmail#" null="#yesnoformat(len(data.altEmail) eq 0)#" maxlength="255">,
+			email = <cfqueryparam cfsqltype="cf_sql_varchar" value="#data.email#" null="#yesnoformat(len(data.email) eq 0)#" maxlength="255">,
 			twitterUsername = <cfqueryparam cfsqltype="cf_sql_varchar" value="#data.twitterUsername#" null="#yesnoformat(len(data.twitterUsername) eq 0)#" maxlength="50">,
 			identicaUsername = <cfqueryparam cfsqltype="cf_sql_varchar" value="#data.identicaUsername#" null="#yesnoformat(len(data.identicaUsername) eq 0)#" maxlength="50">,
 			phone = <cfqueryparam cfsqltype="cf_sql_varchar" value="#data.phone#" null="#yesnoformat(len(data.phone) eq 0)#" maxlength="50">,
@@ -137,28 +137,30 @@ Notes:
 	</cffunction>
 	
 	<cffunction name="search" access="public" returntype="query" output="false">
-		
-		<cfset var qryUser = "">
+		<cfargument name="user" type="enlist.model.user.User" required="true" />
+
+		<cfset var qryUsers = "">
+
 		<cfquery name="qryUsers">
 		SELECT * FROM user WHERE
 			1=1
-			<cfif StructKeyExists(arguments,"status") AND Len(arguments.status)>
-				AND UPPER(status) = <cfqueryparam cfsqltype="cf_sql_varchar" value="#ucase(arguments.status)#">
+			<cfif arguments.user.getStatus() neq ''>
+				AND UPPER(status) = <cfqueryparam cfsqltype="cf_sql_varchar" value="#ucase(arguments.user.getStatus())#">
 			</cfif>
-			<cfif StructKeyExists(arguments,"role") AND Len(arguments.role)>
-				AND UPPER(role) = <cfqueryparam cfsqltype="cf_sql_varchar" value="#ucase(arguments.role)#">
+			<cfif arguments.user.getRole() neq ''>
+				AND UPPER(role) = <cfqueryparam cfsqltype="cf_sql_varchar" value="#ucase(arguments.user.getRole())#">
 			</cfif>
-			<cfif StructKeyExists(arguments,"chapterID") AND val(arguments.chapterID)>
-				AND chapterID = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.chapterID#">
+			<cfif arguments.user.getChapterId() neq ''>
+				AND chapterID = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.user.getChapterId()#">
 			</cfif>
-			<cfif StructKeyExists(arguments,"firstName") AND Len(arguments.firstName)>
-				AND UPPER(firstName) = <cfqueryparam cfsqltype="cf_sql_varchar" value="#ucase(arguments.firstName)#">
+			<cfif arguments.user.getFirstName() neq ''>
+				AND UPPER(firstName) = <cfqueryparam cfsqltype="cf_sql_varchar" value="#ucase(arguments.user.getFirstName())#">
 			</cfif>
-			<cfif StructKeyExists(arguments,"lastName") AND Len(arguments.lastName)>
-				AND UPPER(lastName) = <cfqueryparam cfsqltype="cf_sql_varchar" value="#ucase(arguments.lastName)#">
+			<cfif arguments.user.getLastName() neq ''>
+				AND UPPER(lastName) = <cfqueryparam cfsqltype="cf_sql_varchar" value="#ucase(arguments.user.getLastName())#">
 			</cfif>
-			<cfif StructKeyExists(arguments,"altEmail") AND Len(arguments.altEmail)>
-				AND UPPER(altEmail) = <cfqueryparam cfsqltype="cf_sql_varchar" value="#ucase(arguments.altEmail)#">
+			<cfif StructKeyExists(arguments,"email") AND Len(arguments.email)>
+				AND UPPER(email) = <cfqueryparam cfsqltype="cf_sql_varchar" value="#ucase(arguments.email)#">
 			</cfif>
 			<cfif StructKeyExists(arguments,"twitterUsername") AND Len(arguments.twitterUsername)>
 				AND UPPER(twitterUsername) = <cfqueryparam cfsqltype="cf_sql_varchar" value="#ucase(arguments.twitterUsername)#">
