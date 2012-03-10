@@ -26,7 +26,6 @@
 	
 	Notes:
 	--->
-	<cfimport prefix="form" taglib="/MachII/customtags/form" />
 	<cfimport prefix="view" taglib="/MachII/customtags/view" />
 	<cfimport prefix="tags" taglib="/enlist/customtags" />
 
@@ -40,32 +39,35 @@
 <cfoutput>
 
 <h3><view:message key="links.event.list" arguments="#variables.eventName#"/></h3><br>
-
-<tags:datatable>
-<div class="content">	
-	<div class="row">
-		<div class="span12">
-			<table id="chapters" class="table table-striped table-bordered">
-				<thead>
-					<tr>
-						<th><view:message key="form.chapter.label.chapter"/></th>
-						<th><view:message key="form.chapter.label.location"></th>
-						<th><view:message key="form.chapter.label.status"></th>
-					</tr>
-				</thead>
-				<tbody id="chaptersList">
-					<cfloop query="chapters">
-						<tr id="tabledata">
-							<td id="#id#">#name#</td>
-							<td>#location#</td>
-							<td>#StatusCode#</td>
+<cfif chapters.RecordCount gt 0>
+	<tags:datatable tableID="chapters" tableBodyID="chaptersList" rowLink="/index.cfm?event=chapter.edit">
+	<div class="content">	
+		<div class="row">
+			<div class="span12">
+				<table id="chapters" class="table table-striped table-bordered">
+					<thead>
+						<tr>
+							<th><view:message key="form.chapter.label.chapter"/></th>
+							<th><view:message key="form.chapter.label.location"></th>
+							<th><view:message key="form.chapter.label.status"></th>
 						</tr>
-					</cfloop>
-				</tbody>
-			</table>
+					</thead>
+					<tbody id="chaptersList">
+						<cfloop query="chapters">
+							<tr id="tabledata">
+								<td id="#id#">#name#</td>
+								<td>#location#</td>
+								<td>#StatusCode#</td>
+							</tr>
+						</cfloop>
+					</tbody>
+				</table>
+			</div>
 		</div>
+		<div class="clear"><br><br></div>
 	</div>
-	<div class="clear"><br><br></div>
-</div>
-</tags:datatable>
+	</tags:datatable>
+<cfelse>
+	<div><view:message key="message.noRecords" /></div>
+</cfif>
 </cfoutput>

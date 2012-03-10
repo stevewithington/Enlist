@@ -93,8 +93,8 @@ Notes:
 		<cfset volunteer.role = "volunteer" />
 		<cfset volunteer.firstName = "Test" />
 		<cfset volunteer.lastName = "Volunteer" />
-		<cfset volunteer.altEmail = "" />
-		<cfset volunteer.importHashCaod = createUUID() />
+		<cfset volunteer.email = "" />
+		<cfset volunteer.importHashCode = createUUID() />
 		<cfset data.volunteer = volunteer />
 
 		<cfset coordinator.id = createUUID() />
@@ -102,8 +102,8 @@ Notes:
 		<cfset coordinator.role = "volunteer,coordinator" />
 		<cfset coordinator.firstName = "Test" />
 		<cfset coordinator.lastName = "Coordinator" />
-		<cfset coordinator.altEmail = "" />
-		<cfset coordinator.importHashCaod = createUUID() />
+		<cfset coordinator.email = "" />
+		<cfset coordinator.importHashCode = createUUID() />
 		<cfset data.coordinator = coordinator />
 
 		<cfset admin.id = createUUID() />
@@ -111,8 +111,8 @@ Notes:
 		<cfset admin.role = "admin" />
 		<cfset admin.firstName = "Test" />
 		<cfset admin.lastName = "Administrator" />
-		<cfset admin.altEmail = "" />
-		<cfset admin.importHashCaod = createUUID() />
+		<cfset admin.email = "" />
+		<cfset admin.importHashCode = createUUID() />
 		<cfset data.admin = admin />
 
 		<cfreturn data />

@@ -94,8 +94,8 @@ Notes:
 				    </a>
 				    <ul class="dropdown-menu">
 				     <li><view:a event="user.edit" ><view:message key="links.event.new" arguments="User" /></view:a></li>
-				     <li><view:a event="user.list" ><view:message key="links.event.list" arguments="User" /></view:a></li>
-				     <li><view:a event="user.search" ><view:message key="links.event.search" arguments="User" /></view:a></li>
+				     <li><view:a event="user.list" ><view:message key="links.event.list" arguments="Users" /></view:a></li>
+				     <li><view:a event="user.search" ><view:message key="links.event.search" arguments="Users" /></view:a></li>
 				    </ul>
 				</li>
 			   <li <cfif arguments.event.getArg('event') eq 'event.edit' OR  arguments.event.getArg('event') eq 'event.list' OR arguments.event.getArg('event') eq 'event.search' >class="dropdown active"<cfelse >class="dropdown"</cfif>  id="menu2">
@@ -106,7 +106,7 @@ Notes:
 				          <b class="caret"></b>
 				    </a>
 				    <ul class="dropdown-menu">
-				     <li><view:a event="event.edit" ><view:message key="links.event.new" arguments="Events" /></view:a></li>
+				     <li><view:a event="event.edit" ><view:message key="links.event.new" arguments="Event" /></view:a></li>
 				     <li><view:a event="event.list" ><view:message key="links.event.list" arguments="Events" /></view:a></li>
 				     <li><view:a event="event.search" ><view:message key="links.event.search" arguments="Events" /></view:a></li>
 				    </ul>
@@ -115,13 +115,13 @@ Notes:
 				    <a href="#menu3"
 				          class="dropdown-toggle"
 				          data-toggle="dropdown">
-				          Actvities
+				          Activities
 				          <b class="caret"></b>
 				    </a>
 				    <ul class="dropdown-menu">
-				     <li><view:a event="activity.edit" ><view:message key="links.event.new" arguments="Actvities" /></view:a></li>
-				     <li><view:a event="activity.list" ><view:message key="links.event.list" arguments="Actvities" /></view:a></li>
-				     <li><view:a event="activity.search" ><view:message key="links.event.search" arguments="Actvities" /></view:a></li>
+				     <li><view:a event="activity.edit" ><view:message key="links.event.new" arguments="Activity" /></view:a></li>
+				     <li><view:a event="activity.list" ><view:message key="links.event.list" arguments="Activities" /></view:a></li>
+				     <li><view:a event="activity.search" ><view:message key="links.event.search" arguments="Activities" /></view:a></li>
 				    </ul>
 				</li>
 
@@ -133,7 +133,7 @@ Notes:
 				          <b class="caret"></b>
 				    </a>
 				    <ul class="dropdown-menu">
-				     <li><view:a event="chapter.edit" ><view:message key="links.event.new" arguments="Chapters" /></view:a></li>
+				     <li><view:a event="chapter.edit" ><view:message key="links.event.new" arguments="Chapter" /></view:a></li>
 				     <li><view:a event="chapter.list" ><view:message key="links.event.list" arguments="Chapters" /></view:a></li>
 				    </ul>
 				</li>

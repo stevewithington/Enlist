@@ -44,46 +44,46 @@
 	<view:meta type="title" content="#variables.title#" />
 </cfsilent>
 
-<cfoutput><h3>#variables.title#</h3></cfoutput><br>
-
+<cfoutput>
+<h3>#variables.title#</h3><br />
 <cfif events.RecordCount GT 0>	
-<tags:datatable>
-<div class="content">	
-	<div class="row">
-		<div class="span12">
-			<table id="chapters" class="table table-striped table-bordered">
-				<thead>
-					<tr>
-						<th><view:message key="form.events.label.status" /></th>
-						<th><view:message key="form.events.label.event" /></th>
-						<th><view:message key="form.events.label.startdate" /></th>
-						<th><view:message key="form.events.label.enddate" /></th>
-						<th><view:message key="form.events.label.location" /></th>
-						<th><view:message key="form.label.actions" /></th>
-					</tr>
-				</thead>
-				<tbody id="chaptersList">
-					<cfoutput query="events">
+	<tags:datatable tableID="events" tableBodyID="eventsList" rowLink="/index.cfm?event=event.view">
+	<div class="content">	
+		<div class="row">
+			<div class="span12">
+				<table id="events" class="table table-striped table-bordered">
+					<thead>
 						<tr>
-							<td>#status#</td>
-							<td>#name#</td>
-							<td>#dateFormat(startDate, "m/d/yyyy")#</td>
-							<td>#dateFormat(endDate, "m/d/yyyy")#</td>
-							<td>#location#</td>
-							<td>
-								<view:a event="event.edit" p:id="#id#"><view:message key="links.edit"/></view:a> | 
-								<view:a event="activity.doSearch" p:eventId="#id#">><view:message key="sideBar.Activity"/></view:a>
-							</td>
-						</tr>	
-					</cfoutput>
-				</tbody>
-			</table>
+							<th><view:message key="form.events.label.status" /></th>
+							<th><view:message key="form.events.label.event" /></th>
+							<th><view:message key="form.events.label.startdate" /></th>
+							<th><view:message key="form.events.label.enddate" /></th>
+							<th><view:message key="form.events.label.location" /></th>
+							<th><view:message key="form.label.actions" /></th>
+						</tr>
+					</thead>
+					<tbody id="eventsList">
+						<cfoutput query="events">
+							<tr>
+								<td>#status#</td>
+								<td>#name#</td>
+								<td>#dateFormat(startDate, "m/d/yyyy")#</td>
+								<td>#dateFormat(endDate, "m/d/yyyy")#</td>
+								<td>#location#</td>
+								<td>
+									<view:a event="event.edit" p:id="#id#"><view:message key="links.edit"/></view:a> | 
+									<view:a event="activity.doSearch" p:eventId="#id#">><view:message key="sideBar.Activity"/></view:a>
+								</td>
+							</tr>	
+						</cfoutput>
+					</tbody>
+				</table>
+			</div>
 		</div>
+		<div class="clear"><br><br></div>
 	</div>
-	<div class="clear"><br><br></div>
-</div>
-</tags:datatable>
+	</tags:datatable>
 <cfelse>
-<div><veiw:message key="message.noRecords"></div>
+	<div><view:message key="message.noRecords" /></div>
 </cfif>
-
+</cfoutput>

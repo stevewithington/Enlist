@@ -39,7 +39,7 @@ Notes:
 	<cfset variables.chapterId = "" />
 	<cfset variables.firstName = "" />
 	<cfset variables.lastName = "" />
-	<cfset variables.altEmail = "" />
+	<cfset variables.email = "" />
 	<cfset variables.twitterUsername = "" />
 	<cfset variables.identicaUsername = "" />
 	<cfset variables.phone = "" />
@@ -60,7 +60,7 @@ Notes:
 		<cfargument name="chapterId" type="string" required="false" default="" />
 		<cfargument name="firstName" type="string" required="false" default="" />
 		<cfargument name="lastName" type="string" required="false" default="" />
-		<cfargument name="altEmail" type="string" required="false" default="" />
+		<cfargument name="email" type="string" required="false" default="" />
 		<cfargument name="twitterUsername" type="string" required="false" default="" />
 		<cfargument name="identicaUsername" type="string" required="false" default="" />
 		<cfargument name="phone" type="string" required="false" default="" />
@@ -92,7 +92,7 @@ Notes:
 		<cfset setChapterId(arguments.data.chapterId) />
 		<cfset setFirstName(arguments.data.firstName) />
 		<cfset setLastName(arguments.data.lastName) />
-		<cfset setAltEmail(arguments.data.altEmail) />
+		<cfset setEmail(arguments.data.email) />
 		<cfset setTwitterUsername(arguments.data.twitterUsername) />
 		<cfset setIdenticaUsername(arguments.data.identicaUsername) />
 		<cfset setPhone(arguments.data.phone) />
@@ -109,7 +109,7 @@ Notes:
 		<cfset var data = structnew() />
 		<cfset var fieldname = "" />
 
-		<cfloop list="id,status,role,chapterId,firstName,lastName,altEmail,twitterUsername,identicaUsername,phone,address1,address2,city,state,zip,importHashCode" index="fieldname">
+		<cfloop list="id,status,role,chapterId,firstName,lastName,email,twitterUsername,identicaUsername,phone,address1,address2,city,state,zip,importHashCode" index="fieldname">
 			<cfset data[fieldname] = variables[fieldname] />
 		</cfloop>
 
@@ -128,13 +128,13 @@ Notes:
 				errors.lastName = "Last name is required";
 			}
 
-			if (Len(Trim(getAltEmail())) EQ 0) {
-				errors.lastName = "Email address is required";
+			if (Len(Trim(getEmail())) EQ 0) {
+				errors.email = "Email address is required";
 			}
 						
-			if (Len(Trim(getAltEmail())) GT 0 
-				and not IsValid("email", getAltEmail())) {
-				errors.altEmail = "The email address you provided is not valid";
+			if (Len(Trim(getEmail())) GT 0 
+				and not IsValid("email", getEmail())) {
+				errors.email = "The email address you provided is not valid";
 			}
 			
 			return errors;
@@ -206,12 +206,12 @@ Notes:
 		<cfreturn variables.lastName />
 	</cffunction>
 
-	<cffunction name="setAltEmail" access="public" returntype="void" output="false">
-		<cfargument name="altEmail" type="string" required="true" />
-		<cfset variables.altEmail = trim(arguments.altEmail) />
+	<cffunction name="setEmail" access="public" returntype="void" output="false">
+		<cfargument name="email" type="string" required="true" />
+		<cfset variables.email = trim(arguments.email) />
 	</cffunction>
-	<cffunction name="getAltEmail" access="public" returntype="string" output="false">
-		<cfreturn variables.altEmail />
+	<cffunction name="getEmail" access="public" returntype="string" output="false">
+		<cfreturn variables.email />
 	</cffunction>
 
 	<cffunction name="setTwitterUsername" access="public" returntype="void" output="false">
