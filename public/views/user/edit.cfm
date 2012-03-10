@@ -32,6 +32,16 @@ Notes:
 	<cfset copyToScope("${event.user},${event.chapters:arrayNew(1)},states=${properties.usStates},roles=${properties.userRoles},statuses=${properties.userStatuses}") />
 
 	<cfif NOT Len(variables.user.getId())>
+		<view:message key="links.event.new" var="variables.save" />
+		<view:message key="meta.title.user.add" var="variables.type" />
+		<view:meta type="title" content="#variables#" />
+	<cfelse>
+		<view:message key="buttons.save" var="variables.save" arguments="request.event" />
+		<view:message key="meta.title.activity.edit" var="variables.type" arguments="#variables.user.getDisplayName()#" />
+		<view:meta type="title" content="#variables.save#"  />
+	</cfif>
+
+	<cfif NOT Len(variables.user.getId())>
 		<cfset variables.type = "New" />
 		<cfset variables.title = "New User" />
 	<cfelse>
@@ -56,7 +66,7 @@ Notes:
 <form:form actionEvent="user.save" bind="user" id="userForm">
 	<table>
 		<tr>
-			<th><label id="status">Status *</label></th>
+			<th><label id="status"><view:message key="form.user.label.status" /> *</label></th>
 			<td>
 				<form:select path="status" items="#statuses#" class="required">
 					<form:option value="" label="" />
@@ -64,7 +74,7 @@ Notes:
 			</td>
 		</tr>
 		<tr>
-			<th><label id="role">Role *</label></th>
+			<th><label id="role"><view:message key="form.user.label.role" /> *</label></th>
 			<td>
 				<form:select path="role" items="#roles#" class="required">
 					<form:option value="" label="" />
@@ -72,43 +82,43 @@ Notes:
 			</td>
 		</tr>	
 		<tr>
-			<th><label id="firstName">First Name *</label></th>
+			<th><label id="firstName"><view:message key="form.user.label.firstname" /> *</label></th>
 			<td><form:input path="firstName" size="40" maxlength="200" class="required" /></td>
 		</tr>
 		<tr>
-			<th><label id="lastName">Last Name *</label></th>
+			<th><label id="lastName"><view:message key="form.user.label.lastname" /> *</label></th>
 			<td><form:input path="lastName" size="40" maxlength="200" class="required" /></td>
 		</tr>
 		<tr>
-			<th><label id="altEmail">Email *</label></th>
+			<th><label id="altEmail"><view:message key="form.user.label.email" /> *</label></th>
 			<td><form:input path="altEmail" size="40" maxlength="200" class="required" /></td>
 		</tr>
 		<tr>
-			<th><label id="twitterUsername">Identi.ca</label></th>
+			<th><label id="twitterUsername"><view:message key="form.user.label.identica" /></label></th>
 			<td><form:input path="identicaUsername" size="40" maxlength="50" /></td>
 		</tr>
 		<tr>
-			<th><label id="twitterUsername">Twitter</label></th>
+			<th><label id="twitterUsername"><view:message key="form.user.label.twitter" /></label></th>
 			<td><form:input path="twitterUsername" size="40" maxlength="50" /></td>
 		</tr>
 		<tr>
-			<th><label id="phone">Phone</label></th>
+			<th><label id="phone"><view:message key="form.user.label.phone" /></label></th>
 			<td><form:input path="phone" size="40" maxlength="40" /></td>
 		</tr>
 		<tr>
-			<th><label id="address1">Address 1</label></th>
+			<th><label id="address1"><view:message key="form.user.label.address1" /> 1</label></th>
 			<td><form:input path="address1" size="40" maxlength="200" /></td>
 		</tr>
 		<tr>
-			<th><label id="address2">Address 2</label></th>
+			<th><label id="address2"><view:message key="form.user.label.address2" /></label></th>
 			<td><form:input path="address2" size="40" maxlength="200" /></td>
 		</tr>
 		<tr>
-			<th><label id="city">City</label></th>
+			<th><label id="city"><view:message key="form.user.label.city" /></label></th>
 			<td><form:input path="city" size="40" maxlength="200" /></td>
 		</tr>
 		<tr>
-			<th><label id="state">State / Zip</label></th>
+			<th><label id="state"><view:message key="form.user.label.state" /> / <view:message key="form.user.label.postalcode" /></label></th>
 			<td>
 				<form:select path="state" items="#states#" labelKey="abbr" valueKey="abbr">
 					<form:option value="" label="" />
@@ -118,7 +128,7 @@ Notes:
 		</tr>
 		<cfif chapters.RecordCount GT 0>
 			<tr>
-				<th><label id="chapterId">Chapter</label></th>
+				<th><label id="chapterId"><view:message key="form.user.label.chapter" /></label></th>
 				<td>
 					<form:select path="chapterId">
 						<cfloop query="chapters">
@@ -130,7 +140,7 @@ Notes:
 		</cfif>
 		<tr>
 			<td><form:hidden name="id" path="id" /></td>
-			<td colspan="3"><form:button type="submit" name="save" value="Save User" class="btn-primary" /></td>
+			<td colspan="3"><form:button type="submit" name="save" value="#variables.save#" class="btn-primary" /></td>
 		</tr>
 	</table>
 </form:form>

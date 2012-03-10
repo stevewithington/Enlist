@@ -38,9 +38,9 @@ Notes:
 		<view:message key="meta.title.activity.add" var="variables.type" />
 		<view:meta type="title" content="#variables.activity.getTitle()#" />
 	<cfelse>
-		<view:message key="buttons.activity.save" var="variables.save" arguments="request.event" />
+		<view:message key="buttons.save" var="variables.save" arguments="request.event" />
 		<view:message key="meta.title.activity.edit" var="variables.type" arguments="#variables.activity.getTitle()#" />
-		<view:meta type="title" content="#variables.activity.getTitle()#"  />
+		<view:meta type="title" content="#variables.save#"  />
 	</cfif>
 
 	<view:script>

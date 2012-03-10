@@ -47,23 +47,23 @@
 <form:form actionEvent="event.doSearch" class="form-horizontal">
 	<fieldset>
 		<div class="control-group">
-			<label class="control-label" for="name">Name</label>
+			<label class="control-label" for="name"><view:message key="form.events.label.name" /></label>
 			<div class="controls"><form:input path="name" maxlength="200" /></div>
 		</div>
 		<div class="control-group">
-			<label class="control-label" for="location">Location</label>
+			<label class="control-label" for="location"><view:message key="form.events.label.location" /></label>
 			<div class="controls"><form:input path="location" maxlength="200" /></div>
 		</div>
 		<div class="control-group">
-			<label class="control-label" for="startDate">Start Date</label>
+			<label class="control-label" for="startDate"><view:message key="form.events.label.startdate" /></label>
 			<div class="controls"><form:input path="startDate" maxlength="200" /></div>
 		</div>
 		<div class="control-group">
-			<label class="control-label" for="endDate">End Date</label>
+			<label class="control-label" for="endDate"<view:message key="form.events.label.enddate" />/label>
 			<div class="controls" class="controls"><form:input path="endDate" maxlength="200" /></div>
 		</div>
 		<div class="control-group">
-			<label class="control-label" for="status">Status</label>
+			<label class="control-label" for="status"><view:message key="form.events.label.status" /></label>
 			<div class="controls">
 				<form:select path="status" items="#statuses#">
 					<form:option label="Any" value="" />
@@ -72,7 +72,8 @@
 		</div>
 
 		<div class="form-actions">
-			<form:button type="submit" name="search" value="Search" class="btn btn-primary" />
+			<view:message key="buttons.save" var="variables.save" arguments="#variables.activityName#" />
+			<form:button type="submit" name="search" value="#variables.save#" class="btn btn-primary" />
 		</div>
 	</fieldset>
 </form:form>

@@ -75,21 +75,21 @@
 
 	<fieldset>
 		<div class="control-group">
-			<label class="control-label" for="name">Name</label>
+			<label class="control-label" for="name"><view:message key="form.events.label.name" /></label>
 			<div class="controls">
 				<form:input path="name" maxlength="200" class="required" />
 			</div>
 		</div>
 
 		<div class="control-group">
-			<label class="control-label" for="location">Location</label>
+			<label class="control-label" for="location"><view:message key="form.events.label.locations" /></label>
 			<div class="controls">
 				<form:input path="location" maxlength="200" class="required" />
 			</div>
 		</div>
 
 		<div class="control-group">
-			<label class="control-label" for="startDate">Start Date</label>
+			<label class="control-label" for="startDate"><view:message key="form.events.label.startdate" /></label>
 			<div class="controls">
 				<form:input path="startDate" maxlength="200" class="required" style="cursor: pointer;" />
 				<a href="javascript:void(0);" onclick="javascript:$('##startDate').datepicker( 'show' )"><span class="icon-calendar"></span></a>
@@ -97,7 +97,7 @@
 		</div>
 
 		<div class="control-group">
-			<label class="control-label" for="endDate">End Date</label>
+			<label class="control-label" for="endDate"><view:message key="form.events.label.enddate" /></label>
 			<div class="controls">
 				<form:input path="endDate" id="endDate" maxlength="200" class="required" style="cursor: pointer;" />
 				<a href="javascript:void(0);" onclick="javascript:$('##endDate').datepicker( 'show' )"><span class="icon-calendar"></span></a>
@@ -105,7 +105,7 @@
 		</div>
 
 		<div class="control-group">
-			<label class="control-label" for="status">Status</label>
+			<label class="control-label" for="status"><view:message key="form.events.label.status" /></label>
 			<div class="controls">
 				<form:select path="status" items="#statuses#" class="required">
 					<form:option value="" label="Choose a status" />
@@ -115,7 +115,8 @@
 
 		<form:hidden name="id" path="id" /></td>
 		<div class="form-actions">
-			<form:button type="submit" name="save" value="Save Event" class="btn btn-primary"  />
+			<view:message key="" />
+			<form:button type="submit" name="save" value="#variables.save#" class="btn btn-primary"  />
 		</div>
 	</fieldset>
 
