@@ -27,7 +27,6 @@ $Id: list.cfm 186 2011-08-20 21:22:32Z peterjfarrell $
 Notes:
 --->
 	<<cfimport prefix="view" taglib="/MachII/customtags/view" />
-	<cfimport prefix="form" taglib="/MachII/customtags/form" />
 	<cfimport prefix="tags" taglib="/enlist/customtags" />
 	<cfset copyToScope("${event.users}") />
 	
@@ -41,40 +40,41 @@ Notes:
 <cfoutput>
 <!--- <p><view:a event="user.search" class="btn">Search Users</view:a>&nbsp;<view:a event="user.edit" class="btn">Create a new user</view:a></p> --->
 
-<h3>#variables.title#</h3><br>
+<h3>#variables.title#</h3><br />
 <cfif users.recordcount gte 1>
-<tags:datatable>
-<div class="content">	
-	<div class="row">
-		<div class="span12">
-			<table id="chapters" class="table table-striped table-bordered">
-				<thead>
-					<tr>
-						<th>First Name</th>
-						<th>Last Name</th>
-						<th>Role</th>
-						<th>Status</th>
-						<th>Actions</th>
-					</tr>
-				</thead>
-				<tbody id="chaptersList">
-					<cfloop query="users">
+	<tags:datatable tableID="users" tableBodyID="usersList" rowLink="/index.cfm?event=user.view">
+	<div class="content">	
+		<div class="row">
+			<div class="span12">
+				<table id="users" class="table table-striped table-bordered">
+					<thead>
 						<tr>
-							<td>#users.FirstName#</td>
-							<td>#users.LastName#</td>
-							<td>#users.Role#</td>
-							<td>#users.Status#</td>
-							<td><view:a event="user.edit" p:id="#users.id#">Edit</view:a></td>
+							<th>First Name</th>
+							<th>Last Name</th>
+							<th>Role</th>
+							<th>Status</th>
+							<th>Actions</th>
 						</tr>
-					</cfloop>
-				</tbody>
-			</table>
+					</thead>
+					<tbody id="usersList">
+						<cfloop query="users">
+							<tr>
+								<td>#users.FirstName#</td>
+								<td>#users.LastName#</td>
+								<td>#users.Role#</td>
+								<td>#users.Status#</td>
+								<view:message key="links.edit" var="variables.edit" />
+								<td><view:a event="user.edit" p:id="#users.id#" label="#variables.edit#" /></td>
+							</tr>
+						</cfloop>
+					</tbody>
+				</table>
+			</div>
 		</div>
+		<div class="clear"><br><br></div>
 	</div>
-	<div class="clear"><br><br></div>
-</div>
-</tags:datatable>
+	</tags:datatable>
 <cfelse>
-<div>No users found.</div>
+	<div><view:message key="message.noRecords" /></div>
 </cfif>
 </cfoutput>	

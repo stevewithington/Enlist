@@ -46,11 +46,11 @@
 <h3>#variables.title#</h3>
 <br><br>
 <cfif variables.activities.recordcount gte 1>	
-	<tags:datatable>
-	<div class="content">	
+	<tags:datatable tableID="activities" tableBodyID="activitiesList" rowLink="/index.cfm?event=activity.view">
+	<div class="content">
 		<div class="row">
 			<div class="span12">
-				<table id="chapters" class="table table-striped table-bordered">
+				<table id="activities" class="table table-striped table-bordered">
 					<thead>
 						<tr>
 							<th><view:message key="form.activity.label.title" /></th>
@@ -63,7 +63,7 @@
 							<th><view:message key="form.label.actions" /></th>
 						</tr>
 					</thead>
-					<tbody id="chaptersList">
+					<tbody id="activitiesList">
 						<cfloop query="variables.activities">
 							<tr>
 								<td>#variables.activities.title#</td>
