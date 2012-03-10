@@ -51,6 +51,8 @@ CREATE TABLE IF NOT EXISTS `user` (
   `firstName` VARCHAR(50) DEFAULT NULL,
   `lastName` VARCHAR(50) DEFAULT NULL,
   `email` VARCHAR(255) DEFAULT NULL,
+  `password` CHAR(64) DEFAULT NULL,
+  `passwordSalt` CHAR(35) DEFAULT NULL,
   `twitterUsername` VARCHAR(50) DEFAULT NULL,
   `identicaUsername` VARCHAR(50) DEFAULT NULL,
   `phone` VARCHAR(50) DEFAULT NULL,
@@ -62,4 +64,3 @@ CREATE TABLE IF NOT EXISTS `user` (
   `importHashCode` VARCHAR(256) DEFAULT NULL,
   PRIMARY KEY(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-

@@ -31,17 +31,17 @@ Notes:
 	<cfimport prefix="tags" taglib="/Enlist/customtags" />
 	<cfset copyToScope("${event.user},${event.chapters:arrayNew(1)},states=${properties.usStates},roles=${properties.userRoles},statuses=${properties.userStatuses}") />
 
-	<cfif NOT Len(variables.user.getId())>
-		<view:message key="links.event.new" var="variables.save" />
+	<cfif variables.user.getId() neq ''>
+		<view:message key="buttons.user.save" var="variables.save" />
 		<view:message key="meta.title.user.add" var="variables.type" />
-		<view:meta type="title" content="#variables#" />
+		<view:message key="meta.title.user.edit" var="variables.title" arguments="#variables.user.getDisplayName()#" />
+		<view:meta type="title" content="#variables.save#" arguments="#variables.user.getDisplayName()#" />
 	<cfelse>
-		<view:message key="buttons.save" var="variables.save" arguments="request.event" />
-		<view:message key="meta.title.activity.edit" var="variables.type" arguments="#variables.user.getDisplayName()#" />
+		<view:message key="buttons.user.save" var="variables.save" />
+		<view:message key="meta.title.user.add" var="variables.type" />
+		<view:message key="meta.title.user.add" var="variables.title" />
 		<view:meta type="title" content="#variables.save#"  />
 	</cfif>
-	
-	<view:meta type="title" content="#variables.title#" />
 
 	<view:script>
 		$(document).ready(function(){
@@ -49,10 +49,11 @@ Notes:
 		});
 	</view:script>
 </cfsilent>
+
 <cfoutput>		
 
 <div>
-	<h3>#variables.title#</h3><br>
+	<h3>#variables.title#</h3><br />
 </div>
 
 <form:form actionEvent="user.save" bind="user" id="userForm">
@@ -82,11 +83,19 @@ Notes:
 			<td><form:input path="lastName" size="40" maxlength="200" class="required" /></td>
 		</tr>
 		<tr>
-			<th><label id="altEmail"><view:message key="form.user.label.email" /> *</label></th>
-			<td><form:input path="altEmail" size="40" maxlength="200" class="required" /></td>
+			<th><label id="email"><view:message key="form.user.label.email" /> *</label></th>
+			<td><form:input path="email" size="40" maxlength="200" class="required" /></td>
 		</tr>
 		<tr>
-			<th><label id="twitterUsername"><view:message key="form.user.label.identica" /></label></th>
+			<th><label id="password"><view:message key="common.password" /> *</label></th>
+			<td><form:password name="password" size="40" maxlength="40" class="required" /></td>
+		</tr>
+		<tr>
+			<th><label id="confirmPassword"><view:message key="common.confirmPassword" /> *</label></th>
+			<td><form:password name="confirmPassword" size="40" maxlength="40" class="required" /></td>
+		</tr>
+		<tr>
+			<th><label id="identicaUsername"><view:message key="form.user.label.identica" /></label></th>
 			<td><form:input path="identicaUsername" size="40" maxlength="50" /></td>
 		</tr>
 		<tr>
@@ -98,7 +107,7 @@ Notes:
 			<td><form:input path="phone" size="40" maxlength="40" /></td>
 		</tr>
 		<tr>
-			<th><label id="address1"><view:message key="form.user.label.address1" /> 1</label></th>
+			<th><label id="address1"><view:message key="form.user.label.address" /> 1</label></th>
 			<td><form:input path="address1" size="40" maxlength="200" /></td>
 		</tr>
 		<tr>
