@@ -168,6 +168,11 @@ Notes:
 			<view-page name="event.list" contentArg="layout.content"/>
 			<execute subroutine="doMainLayout"/>
 		</event-handler>
+		<event-handler event="event.view" access="public">
+			<notify listener="eventListener" method="getEvent" resultArg="theEvent" />
+			<view-page name="event.view" contentArg="layout.content" />
+			<execute subroutine="doMainLayout" />
+		</event-handler>
 		<event-handler event="event.edit" access="public">
 			<notify listener="eventListener" method="getEvent" resultArg="theEvent" />
 			<view-page name="event.edit" contentArg="layout.content"/>

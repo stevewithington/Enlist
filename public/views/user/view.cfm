@@ -24,17 +24,17 @@
 
 Notes:
 --->
+	<cfimport prefix="form" taglib="/MachII/customtags/form" />
 	<cfimport prefix="view" taglib="/MachII/customtags/view" />
 	<cfset copyToScope("${event.user}") />
 
-	<view:message key="buttons.user.save" var="variables.save" />
+	<view:message key="buttons.user.edit" var="variables.edit" />
 	<view:message key="meta.title.user.add" var="variables.type" />
 	<view:message key="meta.title.user.view" var="variables.title" arguments="#variables.user.getDisplayName()#" />
 	<view:meta type="title" content="#variables.title#" arguments="#variables.user.getDisplayName()#" />
 </cfsilent>
 
-<cfoutput>		
-
+<cfoutput>
 <div>
 	<h3>#variables.title#</h3><br />
 </div>
@@ -107,4 +107,10 @@ Notes:
 		</tr>
 	</cfif>--->
 </table>
+<form:form actionEvent="user.edit">
+	<form:hidden name="id" value="#variables.user.getId()#" />
+	<div class="form-actions">
+		<form:button type="submit" name="save" value="#variables.edit#" class="btn btn-primary"  />
+	</div>
+</form:form>
 </cfoutput>

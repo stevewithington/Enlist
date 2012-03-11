@@ -54,106 +54,128 @@ Notes:
 	<h3>#variables.title#</h3><br />
 </div>
 
-<form:form actionEvent="user.save" bind="user" id="userForm">
-	<table>
-		<tr>
-			<th><label id="status"><view:message key="form.user.label.status" /> *</label></th>
-			<td>
+<form:form actionEvent="user.save" bind="user" id="userForm" class="form-horizontal">
+
+	<fieldset>
+		<div class="control-group">
+			<label class="control-label" for="status"><view:message key="form.user.label.status" /> *</label>
+			<div class="controls">
 				<form:select path="status" items="#statuses#" class="required">
 					<form:option value="" label="" />
 				</form:select>
-			</td>
-		</tr>
-		<tr>
-			<th><label id="role"><view:message key="form.user.label.role" /> *</label></th>
-			<td>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="role"><view:message key="form.user.label.role" /> *</label>
+			<div class="controls">
 				<form:select path="role" items="#roles#" class="required">
 					<form:option value="" label="" />
 				</form:select>
-			</td>
-		</tr>	
-		<tr>
-			<th><label id="firstName"><view:message key="form.user.label.firstname" /> *</label></th>
-			<td><form:input path="firstName" size="40" maxlength="200" class="required" /></td>
-		</tr>
-		<tr>
-			<th><label id="lastName"><view:message key="form.user.label.lastname" /> *</label></th>
-			<td><form:input path="lastName" size="40" maxlength="200" class="required" /></td>
-		</tr>
-		<tr>
-			<th><label id="email"><view:message key="form.user.label.email" /> *</label></th>
-			<td><form:input path="email" size="40" maxlength="200" class="required" /></td>
-		</tr>
-		<tr>
-			<th><label id="password"><view:message key="common.password" /><cfif variables.user.getId() eq ''> *</cfif></label></th>
-			<td>
+			</div>
+		</div>	
+		<div class="control-group">
+			<label class="control-label" for="firstName"><view:message key="form.user.label.firstname" /> *</label>
+			<div class="controls">
+				<form:input path="firstName" size="40" maxlength="200" class="required" />
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="lastName"><view:message key="form.user.label.lastname" /> *</label>
+			<div class="controls">
+				<form:input path="lastName" size="40" maxlength="200" class="required" />
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="email"><view:message key="form.user.label.email" /> *</label>
+			<div class="controls">
+				<form:input path="email" size="40" maxlength="200" class="required" />
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="password"><view:message key="common.password" /><cfif variables.user.getId() eq ''> *</cfif></label>
+			<div class="controls">
 				<cfif variables.user.getId() eq ''>
 					<form:password name="password" size="40" maxlength="40" class="required" />
 				<cfelse>
 					<form:password name="password" size="40" maxlength="40" /><cfif variables.user.getId() neq ''><br />
 					<em>(Only enter a password if you want to change it!)</em></cfif>
 				</cfif>
-			</td>
-		</tr>
-		<tr>
-			<th><label id="confirmPassword"><view:message key="common.confirmPassword" /><cfif variables.user.getId() eq ''> *</cfif></label></th>
-			<td>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="confirmPassword"><view:message key="common.confirmPassword" /><cfif variables.user.getId() eq ''> *</cfif></label>
+			<div class="controls">
 				<cfif variables.user.getId() eq ''>
 					<form:password name="confirmPassword" size="40" maxlength="40" class="required" />
 				<cfelse>
 					<form:password name="confirmPassword" size="40" maxlength="40" />
 				</cfif>
-			</td>
-		</tr>
-		<tr>
-			<th><label id="identicaUsername"><view:message key="form.user.label.identica" /></label></th>
-			<td><form:input path="identicaUsername" size="40" maxlength="50" /></td>
-		</tr>
-		<tr>
-			<th><label id="twitterUsername"><view:message key="form.user.label.twitter" /></label></th>
-			<td><form:input path="twitterUsername" size="40" maxlength="50" /></td>
-		</tr>
-		<tr>
-			<th><label id="phone"><view:message key="form.user.label.phone" /></label></th>
-			<td><form:input path="phone" size="40" maxlength="40" /></td>
-		</tr>
-		<tr>
-			<th><label id="address1"><view:message key="form.user.label.address" /></label></th>
-			<td><form:input path="address1" size="40" maxlength="200" /></td>
-		</tr>
-		<tr>
-			<th><label id="address2"><view:message key="form.user.label.address2" /></label></th>
-			<td><form:input path="address2" size="40" maxlength="200" /></td>
-		</tr>
-		<tr>
-			<th><label id="city"><view:message key="form.user.label.city" /></label></th>
-			<td><form:input path="city" size="40" maxlength="200" /></td>
-		</tr>
-		<tr>
-			<th><label id="state"><view:message key="form.user.label.state" /> / <view:message key="form.user.label.postalcode" /></label></th>
-			<td>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="identicaUsername"><view:message key="form.user.label.identica" /></label>
+			<div class="controls">
+				<form:input path="identicaUsername" size="40" maxlength="50" />
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="twitterUsername"><view:message key="form.user.label.twitter" /></label>
+			<div class="controls">
+				<form:input path="twitterUsername" size="40" maxlength="50" />
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="phone"><view:message key="form.user.label.phone" /></label>
+			<div class="controls">
+				<form:input path="phone" size="40" maxlength="40" />
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="address1"><view:message key="form.user.label.address" /></label>
+			<div class="controls">
+				<form:input path="address1" size="40" maxlength="200" />
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="address2"><view:message key="form.user.label.address2" /></label>
+			<div class="controls">
+				<form:input path="address2" size="40" maxlength="200" />
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="city"><view:message key="form.user.label.city" /></label>
+			<div class="controls">
+				<form:input path="city" size="40" maxlength="200" />
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="state"><view:message key="form.user.label.state" /> / <view:message key="form.user.label.postalcode" /></label>
+			<div class="controls">
 				<form:select path="state" items="#states#" labelKey="abbr" valueKey="abbr">
 					<form:option value="" label="" />
 				</form:select>&nbsp;
 				<form:input path="zip" size="11" maxlength="10" />
-			</td>
-		</tr>
+			</div>
+		</div>
 		<cfif chapters.RecordCount GT 0>
-			<tr>
-				<th><label id="chapterId"><view:message key="form.user.label.chapter" /></label></th>
-				<td>
+			<div class="control-group">
+				<label class="control-label" for="chapterId"><view:message key="form.user.label.chapter" /></label>
+				<div class="controls">
 					<form:select path="chapterId">
 						<cfloop query="chapters">
 							<form:option value="#chapters.id#" label="#chapters.Name#" />
 						</cfloop>
 					</form:select>
-				</td>
-			</tr>
+				</div>
+			</div>
 		</cfif>
-		<tr>
-			<td><form:hidden name="id" path="id" /></td>
-			<td colspan="3"><form:button type="submit" name="save" value="#variables.save#" class="btn-primary" /></td>
-		</tr>
-	</table>
+
+		<form:hidden name="id" path="id" />
+		<div class="form-actions">
+			<view:message key="" />
+			<form:button type="submit" name="save" value="#variables.save#" class="btn btn-primary"  />
+		</div>
+	</fieldset>
+
 </form:form>
 </cfoutput>

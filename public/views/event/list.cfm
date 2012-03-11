@@ -22,8 +22,6 @@
 	    conditions of the GNU General Public License cover the whole
 	    combination.
 	
-	$Id: list.cfm 186 2011-08-20 21:22:32Z peterjfarrell $
-	
 	Notes:
 	--->
 	<cfimport prefix="view" taglib="/MachII/customtags/view" />
@@ -54,21 +52,21 @@
 				<table id="events" class="table table-striped table-bordered">
 					<thead>
 						<tr>
-							<th><view:message key="form.events.label.status" /></th>
-							<th><view:message key="form.events.label.event" /></th>
-							<th><view:message key="form.events.label.startdate" /></th>
-							<th><view:message key="form.events.label.enddate" /></th>
-							<th><view:message key="form.events.label.location" /></th>
+							<th><view:message key="form.event.label.status" /></th>
+							<th><view:message key="form.event.label.event" /></th>
+							<th><view:message key="form.event.label.startdate" /></th>
+							<th><view:message key="form.event.label.enddate" /></th>
+							<th><view:message key="form.event.label.location" /></th>
 							<th><view:message key="form.label.actions" /></th>
 						</tr>
 					</thead>
 					<tbody id="eventsList">
 						<cfoutput query="events">
-							<tr>
+							<tr id="#events.id#">
 								<td>#status#</td>
 								<td>#name#</td>
-								<td>#dateFormat(startDate, "m/d/yyyy")#</td>
-								<td>#dateFormat(endDate, "m/d/yyyy")#</td>
+								<td>#dateFormat(startDate, "m/d/yyyy")# #timeFormat(startDate, "HH:mm")#</td>
+								<td>#dateFormat(endDate, "m/d/yyyy")# #timeFormat(endDate, "HH:mm")#</td>
 								<td>#location#</td>
 								<td>
 									<view:a event="event.edit" p:id="#id#"><view:message key="links.edit"/></view:a> | 
