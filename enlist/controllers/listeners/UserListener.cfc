@@ -70,6 +70,8 @@ Notes:
 			// if this isn't an update make sure the user isn't already registered
 			if (user.getID() eq "" and existingUser.getID() neq "") {
 				errors.alreadyRegistered = "A user is already registered with this application using this email address.";
+			} else if ((user.getId() eq '' || user.getPassword() neq '') && user.getPassword() != arguments.event.getArg('confirmPassword')) {
+				errors.passwordMismatch = "The passwords you entered do not match.";
 			} else {
 				// validate the rest of the user input
 				errors = getUserService().saveUser(user);

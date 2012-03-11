@@ -35,12 +35,12 @@ Notes:
 		<view:message key="buttons.user.save" var="variables.save" />
 		<view:message key="meta.title.user.add" var="variables.type" />
 		<view:message key="meta.title.user.edit" var="variables.title" arguments="#variables.user.getDisplayName()#" />
-		<view:meta type="title" content="#variables.save#" arguments="#variables.user.getDisplayName()#" />
+		<view:meta type="title" content="#variables.title#" arguments="#variables.user.getDisplayName()#" />
 	<cfelse>
 		<view:message key="buttons.user.save" var="variables.save" />
 		<view:message key="meta.title.user.add" var="variables.type" />
 		<view:message key="meta.title.user.add" var="variables.title" />
-		<view:meta type="title" content="#variables.save#"  />
+		<view:meta type="title" content="#variables.title#"  />
 	</cfif>
 
 	<view:script>
@@ -87,12 +87,25 @@ Notes:
 			<td><form:input path="email" size="40" maxlength="200" class="required" /></td>
 		</tr>
 		<tr>
-			<th><label id="password"><view:message key="common.password" /> *</label></th>
-			<td><form:password name="password" size="40" maxlength="40" class="required" /></td>
+			<th><label id="password"><view:message key="common.password" /><cfif variables.user.getId() eq ''> *</cfif></label></th>
+			<td>
+				<cfif variables.user.getId() eq ''>
+					<form:password name="password" size="40" maxlength="40" class="required" />
+				<cfelse>
+					<form:password name="password" size="40" maxlength="40" /><cfif variables.user.getId() neq ''><br />
+					<em>(Only enter a password if you want to change it!)</em></cfif>
+				</cfif>
+			</td>
 		</tr>
 		<tr>
-			<th><label id="confirmPassword"><view:message key="common.confirmPassword" /> *</label></th>
-			<td><form:password name="confirmPassword" size="40" maxlength="40" class="required" /></td>
+			<th><label id="confirmPassword"><view:message key="common.confirmPassword" /><cfif variables.user.getId() eq ''> *</cfif></label></th>
+			<td>
+				<cfif variables.user.getId() eq ''>
+					<form:password name="confirmPassword" size="40" maxlength="40" class="required" />
+				<cfelse>
+					<form:password name="confirmPassword" size="40" maxlength="40" />
+				</cfif>
+			</td>
 		</tr>
 		<tr>
 			<th><label id="identicaUsername"><view:message key="form.user.label.identica" /></label></th>

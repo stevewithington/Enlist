@@ -136,8 +136,8 @@ Notes:
 				errors.email = "Email address is required";
 			}
 
-			if (Len(Trim(getPassword())) EQ 0) {
-				errors.password = "Passowrd is required";
+			if (getId() eq '' and Len(Trim(getPassword())) EQ 0) {
+				errors.password = "Password is required";
 			}
 						
 			if (Len(Trim(getEmail())) GT 0 
