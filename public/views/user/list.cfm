@@ -22,8 +22,6 @@
     conditions of the GNU General Public License cover the whole
     combination.
 
-$Id: list.cfm 186 2011-08-20 21:22:32Z peterjfarrell $
-
 Notes:
 --->
 	<cfimport prefix="view" taglib="/MachII/customtags/view" />
@@ -38,7 +36,6 @@ Notes:
 	<view:meta type="title" content="#variables.title#" />
 </cfsilent>
 <cfoutput>
-<!--- <p><view:a event="user.search" class="btn">Search Users</view:a>&nbsp;<view:a event="user.edit" class="btn">Create a new user</view:a></p> --->
 
 <h3>#variables.title#</h3><br />
 <cfif users.recordcount gte 1>
@@ -58,7 +55,7 @@ Notes:
 					</thead>
 					<tbody id="usersList">
 						<cfloop query="users">
-							<tr>
+							<tr id="#users.id#">
 								<td>#users.FirstName#</td>
 								<td>#users.LastName#</td>
 								<td>#users.Role#</td>

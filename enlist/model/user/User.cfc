@@ -21,8 +21,6 @@
     conditions of the GNU General Public License cover the whole
     combination.
 
-$Id$
-
 Notes:
 --->
 <cfcomponent
@@ -55,7 +53,7 @@ Notes:
 	--->
 	<cffunction name="init" access="public" returntype="User" output="false">
 		<cfargument name="id" type="string" required="false" default="" />
-		<cfargument name="status" type="string" required="false" default="valid" />
+		<cfargument name="status" type="string" required="false" default="active" />
 		<cfargument name="role" type="string" required="false" default="" />
 		<cfargument name="chapterId" type="string" required="false" default="" />
 		<cfargument name="firstName" type="string" required="false" default="" />

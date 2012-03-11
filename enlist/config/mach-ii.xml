@@ -22,8 +22,6 @@
     conditions of the GNU General Public License cover the whole
     combination.
 
-$Id$
-
 Notes:
 -->
 
@@ -327,6 +325,11 @@ Notes:
 			<call-method bean="userService" method="getUsers" resultArg="users" />
 			<view-page name="user.list" contentArg="layout.content"/>
 			<execute subroutine="doMainLayout"/>
+		</event-handler>
+		<event-handler event="user.view" access="public">
+			<notify listener="userListener" method="getUser" resultArg="user" />
+			<view-page name="user.view" contentArg="layout.content" />
+			<execute subroutine="doMainLayout" />
 		</event-handler>
 		<event-handler event="user.edit" access="public">
 			<notify listener="userListener" method="getUser" resultArg="user" />

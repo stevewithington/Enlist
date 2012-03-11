@@ -22,8 +22,6 @@
     conditions of the GNU General Public License cover the whole
     combination.
 
-$Id: header.cfm 181 2011-06-16 04:56:27Z peterjfarrell $
-
 Notes:
 --->
 	<cfimport prefix="view" taglib="/MachII/customtags/view" />

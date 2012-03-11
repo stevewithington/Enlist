@@ -22,8 +22,6 @@
     conditions of the GNU General Public License cover the whole
     combination.
 
-$Id: edit.cfm 186 2011-08-20 21:22:32Z peterjfarrell $
-
 Notes:
 --->
 	<cfimport prefix="form" taglib="/MachII/customtags/form" />
@@ -120,7 +118,7 @@ Notes:
 			<td><form:input path="phone" size="40" maxlength="40" /></td>
 		</tr>
 		<tr>
-			<th><label id="address1"><view:message key="form.user.label.address" /> 1</label></th>
+			<th><label id="address1"><view:message key="form.user.label.address" /></label></th>
 			<td><form:input path="address1" size="40" maxlength="200" /></td>
 		</tr>
 		<tr>

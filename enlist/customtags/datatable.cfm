@@ -21,8 +21,6 @@
     conditions of the GNU General Public License cover the whole
     combination.
 
-$Id$
-
 Notes:
 	* caller passes in tableID and optional tableBodyID and rowLink if rows should be hyperlinked
 --->
@@ -42,8 +40,8 @@ Notes:
 		
 			<cfif StructKeyExists(attributes, "tableBodyID")>
 				//link datatable rows if needed
-				$('###attributes.tableBodyID# tr').live('click', function() {
-					var thisId = $(this).find('td[id]').attr("id");
+				$('###attributes.tableBodyID# tr').click(function() {
+					var thisId = $(this).attr('id');
 					<cfif StructKeyExists(attributes, "rowLink")>window.location = '#attributes.rowLink#&id=' + thisId;</cfif>
 				});
 			</cfif>
