@@ -26,7 +26,7 @@ $Id: list.cfm 186 2011-08-20 21:22:32Z peterjfarrell $
 
 Notes:
 --->
-	<<cfimport prefix="view" taglib="/MachII/customtags/view" />
+	<cfimport prefix="view" taglib="/MachII/customtags/view" />
 	<cfimport prefix="tags" taglib="/enlist/customtags" />
 	<cfset copyToScope("${event.users}") />
 	
