@@ -28,31 +28,31 @@ Notes:
 </cfsilent>
 <cfoutput>
 	<!--- SUBNAV FOR USERS --->
-	<cfif event.getArg('event') eq 'user.edit' OR event.getArg('event') eq 'user.list' OR event.getArg('event') eq 'user.search' OR event.getArg('event') eq 'user.view'>
+	<cfif event.getArg('event') eq 'user.edit' OR event.getArg('event') eq 'user.list' OR event.getArg('event') eq 'user.search' OR event.getArg('event') eq 'user.view' OR event.getArg('event') eq 'user.doSearch'>
 		<view:message key="links.user.create" var="variables.createLinkText" />
 		<view:message key="links.user.list" var="variables.listLinkText" />
 		<view:message key="links.user.search" var="variables.searchLinkText" />
 		<ul class="nav nav-pills">
 			<li <cfif event.getArg('event') eq 'user.edit' and event.getArg('user').getId() eq 0>class="active"</cfif>><view:a event="user.edit">#variables.createLinkText#</view:a></li>
 			<li <cfif event.getArg('event') eq 'user.list'>class="active"</cfif>><view:a event="user.list">#variables.listLinkText#</view:a></li>
-			<li <cfif event.getArg('event') eq 'user.search'>class="active"</cfif>><view:a event="user.search">#variables.searchLinkText#</view:a></li>
+			<li <cfif event.getArg('event') eq 'user.search' or event.getArg('event') eq 'user.doSearch'>class="active"</cfif>><view:a event="user.search">#variables.searchLinkText#</view:a></li>
 		</ul>
 	</cfif>
 
 	<!--- SUBNAV FOR EVENTS --->
-	<cfif event.getArg('event') eq 'event.edit' OR event.getArg('event') eq 'event.list' OR event.getArg('event') eq 'event.search' OR event.getArg('event') eq 'event.view'>
+	<cfif event.getArg('event') eq 'event.edit' OR event.getArg('event') eq 'event.list' OR event.getArg('event') eq 'event.search' OR event.getArg('event') eq 'event.view' or event.getArg('event') eq 'event.doSearch'>
 		<view:message key="links.event.create" var="variables.createLinkText" />
 		<view:message key="links.event.list" var="variables.listLinkText" />
 		<view:message key="links.event.search" var="variables.searchLinkText" />
 		<ul class="nav nav-pills">
 			<li <cfif event.getArg('event') eq 'event.edit' and event.getArg('theEvent').getId() eq 0>class="active"</cfif>><view:a event="event.edit">#variables.createLinkText#</view:a></li>
 			<li <cfif event.getArg('event') eq 'event.list'>class="active"</cfif>><view:a event="event.list">#variables.listLinkText#</view:a></li>
-			<li <cfif event.getArg('event') eq 'event.search'>class="active"</cfif>><view:a event="event.search">#variables.searchLinkText#</view:a></li>
+			<li <cfif event.getArg('event') eq 'event.search' or event.getArg('event') eq 'event.doSearch'>class="active"</cfif>><view:a event="event.search">#variables.searchLinkText#</view:a></li>
 		</ul>
 	</cfif>	
 
 	<!--- SUBNAV FOR ACTIVITES --->
-	<cfif event.getArg('event') eq 'activity.edit' OR event.getArg('event') eq 'activity.list' OR event.getArg('event') eq 'activity.search'>
+	<cfif event.getArg('event') eq 'activity.edit' OR event.getArg('event') eq 'activity.list' OR event.getArg('event') eq 'activity.search' or event.getArg('event') eq 'activity.doSearch'>
 		<view:message key="links.activity.create" var="variables.createLinkText" />
 		<view:message key="links.activity.list" var="variables.listLinkText" />
 		<view:message key="links.activity.search" var="variables.searchLinkText" />

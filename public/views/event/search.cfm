@@ -32,12 +32,8 @@
 
 	<view:script>
 		$(function() {
-			$( "#startDate" ).datetimepicker({
-				ampm: true
-			});
-			$( "#endDate" ).datetimepicker({
-				ampm: true
-			});
+			$( "#startDate" ).datepicker();
+			$( "#endDate" ).datepicker();
 		});
 	</view:script>	
 </cfsilent>

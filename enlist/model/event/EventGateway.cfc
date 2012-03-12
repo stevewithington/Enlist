@@ -94,10 +94,14 @@ Notes:
 				AND UPPER(name) LIKE <cfqueryparam cfsqltype="cf_sql_varchar" value="%#ucase(arguments.theEvent.getName())#%" maxlength="100" />
 			</cfif>
 			<cfif arguments.theEvent.getStartDate() neq ''>
-				AND startdate = <cfqueryparam cfsqltype="cf_sql_timestamp" value="#arguments.theEvent.getStartDate()#" />
+				AND YEAR(startdate) = <cfqueryparam cfsqltype="cf_sql_integer" value="#Year(arguments.theEvent.getStartDate())#" /> 
+				AND MONTH(startdate) = <cfqueryparam cfsqltype="cf_sql_integer" value="#Month(arguments.theEvent.getStartDate())#" /> 
+				AND DAY(startdate) = <cfqueryparam cfsqltype="cf_sql_integer" value="#Day(arguments.theEvent.getStartDate())#" />
 			</cfif>
 			<cfif arguments.theEvent.getEndDate() neq ''>
-				AND enddate = <cfqueryparam cfsqltype="cf_sql_timestamp" value="#arguments.theEvent.getEndDate()#" />
+				AND YEAR(enddate) = <cfqueryparam cfsqltype="cf_sql_integer" value="#Year(arguments.theEvent.getEndDate())#" /> 
+				AND MONTH(enddate) = <cfqueryparam cfsqltype="cf_sql_integer" value="#Month(arguments.theEvent.getEndDate())#" /> 
+				AND DAY(enddate) = <cfqueryparam cfsqltype="cf_sql_integer" value="#Day(arguments.theEvent.getEndDate())#" /> 
 			</cfif>
 			<cfif arguments.theEvent.getLocation() neq ''>
 				AND UPPER(location) LIKE <cfqueryparam cfsqltype="cf_sql_varchar" value="%#ucase(arguments.theEvent.getLocation())#%" maxlength="100" />
