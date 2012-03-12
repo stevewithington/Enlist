@@ -29,9 +29,9 @@ Notes:
 	<cfimport prefix="tags" taglib="/Enlist/customtags" />
 	<cfset copyToScope("${event.user},${event.chapters:arrayNew(1)},states=${properties.usStates},roles=${properties.userRoles},statuses=${properties.userStatuses}") />
 
-	<cfif variables.user.getId() neq ''>
+	<cfif variables.user.getId() neq 0>
 		<view:message key="buttons.user.save" var="variables.save" />
-		<view:message key="meta.title.user.add" var="variables.type" />
+		<view:message key="meta.title.user.edit" var="variables.type" />
 		<view:message key="meta.title.user.edit" var="variables.title" arguments="#variables.user.getDisplayName()#" />
 		<view:meta type="title" content="#variables.title#" arguments="#variables.user.getDisplayName()#" />
 	<cfelse>
@@ -92,20 +92,20 @@ Notes:
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label" for="password"><view:message key="common.password" /><cfif variables.user.getId() eq ''> *</cfif></label>
+			<label class="control-label" for="password"><view:message key="common.password" /><cfif variables.user.getId() eq 0> *</cfif></label>
 			<div class="controls">
-				<cfif variables.user.getId() eq ''>
+				<cfif variables.user.getId() eq 0>
 					<form:password name="password" size="40" maxlength="40" class="required" />
 				<cfelse>
-					<form:password name="password" size="40" maxlength="40" /><cfif variables.user.getId() neq ''><br />
+					<form:password name="password" size="40" maxlength="40" /><cfif variables.user.getId() neq 0><br />
 					<em>(Only enter a password if you want to change it!)</em></cfif>
 				</cfif>
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label" for="confirmPassword"><view:message key="common.confirmPassword" /><cfif variables.user.getId() eq ''> *</cfif></label>
+			<label class="control-label" for="confirmPassword"><view:message key="common.confirmPassword" /><cfif variables.user.getId() eq 0> *</cfif></label>
 			<div class="controls">
-				<cfif variables.user.getId() eq ''>
+				<cfif variables.user.getId() eq 0>
 					<form:password name="confirmPassword" size="40" maxlength="40" class="required" />
 				<cfelse>
 					<form:password name="confirmPassword" size="40" maxlength="40" />

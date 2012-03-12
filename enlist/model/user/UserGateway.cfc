@@ -26,28 +26,34 @@ Notes:
 <cfcomponent output="false">
 
 	<cffunction name="getUser" access="public" returntype="enlist.model.user.User" output="false">
-		<cfargument name="ID" type="numeric" required="false" default="0">
+		<cfargument name="id" type="numeric" required="false" default="0">
 		<cfargument name="email" type="string" required="false" default="">
 
 		<cfset var user = CreateObject('component', 'enlist.model.user.User').init() />
 		<cfset var userQry = 0 />
 		<cfset var data = structNew() />
 
-		<cfif arguments.ID neq 0 OR arguments.email neq "">
+		<cfif arguments.id neq 0 OR arguments.email neq "">
 			<cfquery name="userQry">
-			select 	*
-			from	user
-			where
-			<cfif val(arguments.ID)>
-				id = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.ID#" />
-			<cfelse>
-				email = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.email#">
-			</cfif>
+				select 	*
+				from	user
+				where
+				<cfif arguments.id neq 0>
+					id = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.id#" />
+				<cfelse>
+					email = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.email#">
+				</cfif>
 			</cfquery>
-			<cfloop list="#userQry.columnList#" index="field">
-				<cfset 'data.#field#' = evaluate('userQry.#field#')>
-			</cfloop>
-			<cfset user.init(argumentcollection=data) />
+
+			<cfif userQry.RecordCount gt 0>
+				<cfloop list="#userQry.columnList#" index="field">
+					<cfset 'data.#field#' = evaluate('userQry.#field#')>
+				</cfloop>
+
+				<cfif data.id eq ''><cfset data.id = 0 /></cfif>
+
+				<cfset user.init(argumentcollection=data) />
+			</cfif>
 		</cfif>
 
 		<cfreturn user />
@@ -65,7 +71,7 @@ Notes:
 
 	<cffunction name="save" access="public" returntype="void" output="false">
 		<cfargument name="user" type="enlist.model.user.user" required="true">
-		<cfif Val(arguments.user.getID()) neq 0>
+		<cfif arguments.user.getID() neq 0>
 			<cfset update(arguments.user)>
 		<cfelse>
 			<cfset create(arguments.user)>

@@ -21,8 +21,6 @@
     conditions of the GNU General Public License cover the whole
     combination.
 
-$Id$
-
 Notes:
 --->
 <!--- TODO: I don't think this is being used anymore now that EventService leverages 
@@ -161,10 +159,19 @@ Notes:
 				<cfset 'data.#field#' = evaluate('readEvent.#field#')>
 			</cfloop>
 			<cfset Event = createObject("component", "enlist.model.event.Event").init(argumentcollection=data)>
+			
+			<!--- format dates so they work with date picker in the edit form --->
+			<cfif readEvent.startdate neq ''>
+				<cfset Event.setStartDate(DateFormat(Event.getStartDate(), "mm/dd/yyyy") & ' ' & TimeFormat(Event.getStartDate(), "hh:mm tt")) />
+			</cfif>
+
+			<cfif readEvent.enddate neq ''>
+				<cfset Event.setEndDate(DateFormat(Event.getEndDate(), "mm/dd/yyyy") & ' ' & TimeFormat(Event.getEndDate(), "hh:mm tt")) />
+			</cfif>
 		<cfelse>
 			<cfset Event = createObject("component", "enlist.model.event.Event").init()>
 		</cfif>
-		<cfreturn Event>
+		<cfreturn Event />
 	</cffunction>
 		
 	<!---

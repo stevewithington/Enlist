@@ -46,8 +46,8 @@ Notes:
 	PUBLIC FUNCTIONS
 	--->
 	<cffunction name="getUser" access="public" returntype="any" output="false">
-		<cfargument name="id" type="string" required="true" />
-		<cfreturn getGateway().getUser( Val(arguments.id) ) />
+		<cfargument name="id" type="numeric" required="true" />
+		<cfreturn getGateway().getUser( arguments.id ) />
 	</cffunction>
 
 	<cffunction name="getUsers" access="public" returntype="query" output="false">

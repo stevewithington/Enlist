@@ -65,8 +65,8 @@
 							<tr id="#events.id#">
 								<td>#status#</td>
 								<td>#name#</td>
-								<td>#dateFormat(startDate, "m/d/yyyy")# #timeFormat(startDate, "HH:mm")#</td>
-								<td>#dateFormat(endDate, "m/d/yyyy")# #timeFormat(endDate, "HH:mm")#</td>
+								<td>#dateFormat(startDate, "mm/dd/yyyy")# #timeFormat(startDate, "hh:mm tt")#</td>
+								<td>#dateFormat(endDate, "mm/dd/yyyy")# #timeFormat(endDate, "hh:mm tt")#</td>
 								<td>#location#</td>
 								<td>
 									<view:a event="event.edit" p:id="#id#"><view:message key="links.edit"/></view:a> | 

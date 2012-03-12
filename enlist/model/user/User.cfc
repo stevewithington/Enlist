@@ -31,7 +31,7 @@ Notes:
 	<!---
 	PROPERTIES
 	--->
-	<cfset variables.id = "" />
+	<cfset variables.id = 0 />
 	<cfset variables.status = "" />
 	<cfset variables.role = "" /><!--- valid values in config/properties.xml --->
 	<cfset variables.chapterId = "" />
@@ -52,7 +52,7 @@ Notes:
 	INITIALIZATION / CONFIGURATION
 	--->
 	<cffunction name="init" access="public" returntype="User" output="false">
-		<cfargument name="id" type="string" required="false" default="" />
+		<cfargument name="id" type="numeric" required="false" default="0" />
 		<cfargument name="status" type="string" required="false" default="active" />
 		<cfargument name="role" type="string" required="false" default="" />
 		<cfargument name="chapterId" type="string" required="false" default="" />
@@ -165,10 +165,10 @@ Notes:
 	ACCESSORS
 	--->
 	<cffunction name="setId" access="public" returntype="void" output="false">
-		<cfargument name="id" type="string" required="true" />
-		<cfset variables.id = trim(arguments.id) />
+		<cfargument name="id" type="numeric" required="true" />
+		<cfset variables.id = arguments.id />
 	</cffunction>
-	<cffunction name="getId" access="public" returntype="string" output="false">
+	<cffunction name="getId" access="public" returntype="numeric" output="false">
 		<cfreturn variables.id />
 	</cffunction>
 

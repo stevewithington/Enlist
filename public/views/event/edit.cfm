@@ -30,9 +30,9 @@
 
 	<cfset copyToScope("theEvent=${event.theEvent},statuses=${properties.eventStatuses}") />
 
-	<cfif variables.theEvent.getId() neq ''>
+	<cfif variables.theEvent.getId() neq 0>
 		<view:message key="buttons.event.save" var="variables.save" />
-		<view:message key="meta.title.event.add" var="variables.type" />
+		<view:message key="meta.title.event.edit" var="variables.type" />
 		<view:message key="meta.title.event.edit" var="variables.title" arguments="#variables.theEvent.getName()#" />
 		<view:meta type="title" content="#variables.title#" arguments="#variables.theEvent.getName()#" />
 	<cfelse>
@@ -69,7 +69,7 @@
 <tags:displaymessage />
 <tags:displayerror />
 
-<h3>#variables.type#</h3><br />
+<h3>#variables.title#</h3><br />
 
 <form:form actionEvent="event.save" bind="theEvent" id="eventForm" class="form-horizontal">
 
