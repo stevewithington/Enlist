@@ -189,12 +189,9 @@ Notes:
 			<execute subroutine="doMainLayout"/>
 		</event-handler>
 		<event-handler event="event.doSearch" access="public">
+			<event-bean name="theEvent" type="enlist.model.event.Event" autopopulate="true" />
 			<call-method bean="eventService" method="getEventsBySearch" resultArg="events">
-				<arg name="name" value="${event.name:''}" />
-				<arg name="location" value="${event.location:''}" />
-				<arg name="startDate" value="${event.startDate:''}" />
-				<arg name="endDate" value="${event.endDate:''}" />
-				<arg name="status" value="${event.status:''}" />
+				<arg name="theEvent" value="${event.theEvent}" />
 			</call-method>
 			<view-page name="event.list" contentArg="layout.content"/>
 			<execute subroutine="doMainLayout"/>

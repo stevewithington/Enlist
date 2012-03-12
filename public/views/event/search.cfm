@@ -22,48 +22,55 @@
 	    conditions of the GNU General Public License cover the whole
 	    combination.
 	
-	$Id: search.cfm 188 2011-08-20 21:41:31Z peterjfarrell $
-	
 	Notes:
 	--->
 	<cfimport prefix="form" taglib="/MachII/customtags/form" />
 	<cfimport prefix="view" taglib="/MachII/customtags/view" />
 	<cfset copyToScope("statuses=${properties.eventStatuses}") />
-	<view:message key="event.events" var="variables.activityName"/>
-	<view:message key="links.event.search" var="variables.string" arguments="#variables.activityName#"/>
+	<view:message key="links.event.search" var="variables.searchText" />
+	<view:meta type="title" content="#variables.searchText#" />
 
-	<view:meta type="title" content="#variables.string#" />
 	<view:script>
 		$(function() {
-			$( "#startDate" ).datepicker();
-			$( "#endDate" ).datepicker();
+			$( "#startDate" ).datetimepicker({
+				ampm: true
+			});
+			$( "#endDate" ).datetimepicker({
+				ampm: true
+			});
 		});
 	</view:script>	
 </cfsilent>
 <cfoutput>		
 
-<h3>#variables.string#</h3>
+<h3>#variables.searchText#</h3>
 
 <form:form actionEvent="event.doSearch" class="form-horizontal">
 	<fieldset>
 		<div class="control-group">
-			<label class="control-label" for="name"><view:message key="form.events.label.name" /></label>
+			<label class="control-label" for="name"><view:message key="form.event.label.name" /></label>
 			<div class="controls"><form:input path="name" maxlength="200" /></div>
 		</div>
 		<div class="control-group">
-			<label class="control-label" for="location"><view:message key="form.events.label.location" /></label>
+			<label class="control-label" for="location"><view:message key="form.event.label.location" /></label>
 			<div class="controls"><form:input path="location" maxlength="200" /></div>
 		</div>
 		<div class="control-group">
-			<label class="control-label" for="startDate"><view:message key="form.events.label.startdate" /></label>
-			<div class="controls"><form:input path="startDate" maxlength="200" /></div>
+			<label class="control-label" for="startDate"><view:message key="form.event.label.startdate" /></label>
+			<div class="controls">
+				<form:input path="startDate" maxlength="200" class="required" style="cursor: pointer;" />
+				<a href="javascript:void(0);" onclick="javascript:$('##startDate').datepicker( 'show' )"><span class="icon-calendar"></span></a>
+			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label" for="endDate"<view:message key="form.events.label.enddate" />/label>
-			<div class="controls" class="controls"><form:input path="endDate" maxlength="200" /></div>
+			<label class="control-label" for="endDate"><view:message key="form.event.label.enddate" /></label>
+			<div class="controls">
+				<form:input path="endDate" id="endDate" maxlength="200" class="required" style="cursor: pointer;" />
+				<a href="javascript:void(0);" onclick="javascript:$('##endDate').datepicker( 'show' )"><span class="icon-calendar"></span></a>
+			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label" for="status"><view:message key="form.events.label.status" /></label>
+			<label class="control-label" for="status"><view:message key="form.event.label.status" /></label>
 			<div class="controls">
 				<form:select path="status" items="#statuses#">
 					<form:option label="Any" value="" />
@@ -72,8 +79,7 @@
 		</div>
 
 		<div class="form-actions">
-			<view:message key="buttons.save" var="variables.save" arguments="#variables.activityName#" />
-			<form:button type="submit" name="search" value="#variables.save#" class="btn btn-primary" />
+			<form:button type="submit" name="search" value="#variables.searchText#" class="btn btn-primary" />
 		</div>
 	</fieldset>
 </form:form>

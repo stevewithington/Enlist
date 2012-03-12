@@ -84,14 +84,9 @@ Notes:
 		<cfreturn errors />
 	</cffunction>
 
-	<cffunction name="getEventsBySearch" access="public" returntype="array" output="false">
-		<cfargument name="id" type="string" required="false" default="" />
-		<cfargument name="name" type="string" required="false" default="" />
-		<cfargument name="location" type="string" required="false" deafult="" />
-		<cfargument name="startDate" type="string" required="false" default="" />
-		<cfargument name="endDate" type="string" required="false" default="" />
-		<cfargument name="status" type="string" required="false" default="" />
-		<cfreturn getGateway().listByPropertyMap( arguments ) />
+	<cffunction name="getEventsBySearch" access="public" returntype="query" output="false">
+		<cfargument name="theEvent" type="enlist.model.event.Event" required="true" />
+		<cfreturn getEventGateway().search( arguments.theEvent ) />
 	</cffunction>
 
 </cfcomponent>
