@@ -22,29 +22,26 @@
 	    conditions of the GNU General Public License cover the whole
 	    combination.
 
-	$Id: edit.cfm 182 2011-06-16 06:09:00Z peterjfarrell $
-
 	Notes:
 	--->
 	<cfimport prefix="form" taglib="/MachII/customtags/form" />
 	<cfimport prefix="view" taglib="/MachII/customtags/view" />
 	<cfimport prefix="tags" taglib="/enlist/customtags" />
 
-	<cfset copyToScope("${event.chapter}") />
-	
-	<view:message key="event.chapter" var="variables.eventName">
-	<cfif NOT Len(variables.chapter.getId())>
+	<cfset copyToScope("${event.chapter},statuses=${properties.chapterStatuses}") />
+
+	<cfif variables.chapter.getId() neq 0>
 		<view:message key="buttons.chapter.save" var="variables.save" />
-		<view:message key="links.event.new" var="variables.type" />
-		<view:message key="meta.title.charter.add" var="variables.title" />
-		<view:meta type="title" content="#variables.title#" />
+		<view:message key="meta.title.chapter.edit" var="variables.type" />
+		<view:message key="meta.title.chapter.edit" var="variables.title" arguments="#variables.chapter.getName()#" />
+		<view:meta type="title" content="#variables.title#" arguments="#variables.chapter.getName()#" />
 	<cfelse>
-		<view:message key="buttons.save" var="variables.save" arguments="#variables.chapter.getDisplayName()#"/>
-		<view:message key="links.edit" var="variables.type" />
-		<view:message key="meta.title.charter.edit" var="variables.title" arguments="#variables.chapter.getDisplayName()#"/>
+		<view:message key="buttons.chapter.save" var="variables.save" />
+		<view:message key="meta.title.chapter.add" var="variables.type" />
+		<view:message key="meta.title.chapter.add" var="variables.title" />
 		<view:meta type="title" content="#variables.title#"  />
 	</cfif>
-	
+
 	<view:script>
 		$(document).ready(function(){
 			$("#chapterForm").validate();
@@ -59,28 +56,32 @@
 <h3>#variables.title#</h3><br>
 
 <form:form actionEvent="chapter.save" bind="chapter" id="chapterForm">
-	<table>
-		<tr>
-			<th><view:message key="form.chapter.label.name"/></th>
-			<td><form:input path="name" size="40" maxlength="200" class="required" /></td>
-		</tr>
-		<tr>
-			<th><view:message key="form.chapter.label.location"/></th>
-			<td><form:input path="location" size="40" maxlength="200" class="required" /></td>
-		</tr>
-		<tr>
-			<th><view:message key="form.chapter.label.status"/></th>
-			<td>
-				<form:select path="statusCode">
-					<form:option value="Active" />
-					<form:option value="Archive" />
+	<fieldset>
+		<div class="control-group">
+			<label class="control-label" for="name"><view:message key="form.chapter.label.name" /> *</label>
+			<div class="controls">
+				<form:input path="name" size="40" maxlength="200" class="required" />
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="location"><view:message key="form.chapter.label.location" /> *</label>
+			<div class="controls">
+				<form:input path="location" size="40" maxlength="200" class="required" />
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="location"><view:message key="form.chapter.label.status" /> *</label>
+			<div class="controls">
+				<form:select path="status" items="#statuses#" class="required">
+					<form:option value="" label="" />
 				</form:select>
-			</td>
-		</tr>
-		<tr>
-			<td><form:hidden name="id" path="id" /></td>
-			<td colspan="3"><form:button type="submit" name="save" value="#variables.save#" class="btn-primary"  /></td>
-		</tr>
-	</table>
+			</div>
+		</div>
+		<form:hidden name="id" path="id" />
+		<div class="form-actions">
+			<view:message key="" />
+			<form:button type="submit" name="save" value="#variables.save#" class="btn btn-primary"  />
+		</div>
+	</fieldset>
 </form:form>
 </cfoutput>

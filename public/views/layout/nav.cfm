@@ -69,7 +69,7 @@ Notes:
 		<view:message key="links.chapter.list" var="variables.listLinkText" />
 		<view:message key="links.chapter.search" var="variables.searchLinkText" />
 		<ul class="nav nav-pills">
-			<li <cfif event.getArg('event') eq 'chapter.edit'>class="active"</cfif>><view:a event="chapter.edit">#variables.createLinkText#</view:a></li>
+			<li <cfif event.getArg('event') eq 'chapter.edit' and event.getArg('chapter').getId() eq 0>class="active"</cfif>><view:a event="chapter.edit">#variables.createLinkText#</view:a></li>
 			<li <cfif event.getArg('event') eq 'chapter.list'>class="active"</cfif>><view:a event="chapter.list">#variables.listLinkText#</view:a></li>
 		</ul>
 	</cfif>

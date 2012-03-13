@@ -39,28 +39,28 @@ Notes:
 
 <p><strong>Users</strong></p>
 <ul>
-	<li><a href="#BuildUrl('user.edit')#"><view:message key="links.event.new" arguments="User"/></a></li>
-	<li><a href="#BuildUrl('user.list')#"><view:message key="links.event.list" arguments="User"/></a></li>
-	<li><a href="#BuildUrl('user.search')#"><view:message key="links.event.search" arguments="User"/></a></li>
+	<li><a href="#BuildUrl('user.edit')#"><view:message key="links.user.create" /></a></li>
+	<li><a href="#BuildUrl('user.list')#"><view:message key="links.user.list" /></a></li>
+	<li><a href="#BuildUrl('user.search')#"><view:message key="links.user.search" /></a></li>
 </ul>
 
 <p><strong>Events</strong></p>
 <ul>
-	<li><a href="#BuildUrl('event.edit')#"><view:message key="links.event.new" arguments="Events" /></a></li>
-	<li><a href="#BuildUrl('event.list')#"><view:message key="links.event.list" arguments="Events" /></li>
-	<li><a href="#BuildUrl('event.search')#"><view:message key="links.event.search" arguments="Events" /></a></li>
+	<li><a href="#BuildUrl('event.edit')#"><view:message key="links.event.create" /></a></li>
+	<li><a href="#BuildUrl('event.list')#"><view:message key="links.event.list" /></li>
+	<li><a href="#BuildUrl('event.search')#"><view:message key="links.event.search" /></a></li>
 </ul>
 
 <p><strong>Activities</strong></p>
 <ul>
-	<li><a href="#BuildUrl('activity.edit')#"><view:message key="links.event.new" arguments="Activities" /></a></li>
-	<li><a href="#BuildUrl('activity.list')#"><view:message key="links.event.list" arguments="Activities" /></a></li>
-	<li><a href="#BuildUrl('activity.search')#"><view:message key="links.event.search" arguments="Activities" /></a></li>
+	<li><a href="#BuildUrl('activity.edit')#"><view:message key="links.activity.create" /></a></li>
+	<li><a href="#BuildUrl('activity.list')#"><view:message key="links.activity.list" /></a></li>
+	<li><a href="#BuildUrl('activity.search')#"><view:message key="links.activity.search" /></a></li>
 </ul>
 
 <p><strong>Chapters</strong></p>
 <ul>
-	<li><a href="#BuildUrl('chapter.edit')#"><view:message key="links.event.new" arguments="Chapter" /></a></li>
-	<li><a href="#BuildUrl('chapter.list')#"><view:message key="links.event.list" arguments="Chapter" /></a></li>
+	<li><a href="#BuildUrl('chapter.edit')#"><view:message key="links.chapter.create" /></a></li>
+	<li><a href="#BuildUrl('chapter.list')#"><view:message key="links.chapter.list" /></a></li>
 </ul>
 </cfoutput>

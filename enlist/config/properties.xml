@@ -205,6 +205,23 @@ Notes:
 				</element>
 			</array>
 		</property>
+
+		<property name="chapterStatuses">
+			<array>
+				<element>
+					<struct>
+						<key name="label" value="Active" />
+						<key name="value" value="active" />
+					</struct>
+				</element>
+				<element>
+					<struct>
+						<key name="label" value="Inactive" />
+						<key name="value" value="inactive" />
+					</struct>
+				</element>
+			</array>
+		</property>
 		
 		<property name="usStates">
 			<array>

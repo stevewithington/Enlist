@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS `chapter` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL DEFAULT '',
   `location` varchar(100) DEFAULT NULL,
-  `statusCode` varchar(50) DEFAULT NULL,
+  `status` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 

@@ -256,9 +256,7 @@ Notes:
 			<execute subroutine="doMainLayout"/>
 		</event-handler>
 		<event-handler event="chapter.edit" access="public">
-			<call-method bean="chapterService" method="getChapter" resultArg="chapter">
-				<arg name="chapterID" value="${event.id:0}" />
-			</call-method>
+			<notify listener="chapterListener" method="getChapter" resultArg="chapter" />
 			<view-page name="chapter.edit" contentArg="layout.content"/>
 			<execute subroutine="doMainLayout"/>
 		</event-handler>

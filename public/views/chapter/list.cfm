@@ -22,23 +22,20 @@
 	    conditions of the GNU General Public License cover the whole
 	    combination.
 	
-	$Id: list.cfm 182 2011-06-16 06:09:00Z peterjfarrell $
-	
 	Notes:
 	--->
 	<cfimport prefix="view" taglib="/MachII/customtags/view" />
 	<cfimport prefix="tags" taglib="/enlist/customtags" />
 
 	<cfset copyToScope("${event.chapters}") />
-	<view:message key="event.chapter" var="variables.eventName"/>
-	<view:message key="meta.title.chapter" var="variables.title" />
+	<view:message key="links.chapter.list" var="variables.title" />
 	<view:meta type="title" content="#variables.title#" />
 </cfsilent>
 
 
 <cfoutput>
 
-<h3><view:message key="links.event.list" arguments="#variables.eventName#"/></h3><br>
+<h3>#variables.title#</h3><br />
 <cfif chapters.RecordCount gt 0>
 	<tags:datatable tableID="chapters" tableBodyID="chaptersList" rowLink="/index.cfm?event=chapter.edit">
 	<div class="content">	
@@ -54,10 +51,10 @@
 					</thead>
 					<tbody id="chaptersList">
 						<cfloop query="chapters">
-							<tr id="tabledata">
-								<td id="#id#">#name#</td>
-								<td>#location#</td>
-								<td>#StatusCode#</td>
+							<tr id="#chapters.id#">
+								<td>#chapters.name#</td>
+								<td>#chapters.location#</td>
+								<td>#chapters.status#</td>
 							</tr>
 						</cfloop>
 					</tbody>

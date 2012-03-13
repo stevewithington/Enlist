@@ -46,6 +46,18 @@ Notes:
 	<!---
 	PUBLIC FUNCTIONS
 	--->
+	<cffunction name="getChapter" access="public" output="false" returntype="enlist.model.chapter.Chapter">
+		<cfargument name="event" type="MachII.framework.Event" required="true" />
+
+		<cfscript>
+			if (not arguments.event.isArgDefined("chapter")) {
+				return getChapterService().getChapter(arguments.event.getArg("id", 0));
+			} else {
+				return arguments.event.getArg("chapter");
+			}
+		</cfscript>
+	</cffunction>
+
 	<cffunction name="saveChapter" access="public" returntype="void" output="false"
 		hint="Processes the chapter forms (registration, admin new/edit chapter) and saves the chapter">
 		<cfargument name="event" type="MachII.framework.Event" required="true" />

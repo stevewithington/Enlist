@@ -29,15 +29,9 @@
 	<cfset copyToScope("${event.events}") />
 	
 	<cfif event.getName() EQ "event.doSearch">
-		<view:message key="buttons.chapter.save" var="variables.save" />
 		<view:message key="links.event.search" var="variables.title" arguments="Events" />
-		<view:meta type="title" content="#variables.title#" />
-		<!--- <cfset variables.title = "Event Search Results" /> --->
 	<cfelse>
-		<view:message key="buttons.chapter.save" var="variables.save" />
 		<view:message key="links.event.list" var="variables.title" arguments="Events"/>
-		<view:meta type="title" content="#variables.title#" />
-		<!--- <cfset variables.title = "List Events" /> --->
 	</cfif>
 	<view:meta type="title" content="#variables.title#" />
 </cfsilent>
@@ -63,14 +57,14 @@
 					<tbody id="eventsList">
 						<cfoutput query="events">
 							<tr id="#events.id#">
-								<td>#status#</td>
-								<td>#name#</td>
-								<td>#dateFormat(startDate, "mm/dd/yyyy")# #timeFormat(startDate, "hh:mm tt")#</td>
-								<td>#dateFormat(endDate, "mm/dd/yyyy")# #timeFormat(endDate, "hh:mm tt")#</td>
-								<td>#location#</td>
+								<td>#events.status#</td>
+								<td>#events.name#</td>
+								<td>#dateFormat(events.startDate, "mm/dd/yyyy")# #timeFormat(events.startDate, "hh:mm tt")#</td>
+								<td>#dateFormat(events.endDate, "mm/dd/yyyy")# #timeFormat(events.endDate, "hh:mm tt")#</td>
+								<td>#events.location#</td>
 								<td>
 									<view:a event="event.edit" p:id="#id#"><view:message key="links.edit"/></view:a> | 
-									<view:a event="activity.doSearch" p:eventId="#id#">><view:message key="sideBar.Activity"/></view:a>
+									<view:a event="activity.doSearch" p:eventId="#events.id#">><view:message key="sideBar.Activity"/></view:a>
 								</td>
 							</tr>	
 						</cfoutput>

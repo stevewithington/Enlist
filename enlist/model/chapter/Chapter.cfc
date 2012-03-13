@@ -21,8 +21,6 @@
     conditions of the GNU General Public License cover the whole
     combination.
 
-$Id$
-
 Notes:
 --->
 <cfcomponent
@@ -35,7 +33,7 @@ Notes:
 	<cfset variables.id = 0 />
 	<cfset variables.name = "" />
 	<cfset variables.location = "" />
-	<cfset variables.statusCode = "" />
+	<cfset variables.status = "" />
 
 	<!---
 	INITIALIZATION / CONFIGURATION
@@ -44,7 +42,7 @@ Notes:
 		<cfargument name="id" type="numeric" required="false" default="0" />
 		<cfargument name="name" type="string" required="false" default="" />
 		<cfargument name="location" type="string" required="false" default="" />
-		<cfargument name="statusCode" type="string" required="false" default="" />
+		<cfargument name="status" type="string" required="false" default="" />
 
 		<cfset setInstanceMemento(arguments) />
 
@@ -70,8 +68,8 @@ Notes:
 				errors.location = "You must enter a location for the chapter";
 			}
 
-			if (Len(Trim(getStatusCode())) eq 0) {
-				errors.statusCode = "You must enter a status for the chapter";
+			if (Len(Trim(getStatus())) eq 0) {
+				errors.status = "You must enter a status for the chapter";
 			}
 
 			return errors;
@@ -84,14 +82,14 @@ Notes:
 		<cfset setId(arguments.data.id) />
 		<cfset setName(arguments.data.name) />
 		<cfset setLocation(arguments.data.location) />
-		<cfset setStatusCode(arguments.data.statusCode) />
+		<cfset setStatus(arguments.data.status) />
  	</cffunction>
 	<cffunction name="getInstanceMemento" access="public" returntype="struct" output="false">
 		
 		<cfset var data = structnew() />
 		<cfset var fieldname = "" />
 
-		<cfloop list="id,name,location,statusCode" index="fieldname">
+		<cfloop list="id,name,location,status" index="fieldname">
 			<cfset data[fieldname] = variables[fieldname]>
 		</cfloop>
 
@@ -125,12 +123,12 @@ Notes:
 		<cfset variables.location = Trim(arguments.location) />
 	</cffunction>
 
-	<cffunction name="getstatuscode" access="public" returntype="string" output="false">
-		<cfreturn variables.statuscode />
+	<cffunction name="getStatus" access="public" returntype="string" output="false">
+		<cfreturn variables.status />
 	</cffunction>
-	<cffunction name="setstatuscode" access="public" returntype="void" output="false">
-		<cfargument name="statuscode" type="string" required="true" />
-		<cfset variables.statuscode =Trim( arguments.statuscode ) />
+	<cffunction name="setStatus" access="public" returntype="void" output="false">
+		<cfargument name="status" type="string" required="true" />
+		<cfset variables.status = Trim( arguments.status ) />
 	</cffunction>
 
 </cfcomponent>
