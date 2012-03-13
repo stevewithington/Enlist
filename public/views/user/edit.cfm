@@ -162,6 +162,7 @@ Notes:
 				<label class="control-label" for="chapterId"><view:message key="form.user.label.chapter" /></label>
 				<div class="controls">
 					<form:select path="chapterId">
+						<form:option value="" label="" />
 						<cfloop query="chapters">
 							<form:option value="#chapters.id#" label="#chapters.Name#" />
 						</cfloop>
