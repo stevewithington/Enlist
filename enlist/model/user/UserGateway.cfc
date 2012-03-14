@@ -60,12 +60,18 @@ Notes:
 	</cffunction>
 
 	<cffunction name="getUsers" access="public" returntype="query" output="false">
-		<cfset var users = 0>
+		<cfset var users = 0 />
+
 		<cfquery name="users">
-		select 	*
-		from	user
-		order by firstName
+			SELECT 	user.*, 
+					chapter.name AS chapterName, 
+					chapter.location AS chapterLocation 
+			FROM 	user 
+			LEFT JOIN chapter 
+			ON 		user.chapterId = chapter.id 
+			ORDER BY firstName
 		</cfquery>
+
 		<cfreturn users />
 	</cffunction>
 
@@ -157,58 +163,63 @@ Notes:
 	<cffunction name="search" access="public" returntype="query" output="false">
 		<cfargument name="user" type="enlist.model.user.User" required="true" />
 
-		<cfset var qryUsers = "">
+		<cfset var qryUsers = "" />
 
 		<cfquery name="qryUsers">
-		SELECT * FROM user WHERE
-			1=1
+			SELECT 	user.*, 
+					chapter.name AS chapterName, 
+					chapter.location AS chapterLocation 
+			FROM 	user 
+			LEFT JOIN chapter 
+			ON 		user.chapterId = chapter.id 
+			WHERE 	1=1
 			<cfif arguments.user.getStatus() neq ''>
-				AND UPPER(status) = <cfqueryparam cfsqltype="cf_sql_varchar" value="#ucase(arguments.user.getStatus())#">
+				AND UPPER(user.status) = <cfqueryparam cfsqltype="cf_sql_varchar" value="#ucase(arguments.user.getStatus())#">
 			</cfif>
 			<cfif arguments.user.getRole() neq ''>
-				AND UPPER(role) = <cfqueryparam cfsqltype="cf_sql_varchar" value="#ucase(arguments.user.getRole())#">
+				AND UPPER(user.role) = <cfqueryparam cfsqltype="cf_sql_varchar" value="#ucase(arguments.user.getRole())#">
 			</cfif>
-			<cfif arguments.user.getChapterId() neq ''>
-				AND chapterID = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.user.getChapterId()#">
+			<cfif arguments.user.getChapterId() neq 0>
+				AND user.chapterId = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.user.getChapterId()#">
 			</cfif>
 			<cfif arguments.user.getFirstName() neq ''>
-				AND UPPER(firstName) = <cfqueryparam cfsqltype="cf_sql_varchar" value="#ucase(arguments.user.getFirstName())#">
+				AND UPPER(user.firstName) = <cfqueryparam cfsqltype="cf_sql_varchar" value="#ucase(arguments.user.getFirstName())#">
 			</cfif>
 			<cfif arguments.user.getLastName() neq ''>
-				AND UPPER(lastName) = <cfqueryparam cfsqltype="cf_sql_varchar" value="#ucase(arguments.user.getLastName())#">
+				AND UPPER(user.lastName) = <cfqueryparam cfsqltype="cf_sql_varchar" value="#ucase(arguments.user.getLastName())#">
 			</cfif>
 			<cfif arguments.user.getEmail() neq ''>
-				AND UPPER(email) = <cfqueryparam cfsqltype="cf_sql_varchar" value="#ucase(arguments.user.getEmail())#">
+				AND UPPER(user.email) = <cfqueryparam cfsqltype="cf_sql_varchar" value="#ucase(arguments.user.getEmail())#">
 			</cfif>
 			<cfif arguments.user.getTwitterUsername() neq ''>
-				AND UPPER(twitterUsername) = <cfqueryparam cfsqltype="cf_sql_varchar" value="#ucase(arguments.user.getTwitterUsername())#">
+				AND UPPER(user.twitterUsername) = <cfqueryparam cfsqltype="cf_sql_varchar" value="#ucase(arguments.user.getTwitterUsername())#">
 			</cfif>
 			<cfif arguments.user.getIdenticaUsername() neq ''>
-				AND UPPER(identicaUsername) = <cfqueryparam cfsqltype="cf_sql_varchar" value="#ucase(arguments.user.getIdenticaUsername())#">
+				AND UPPER(user.identicaUsername) = <cfqueryparam cfsqltype="cf_sql_varchar" value="#ucase(arguments.user.getIdenticaUsername())#">
 			</cfif>
 			<cfif arguments.user.getPhone() neq ''>
-				AND phone = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.user.getPhone()#">
+				AND user.phone = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.user.getPhone()#">
 			</cfif>
 			<cfif arguments.user.getAddress1() neq ''>
-				AND UPPER(address1) = <cfqueryparam cfsqltype="cf_sql_varchar" value="#ucase(arguments.user.getAddress1())#">
+				AND UPPER(user.address1) = <cfqueryparam cfsqltype="cf_sql_varchar" value="#ucase(arguments.user.getAddress1())#">
 			</cfif>
 			<cfif arguments.user.getAddress2() neq ''>
-				AND UPPER(address2) = <cfqueryparam cfsqltype="cf_sql_varchar" value="#ucase(arguments.user.getAddress2())#">
+				AND UPPER(user.address2) = <cfqueryparam cfsqltype="cf_sql_varchar" value="#ucase(arguments.user.getAddress2())#">
 			</cfif>
 			<cfif arguments.user.getCity() neq ''>
-				AND UPPER(city) = <cfqueryparam cfsqltype="cf_sql_varchar" value="#ucase(arguments.user.getCity())#">
+				AND UPPER(user.city) = <cfqueryparam cfsqltype="cf_sql_varchar" value="#ucase(arguments.user.getCity())#">
 			</cfif>
 			<cfif arguments.user.getState() neq ''>
-				AND UPPER(state) = <cfqueryparam cfsqltype="cf_sql_varchar" value="#ucase(arguments.user.getState())#">
+				AND UPPER(user.state) = <cfqueryparam cfsqltype="cf_sql_varchar" value="#ucase(arguments.user.getState())#">
 			</cfif>
 			<cfif arguments.user.getZip() neq ''>
-				AND zip = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.user.getZip()#">
+				AND user.zip = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.user.getZip()#">
 			</cfif>
-			<cfif arguments.user.getId() neq ''>
-				AND id = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.user.getId()#">
+			<cfif arguments.user.getId() neq 0>
+				AND user.id = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.user.getId()#">
 			</cfif>
 		</cfquery>
-		
+
 		<cfreturn qryUsers />
 	</cffunction>
 

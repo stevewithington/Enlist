@@ -49,6 +49,7 @@ Notes:
 							<th>First Name</th>
 							<th>Last Name</th>
 							<th>Role</th>
+							<th>Chapter</th>
 							<th>Status</th>
 							<th>Actions</th>
 						</tr>
@@ -59,6 +60,9 @@ Notes:
 								<td>#users.FirstName#</td>
 								<td>#users.LastName#</td>
 								<td>#users.Role#</td>
+								<td>
+									<cfif users.chapterName neq ''>#users.chapterName# (#users.chapterLocation#)</cfif>
+								</td>
 								<td>#users.Status#</td>
 								<view:message key="links.edit" var="variables.edit" />
 								<td><view:a event="user.edit" p:id="#users.id#" label="#variables.edit#" /></td>

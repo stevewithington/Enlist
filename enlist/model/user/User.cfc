@@ -55,7 +55,7 @@ Notes:
 		<cfargument name="id" type="numeric" required="false" default="0" />
 		<cfargument name="status" type="string" required="false" default="active" />
 		<cfargument name="role" type="string" required="false" default="" />
-		<cfargument name="chapterId" type="string" required="false" default="" />
+		<cfargument name="chapterId" type="numeric" required="false" default="0" />
 		<cfargument name="firstName" type="string" required="false" default="" />
 		<cfargument name="lastName" type="string" required="false" default="" />
 		<cfargument name="email" type="string" required="false" default="" />
@@ -189,10 +189,10 @@ Notes:
 	</cffunction>
 
 	<cffunction name="setChapterId" access="public" returntype="void" output="false">
-		<cfargument name="chapterId" type="string" required="true" />
-		<cfset variables.chapterId = trim(arguments.chapterId) />
+		<cfargument name="chapterId" type="numeric" required="true" />
+		<cfset variables.chapterId = arguments.chapterId />
 	</cffunction>
-	<cffunction name="getChapterId" access="public" returntype="string" output="false">
+	<cffunction name="getChapterId" access="public" returntype="numeric" output="false">
 		<cfreturn variables.chapterId />
 	</cffunction>
 
