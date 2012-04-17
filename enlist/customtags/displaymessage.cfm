@@ -26,7 +26,7 @@ $Id$
 Notes:
 --->
 <cfif thisTag.ExecutionMode IS "start">
-	<cfparam name="attributes.message" type="string" default="#request.event.getArg("message")#" />
+	<cfparam name="attributes.message" type="string" default="#request.event.getArg('message')#" />
 	<cfif Len(attributes.message)>
 		<cfoutput>
 			<div class="alert alert-success">
