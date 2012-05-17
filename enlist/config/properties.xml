@@ -39,7 +39,7 @@ Notes:
 				<parameter name="development">
 					<struct>
 						<key name="environmentGroup" value="development"/>
-						<key name="servers" value="localhost,enlist.local"/>
+						<key name="servers" value="localhost,enlist.local,127.0.0.1"/>
 						<key name="properties">
 							<struct>
 								<key name="modules:lazyLoad" value="*"/>
