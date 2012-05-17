@@ -38,7 +38,7 @@ Notes:
 		<cfset variables.type = "Edit" />
 		<cfset variables.title = "Edit User | #variables.user.getDisplayName()#" />
 	</cfif>
-	
+
 	<view:meta type="title" content="#variables.title#" />
 
 	<view:script>
@@ -47,44 +47,55 @@ Notes:
 		});
 	</view:script>
 </cfsilent>
-<cfoutput>		
+<cfoutput>
 
 <div>
 	<h3>#variables.title#</h3><br>
 </div>
 
 <form:form actionEvent="user.save" bind="user" id="userForm">
-	<table>
-		<tr>
-			<th><label id="status">Status *</label></th>
-			<td>
+
+	<fieldset>
+		<div class="control-group">
+			<label id="status">Status *</label>
+			<div class="controls">
 				<form:select path="status" items="#statuses#" class="required">
 					<form:option value="" label="" />
 				</form:select>
-			</td>
-		</tr>
-		<tr>
-			<th><label id="role">Role *</label></th>
-			<td>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label id="role">Role *</label>
+			<div class="controls">
 				<form:select path="role" items="#roles#" class="required">
 					<form:option value="" label="" />
 				</form:select>
-			</td>
-		</tr>	
-		<tr>
-			<th><label id="firstName">First Name *</label></th>
-			<td><form:input path="firstName" size="40" maxlength="200" class="required" /></td>
-		</tr>
-		<tr>
-			<th><label id="lastName">Last Name *</label></th>
-			<td><form:input path="lastName" size="40" maxlength="200" class="required" /></td>
-		</tr>
-		<tr>
-			<th><label id="altEmail">Email *</label></th>
-			<td><form:input path="altEmail" size="40" maxlength="200" class="required" /></td>
-		</tr>
-		<tr>
-			<th><label id="twitterUsername">Identi.ca</label></th>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label id="firstName">First Name *</label>
+			<div class="controls">
+				<form:input path="firstName" size="40" maxlength="200" class="required" />
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label id="lastName">Last Name *</label>
+			<div class="controls">
+				<form:input path="lastName" size="40" maxlength="200" class="required" />
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label id="altEmail">Email *</label>
+			<div class="controls">
+				<form:input path="altEmail" size="40" maxlength="200" class="required" />
+			</div>
+		</div>
+
+<label id="twitterUsername">Identi.ca</label></th>
 			<td><form:input path="identicaUsername" size="40" maxlength="50" /></td>
 		</tr>
 		<tr>
