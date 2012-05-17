@@ -21,8 +21,6 @@
     conditions of the GNU General Public License cover the whole
     combination.
 
-$Id$
-
 Notes:
 --->
 <cfcomponent
@@ -51,7 +49,7 @@ Notes:
 
 		<cfscript>
 			if (not arguments.event.isArgDefined("user")) {
-				return getUserService().getUser(arguments.event.getArg("id", ""));
+				return getUserService().getUser(arguments.event.getArg("id", 0));
 			} else {
 				return arguments.event.getArg("user");
 			}
@@ -64,12 +62,14 @@ Notes:
 
 		<cfscript>
 			var user = arguments.event.getArg("user");
-			var existingUser = getUserService().getUserByAltEmail(user.getAltEmail());
+			var existingUser = getUserService().getUserByEmail(user.getEmail());
 			var errors = StructNew();
 
 			// if this isn't an update make sure the user isn't already registered
-			if (user.getID() eq "" and existingUser.getID() neq "") {
+			if (user.getID() eq 0 and existingUser.getID() neq 0) {
 				errors.alreadyRegistered = "A user is already registered with this application using this email address.";
+			} else if ((user.getId() eq 0 || user.getPassword() neq '') && user.getPassword() != arguments.event.getArg('confirmPassword')) {
+				errors.passwordMismatch = "The passwords you entered do not match.";
 			} else {
 				// validate the rest of the user input
 				errors = getUserService().saveUser(user);

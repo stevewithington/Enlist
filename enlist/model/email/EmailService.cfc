@@ -36,7 +36,7 @@ Notes:
 		<cfargument name="user" required="true" type="any" hint="User object" />
 		<cfargument name="activity" required="false" type="any" hint="Activity object" />
 
-		<cfset var list = user.getFirstName() & ';' & user.getLastName() & ';' & user.getAltEmail() />
+		<cfset var list = user.getFirstName() & ';' & user.getLastName() & ';' & user.getEmail() />
 
 		<cfif structKeyexists(arguments,"activity") and isObject(arguments.activity)>
 			<cfset list = list & ';' & activity.getName() & ";" & activity.getEvent().getName() & ";" & activity.getEvent().description()  & ";" & activity.getEvent().getstartDate()>

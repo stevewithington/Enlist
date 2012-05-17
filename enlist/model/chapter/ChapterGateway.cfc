@@ -21,8 +21,6 @@
     conditions of the GNU General Public License cover the whole
     combination.
 
-$Id$
-
 Notes:
 --->
 <cfcomponent output="false">
@@ -38,7 +36,7 @@ Notes:
 			<cfset chapter = createObject("component", "enlist.model.chapter.Chapter").init() />
 		<cfelse>
 			<cfquery name="chapterQry">
-			select 	id, name, location, statusCode
+			select 	id, name, location, status
 			from	chapter
 			where 	id = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.chapterID#" />
 			</cfquery>
@@ -54,7 +52,7 @@ Notes:
 	<cffunction name="getChapters" access="public" returntype="query" output="false">
 		<cfset var chapters = 0>
 		<cfquery name="chapters">
-		select 	id, name, location, statusCode
+		select 	id, name, location, status
 		from	chapter
 		order by name
 		</cfquery>
@@ -71,19 +69,19 @@ Notes:
 	</cffunction>
 	
 	<cffunction name="create" access="private" returntype="void" output="false">
-		<cfargument name="chapter" type="enlist.model.chapter.chapter" required="yes">
+		<cfargument name="chapter" type="enlist.model.chapter.Chapter" required="yes">
 		<cfset var data = chapter.getInstanceMemento()>
 		<cfset var newchapter = 0>
 		<cftransaction>
 		<cfquery name="newchapter">
-		INSERT INTO chapter (name, location, statuscode)
+		INSERT INTO chapter (name, location, status)
 		VALUES (
 			<cfqueryparam cfsqltype="cf_sql_varchar" value="#data.name#"
 				null="#yesnoformat(len(data.name) eq 0)#" maxlength="100">,
 			<cfqueryparam cfsqltype="cf_sql_varchar" value="#data.location#"
 				null="#yesnoformat(len(data.location) eq 0)#" maxlength="100">,
-			<cfqueryparam cfsqltype="cf_sql_varchar" value="#data.statuscode#"
-				null="#yesnoformat(len(data.statuscode) eq 0)#" maxlength="50">
+			<cfqueryparam cfsqltype="cf_sql_varchar" value="#data.status#"
+				null="#yesnoformat(len(data.status) eq 0)#" maxlength="50">
 		)
 		</cfquery>
 		<cfquery name="qMaxID">
@@ -106,9 +104,9 @@ Notes:
 			location = 
 				<cfqueryparam cfsqltype="cf_sql_varchar" value="#data.location#"
 					null="#yesnoformat(len(data.location) eq 0)#" maxlength="100">,
-			statuscode = 
-				<cfqueryparam cfsqltype="cf_sql_varchar" value="#data.statuscode#"
-					null="#yesnoformat(len(data.statuscode) eq 0)#" maxlength="50">
+			status = 
+				<cfqueryparam cfsqltype="cf_sql_varchar" value="#data.status#"
+					null="#yesnoformat(len(data.status) eq 0)#" maxlength="50">
 		WHERE id = <cfqueryparam cfsqltype="cf_sql_integer" value="#data.id#">
 		</cfquery>
 	</cffunction>

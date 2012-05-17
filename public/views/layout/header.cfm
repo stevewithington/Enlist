@@ -22,8 +22,6 @@
     conditions of the GNU General Public License cover the whole
     combination.
 
-$Id: header.cfm 181 2011-06-16 04:56:27Z peterjfarrell $
-
 Notes:
 --->
 	<cfimport prefix="view" taglib="/MachII/customtags/view" />
@@ -93,9 +91,9 @@ Notes:
 				          <b class="caret"></b>
 				    </a>
 				    <ul class="dropdown-menu">
-				     <li><view:a event="user.edit" ><view:message key="links.event.new" arguments="User" /></view:a></li>
-				     <li><view:a event="user.list" ><view:message key="links.event.list" arguments="User" /></view:a></li>
-				     <li><view:a event="user.search" ><view:message key="links.event.search" arguments="User" /></view:a></li>
+				     <li><view:a event="user.edit" ><view:message key="links.user.create" arguments="User" /></view:a></li>
+				     <li><view:a event="user.list" ><view:message key="links.user.list" arguments="Users" /></view:a></li>
+				     <li><view:a event="user.search" ><view:message key="links.user.search" arguments="Users" /></view:a></li>
 				    </ul>
 				</li>
 			   <li <cfif arguments.event.getArg('event') eq 'event.edit' OR  arguments.event.getArg('event') eq 'event.list' OR arguments.event.getArg('event') eq 'event.search' >class="dropdown active"<cfelse >class="dropdown"</cfif>  id="menu2">
@@ -106,7 +104,7 @@ Notes:
 				          <b class="caret"></b>
 				    </a>
 				    <ul class="dropdown-menu">
-				     <li><view:a event="event.edit" ><view:message key="links.event.new" arguments="Events" /></view:a></li>
+				     <li><view:a event="event.edit" ><view:message key="links.event.create" arguments="Event" /></view:a></li>
 				     <li><view:a event="event.list" ><view:message key="links.event.list" arguments="Events" /></view:a></li>
 				     <li><view:a event="event.search" ><view:message key="links.event.search" arguments="Events" /></view:a></li>
 				    </ul>
@@ -115,13 +113,13 @@ Notes:
 				    <a href="#menu3"
 				          class="dropdown-toggle"
 				          data-toggle="dropdown">
-				          Actvities
+				          Activities
 				          <b class="caret"></b>
 				    </a>
 				    <ul class="dropdown-menu">
-				     <li><view:a event="activity.edit" ><view:message key="links.event.new" arguments="Actvities" /></view:a></li>
-				     <li><view:a event="activity.list" ><view:message key="links.event.list" arguments="Actvities" /></view:a></li>
-				     <li><view:a event="activity.search" ><view:message key="links.event.search" arguments="Actvities" /></view:a></li>
+				     <li><view:a event="activity.edit" ><view:message key="links.activity.create" /></view:a></li>
+				     <li><view:a event="activity.list" ><view:message key="links.activity.list" /></view:a></li>
+				     <li><view:a event="activity.search" ><view:message key="links.activity.search" /></view:a></li>
 				    </ul>
 				</li>
 
@@ -133,8 +131,8 @@ Notes:
 				          <b class="caret"></b>
 				    </a>
 				    <ul class="dropdown-menu">
-				     <li><view:a event="chapter.edit" ><view:message key="links.event.new" arguments="Chapters" /></view:a></li>
-				     <li><view:a event="chapter.list" ><view:message key="links.event.list" arguments="Chapters" /></view:a></li>
+				     <li><view:a event="chapter.edit" ><view:message key="links.chapter.create" /></view:a></li>
+				     <li><view:a event="chapter.list" ><view:message key="links.chapter.list" /></view:a></li>
 				    </ul>
 				</li>
 				<li><view:a event="activityvolunteer.list"><view:message key="nav.activities"/></view:a></li>
@@ -148,5 +146,3 @@ Notes:
 	  </div>
 	</div>
 </div>
-
-

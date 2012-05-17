@@ -22,8 +22,6 @@
 	    conditions of the GNU General Public License cover the whole
 	    combination.
 
-	$Id: edit.cfm 182 2011-06-16 06:09:00Z peterjfarrell $
-
 	Notes:
 	--->
 	<cfimport prefix="form" taglib="/MachII/customtags/form" />
@@ -32,17 +30,18 @@
 
 	<cfset copyToScope("theEvent=${event.theEvent},statuses=${properties.eventStatuses}") />
 
-	<cfif NOT Len(variables.theEvent.getId())>
-		<cfset variables.type = "New" />
-		<view:message key="buttons.chapter.save" var="variables.save" />
-		<view:message key="meta.title.events.add" var="variables.type" />
-		<view:meta type="title" content="#vairables.title#" />
+	<cfif variables.theEvent.getId() neq 0>
+		<view:message key="buttons.event.save" var="variables.save" />
+		<view:message key="meta.title.event.edit" var="variables.type" />
+		<view:message key="meta.title.event.edit" var="variables.title" arguments="#variables.theEvent.getName()#" />
+		<view:meta type="title" content="#variables.title#" arguments="#variables.theEvent.getName()#" />
 	<cfelse>
-		<cfset variables.type = "Edit" />
-		<view:message key="buttons.save" var="variables.save" arguments="#variables.theEvent.getName()#"/>
-		<view:message key="meta.title.events.edit" var="variables.title" arguments="#variables.theEvent.getName()#" />
+		<view:message key="buttons.event.save" var="variables.save" />
+		<view:message key="meta.title.event.add" var="variables.type" />
+		<view:message key="meta.title.event.add" var="variables.title" />
 		<view:meta type="title" content="#variables.title#" />
 	</cfif>
+
 	<view:script>
 		$(function() {
 			$( "#startDate" ).datetimepicker({
@@ -54,14 +53,15 @@
 		});
 
 		$(document).ready(function(){
-			jQuery.validator.addMethod("greaterThan", function(value, element, params) {
+			// disabling start/end date comparison for now -- see bug 55
+			/*jQuery.validator.addMethod("greaterThan", function(value, element, params) {
 				if (!/Invalid|NaN/.test(new Date(value))) {
 					return new Date(value) >= new Date($(params).val());
 				}
 				return isNaN(value) && isNaN($(params).val()) || (parseFloat(value) > parseFloat($(params).val()));
-			},'Must be greater than {0}.');
+			},'Must be greater than {0}.');*/
 			$("#eventForm").validate();
-			$("#endDate").rules("add", {greaterThan: "Start Date"});
+			// $("#endDate").rules("add", {greaterThan: "Start Date"});
 		});
 	</view:script>
 </cfsilent>
@@ -69,27 +69,27 @@
 <tags:displaymessage />
 <tags:displayerror />
 
-<h3>#variables.type# Event</h3><br>
+<h3>#variables.title#</h3><br />
 
-<form:form actionEvent="event.save" bind="theEvent" id="eventForm" class="form-horizontal" >
+<form:form actionEvent="event.save" bind="theEvent" id="eventForm" class="form-horizontal">
 
 	<fieldset>
 		<div class="control-group">
-			<label class="control-label" for="name">Name</label>
+			<label class="control-label" for="name"><view:message key="form.event.label.name" /></label>
 			<div class="controls">
 				<form:input path="name" maxlength="200" class="required" />
 			</div>
 		</div>
 
 		<div class="control-group">
-			<label class="control-label" for="location">Location</label>
+			<label class="control-label" for="location"><view:message key="form.event.label.location" /></label>
 			<div class="controls">
 				<form:input path="location" maxlength="200" class="required" />
 			</div>
 		</div>
 
 		<div class="control-group">
-			<label class="control-label" for="startDate">Start Date</label>
+			<label class="control-label" for="startDate"><view:message key="form.event.label.startdate" /></label>
 			<div class="controls">
 				<form:input path="startDate" maxlength="200" class="required" style="cursor: pointer;" />
 				<a href="javascript:void(0);" onclick="javascript:$('##startDate').datepicker( 'show' )"><span class="icon-calendar"></span></a>
@@ -97,7 +97,7 @@
 		</div>
 
 		<div class="control-group">
-			<label class="control-label" for="endDate">End Date</label>
+			<label class="control-label" for="endDate"><view:message key="form.event.label.enddate" /></label>
 			<div class="controls">
 				<form:input path="endDate" id="endDate" maxlength="200" class="required" style="cursor: pointer;" />
 				<a href="javascript:void(0);" onclick="javascript:$('##endDate').datepicker( 'show' )"><span class="icon-calendar"></span></a>
@@ -105,7 +105,7 @@
 		</div>
 
 		<div class="control-group">
-			<label class="control-label" for="status">Status</label>
+			<label class="control-label" for="status"><view:message key="form.event.label.status" /></label>
 			<div class="controls">
 				<form:select path="status" items="#statuses#" class="required">
 					<form:option value="" label="Choose a status" />
@@ -113,9 +113,10 @@
 			</div>
 		</div>
 
-		<form:hidden name="id" path="id" /></td>
+		<form:hidden name="id" path="id" />
 		<div class="form-actions">
-			<form:button type="submit" name="save" value="Save Event" class="btn btn-primary"  />
+			<view:message key="" />
+			<form:button type="submit" name="save" value="#variables.save#" class="btn btn-primary"  />
 		</div>
 	</fieldset>
 

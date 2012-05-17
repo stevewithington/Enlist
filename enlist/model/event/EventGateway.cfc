@@ -21,8 +21,6 @@
     conditions of the GNU General Public License cover the whole
     combination.
 
-$Id$
-
 Notes:
 --->
 <!--- TODO: I don't think this is being used anymore now that EventService leverages 
@@ -62,7 +60,7 @@ Notes:
 		SELECT id, name, startdate, enddate, location, status
 		FROM event
 		WHERE (1=1)
-			<cfif arguments.Event_id neq "0">
+			<cfif arguments.Event_id neq 0>
 				AND id = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.Event_id#"
 								null="#yesnoformat(len(arguments.Event_id) eq 0)#"></cfif>
 			<cfif arguments.name neq "">
@@ -82,6 +80,38 @@ Notes:
 								null="#yesnoformat(len(arguments.status) eq 0)#" maxlength="50"></cfif>
 		</cfquery>
 		<cfreturn qEvents>
+	</cffunction>
+
+	<cffunction name="search" access="public" output="false" returntype="query">
+		<cfargument name="theEvent" type="enlist.model.event.Event" required="true" />
+
+		<cfset var events = "">
+
+		<cfquery name="events">
+		SELECT * FROM event WHERE
+			1=1
+			<cfif arguments.theEvent.getName() neq ''>
+				AND UPPER(name) LIKE <cfqueryparam cfsqltype="cf_sql_varchar" value="%#ucase(arguments.theEvent.getName())#%" maxlength="100" />
+			</cfif>
+			<cfif arguments.theEvent.getStartDate() neq ''>
+				AND YEAR(startdate) = <cfqueryparam cfsqltype="cf_sql_integer" value="#Year(arguments.theEvent.getStartDate())#" /> 
+				AND MONTH(startdate) = <cfqueryparam cfsqltype="cf_sql_integer" value="#Month(arguments.theEvent.getStartDate())#" /> 
+				AND DAY(startdate) = <cfqueryparam cfsqltype="cf_sql_integer" value="#Day(arguments.theEvent.getStartDate())#" />
+			</cfif>
+			<cfif arguments.theEvent.getEndDate() neq ''>
+				AND YEAR(enddate) = <cfqueryparam cfsqltype="cf_sql_integer" value="#Year(arguments.theEvent.getEndDate())#" /> 
+				AND MONTH(enddate) = <cfqueryparam cfsqltype="cf_sql_integer" value="#Month(arguments.theEvent.getEndDate())#" /> 
+				AND DAY(enddate) = <cfqueryparam cfsqltype="cf_sql_integer" value="#Day(arguments.theEvent.getEndDate())#" /> 
+			</cfif>
+			<cfif arguments.theEvent.getLocation() neq ''>
+				AND UPPER(location) LIKE <cfqueryparam cfsqltype="cf_sql_varchar" value="%#ucase(arguments.theEvent.getLocation())#%" maxlength="100" />
+			</cfif>
+			<cfif arguments.theEvent.getStatus() neq ''>
+				AND UPPER(status) = <cfqueryparam cfsqltype="cf_sql_varchar" value="#ucase(arguments.theEvent.getStatus())#" maxlength="50" />
+			</cfif>
+		</cfquery>
+		
+		<cfreturn events />
 	</cffunction>
 
 	<cffunction name="saveEvent" access="public" returntype="void" output="false">
@@ -161,10 +191,19 @@ Notes:
 				<cfset 'data.#field#' = evaluate('readEvent.#field#')>
 			</cfloop>
 			<cfset Event = createObject("component", "enlist.model.event.Event").init(argumentcollection=data)>
+			
+			<!--- format dates so they work with date picker in the edit form --->
+			<cfif readEvent.startdate neq ''>
+				<cfset Event.setStartDate(DateFormat(Event.getStartDate(), "mm/dd/yyyy") & ' ' & TimeFormat(Event.getStartDate(), "hh:mm tt")) />
+			</cfif>
+
+			<cfif readEvent.enddate neq ''>
+				<cfset Event.setEndDate(DateFormat(Event.getEndDate(), "mm/dd/yyyy") & ' ' & TimeFormat(Event.getEndDate(), "hh:mm tt")) />
+			</cfif>
 		<cfelse>
 			<cfset Event = createObject("component", "enlist.model.event.Event").init()>
 		</cfif>
-		<cfreturn Event>
+		<cfreturn Event />
 	</cffunction>
 		
 	<!---

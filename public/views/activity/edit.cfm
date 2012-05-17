@@ -28,7 +28,7 @@ Notes:
 --->
 	<cfimport prefix="view" taglib="/MachII/customtags/view" />
 	<cfimport prefix="form" taglib="/MachII/customtags/form" />
-	<cfimport prefix="tags" taglib="/enlist/customtags" />
+	<cfimport prefix="tags" taglib="/Enlist/customtags" />
 	<view:message key="event.activity" var="request.event"/>
 
 	<cfset copyToScope("${event.activity},${event.events}") />

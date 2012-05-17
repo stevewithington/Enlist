@@ -22,50 +22,49 @@
 	    conditions of the GNU General Public License cover the whole
 	    combination.
 	
-	$Id: list.cfm 182 2011-06-16 06:09:00Z peterjfarrell $
-	
 	Notes:
 	--->
-	<cfimport prefix="form" taglib="/MachII/customtags/form" />
 	<cfimport prefix="view" taglib="/MachII/customtags/view" />
 	<cfimport prefix="tags" taglib="/enlist/customtags" />
 
 	<cfset copyToScope("${event.chapters}") />
-	<view:message key="event.chapter" var="variables.eventName"/>
-	<view:message key="meta.title.chapter" var="variables.title" />
+	<view:message key="links.chapter.list" var="variables.title" />
 	<view:meta type="title" content="#variables.title#" />
 </cfsilent>
 
 
 <cfoutput>
 
-<h3><view:message key="links.event.list" arguments="#variables.eventName#"/></h3><br>
-
-<tags:datatable>
-<div class="content">	
-	<div class="row">
-		<div class="span12">
-			<table id="chapters" class="table table-striped table-bordered">
-				<thead>
-					<tr>
-						<th><view:message key="form.chapter.label.chapter"/></th>
-						<th><view:message key="form.chapter.label.location"></th>
-						<th><view:message key="form.chapter.label.status"></th>
-					</tr>
-				</thead>
-				<tbody id="chaptersList">
-					<cfloop query="chapters">
-						<tr id="tabledata">
-							<td id="#id#">#name#</td>
-							<td>#location#</td>
-							<td>#StatusCode#</td>
+<h3>#variables.title#</h3><br />
+<cfif chapters.RecordCount gt 0>
+	<tags:datatable tableID="chapters" tableBodyID="chaptersList" rowLink="/index.cfm?event=chapter.edit">
+	<div class="content">	
+		<div class="row">
+			<div class="span12">
+				<table id="chapters" class="table table-striped table-bordered">
+					<thead>
+						<tr>
+							<th><view:message key="form.chapter.label.chapter"/></th>
+							<th><view:message key="form.chapter.label.location"></th>
+							<th><view:message key="form.chapter.label.status"></th>
 						</tr>
-					</cfloop>
-				</tbody>
-			</table>
+					</thead>
+					<tbody id="chaptersList">
+						<cfloop query="chapters">
+							<tr id="#chapters.id#">
+								<td>#chapters.name#</td>
+								<td>#chapters.location#</td>
+								<td>#chapters.status#</td>
+							</tr>
+						</cfloop>
+					</tbody>
+				</table>
+			</div>
 		</div>
+		<div class="clear"><br><br></div>
 	</div>
-	<div class="clear"><br><br></div>
-</div>
-</tags:datatable>
+	</tags:datatable>
+<cfelse>
+	<div><view:message key="message.noRecords" /></div>
+</cfif>
 </cfoutput>

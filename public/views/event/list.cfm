@@ -22,8 +22,6 @@
 	    conditions of the GNU General Public License cover the whole
 	    combination.
 	
-	$Id: list.cfm 186 2011-08-20 21:22:32Z peterjfarrell $
-	
 	Notes:
 	--->
 	<cfimport prefix="view" taglib="/MachII/customtags/view" />
@@ -31,59 +29,53 @@
 	<cfset copyToScope("${event.events}") />
 	
 	<cfif event.getName() EQ "event.doSearch">
-		<view:message key="buttons.chapter.save" var="variables.save" />
 		<view:message key="links.event.search" var="variables.title" arguments="Events" />
-		<view:meta type="title" content="#variables.title#" />
-		<!--- <cfset variables.title = "Event Search Results" /> --->
 	<cfelse>
-		<view:message key="buttons.chapter.save" var="variables.save" />
 		<view:message key="links.event.list" var="variables.title" arguments="Events"/>
-		<view:meta type="title" content="#variables.title#" />
-		<!--- <cfset variables.title = "List Events" /> --->
 	</cfif>
 	<view:meta type="title" content="#variables.title#" />
 </cfsilent>
 
-<cfoutput><h3>#variables.title#</h3></cfoutput><br>
-
+<cfoutput>
+<h3>#variables.title#</h3><br />
 <cfif events.RecordCount GT 0>	
-<tags:datatable>
-<div class="content">	
-	<div class="row">
-		<div class="span12">
-			<table id="chapters" class="table table-striped table-bordered">
-				<thead>
-					<tr>
-						<th><view:message key="form.events.label.status" /></th>
-						<th><view:message key="form.events.label.event" /></th>
-						<th><view:message key="form.events.label.startdate" /></th>
-						<th><view:message key="form.events.label.enddate" /></th>
-						<th><view:message key="form.events.label.location" /></th>
-						<th><view:message key="form.label.actions" /></th>
-					</tr>
-				</thead>
-				<tbody id="chaptersList">
-					<cfoutput query="events">
+	<tags:datatable tableID="events" tableBodyID="eventsList" rowLink="/index.cfm?event=event.view">
+	<div class="content">	
+		<div class="row">
+			<div class="span12">
+				<table id="events" class="table table-striped table-bordered">
+					<thead>
 						<tr>
-							<td>#status#</td>
-							<td>#name#</td>
-							<td>#dateFormat(startDate, "m/d/yyyy")#</td>
-							<td>#dateFormat(endDate, "m/d/yyyy")#</td>
-							<td>#location#</td>
-							<td>
-								<view:a event="event.edit" p:id="#id#"><view:message key="links.edit"/></view:a> | 
-								<view:a event="activity.doSearch" p:eventId="#id#">><view:message key="sideBar.Activity"/></view:a>
-							</td>
-						</tr>	
-					</cfoutput>
-				</tbody>
-			</table>
+							<th><view:message key="form.event.label.status" /></th>
+							<th><view:message key="form.event.label.event" /></th>
+							<th><view:message key="form.event.label.startdate" /></th>
+							<th><view:message key="form.event.label.enddate" /></th>
+							<th><view:message key="form.event.label.location" /></th>
+							<th><view:message key="form.label.actions" /></th>
+						</tr>
+					</thead>
+					<tbody id="eventsList">
+						<cfoutput query="events">
+							<tr id="#events.id#">
+								<td>#events.status#</td>
+								<td>#events.name#</td>
+								<td>#dateFormat(events.startDate, "mm/dd/yyyy")# #timeFormat(events.startDate, "hh:mm tt")#</td>
+								<td>#dateFormat(events.endDate, "mm/dd/yyyy")# #timeFormat(events.endDate, "hh:mm tt")#</td>
+								<td>#events.location#</td>
+								<td>
+									<view:a event="event.edit" p:id="#id#"><view:message key="links.edit"/></view:a> | 
+									<view:a event="activity.doSearch" p:eventId="#events.id#">><view:message key="sideBar.Activity"/></view:a>
+								</td>
+							</tr>	
+						</cfoutput>
+					</tbody>
+				</table>
+			</div>
 		</div>
+		<div class="clear"><br><br></div>
 	</div>
-	<div class="clear"><br><br></div>
-</div>
-</tags:datatable>
+	</tags:datatable>
 <cfelse>
-<div><veiw:message key="message.noRecords"></div>
+	<div><view:message key="message.noRecords" /></div>
 </cfif>
-
+</cfoutput>

@@ -21,8 +21,6 @@
     conditions of the GNU General Public License cover the whole
     combination.
 
-$Id$
-
 Notes:
 --->
 <cfcomponent
@@ -33,13 +31,13 @@ Notes:
 	<!---
 	PROPERTIES
 	--->
-	<cfset variables.id = "" />
+	<cfset variables.id = 0 />
 	<cfset variables.status = "" />
 	<cfset variables.role = "" /><!--- valid values in config/properties.xml --->
 	<cfset variables.chapterId = "" />
 	<cfset variables.firstName = "" />
 	<cfset variables.lastName = "" />
-	<cfset variables.altEmail = "" />
+	<cfset variables.email = "" />
 	<cfset variables.twitterUsername = "" />
 	<cfset variables.identicaUsername = "" />
 	<cfset variables.phone = "" />
@@ -54,13 +52,15 @@ Notes:
 	INITIALIZATION / CONFIGURATION
 	--->
 	<cffunction name="init" access="public" returntype="User" output="false">
-		<cfargument name="id" type="string" required="false" default="" />
-		<cfargument name="status" type="string" required="false" default="valid" />
+		<cfargument name="id" type="numeric" required="false" default="0" />
+		<cfargument name="status" type="string" required="false" default="active" />
 		<cfargument name="role" type="string" required="false" default="" />
-		<cfargument name="chapterId" type="string" required="false" default="" />
+		<cfargument name="chapterId" type="numeric" required="false" default="0" />
 		<cfargument name="firstName" type="string" required="false" default="" />
 		<cfargument name="lastName" type="string" required="false" default="" />
-		<cfargument name="altEmail" type="string" required="false" default="" />
+		<cfargument name="email" type="string" required="false" default="" />
+		<cfargument name="password" type="string" required="false" default="" />
+		<cfargument name="passwordSalt" type="string" required="false" default="" />
 		<cfargument name="twitterUsername" type="string" required="false" default="" />
 		<cfargument name="identicaUsername" type="string" required="false" default="" />
 		<cfargument name="phone" type="string" required="false" default="" />
@@ -92,7 +92,9 @@ Notes:
 		<cfset setChapterId(arguments.data.chapterId) />
 		<cfset setFirstName(arguments.data.firstName) />
 		<cfset setLastName(arguments.data.lastName) />
-		<cfset setAltEmail(arguments.data.altEmail) />
+		<cfset setEmail(arguments.data.email) />
+		<cfset setPassword(arguments.data.password) />
+		<cfset setPasswordSalt(arguments.data.passwordSalt) />
 		<cfset setTwitterUsername(arguments.data.twitterUsername) />
 		<cfset setIdenticaUsername(arguments.data.identicaUsername) />
 		<cfset setPhone(arguments.data.phone) />
@@ -109,7 +111,7 @@ Notes:
 		<cfset var data = structnew() />
 		<cfset var fieldname = "" />
 
-		<cfloop list="id,status,role,chapterId,firstName,lastName,altEmail,twitterUsername,identicaUsername,phone,address1,address2,city,state,zip,importHashCode" index="fieldname">
+		<cfloop list="id,status,role,chapterId,firstName,lastName,email,password,passwordSalt,twitterUsername,identicaUsername,phone,address1,address2,city,state,zip,importHashCode" index="fieldname">
 			<cfset data[fieldname] = variables[fieldname] />
 		</cfloop>
 
@@ -128,13 +130,17 @@ Notes:
 				errors.lastName = "Last name is required";
 			}
 
-			if (Len(Trim(getAltEmail())) EQ 0) {
-				errors.lastName = "Email address is required";
+			if (Len(Trim(getEmail())) EQ 0) {
+				errors.email = "Email address is required";
+			}
+
+			if (getId() eq '' and Len(Trim(getPassword())) EQ 0) {
+				errors.password = "Password is required";
 			}
 						
-			if (Len(Trim(getAltEmail())) GT 0 
-				and not IsValid("email", getAltEmail())) {
-				errors.altEmail = "The email address you provided is not valid";
+			if (Len(Trim(getEmail())) GT 0 
+				and not IsValid("email", getEmail())) {
+				errors.email = "The email address you provided is not valid";
 			}
 			
 			return errors;
@@ -159,10 +165,10 @@ Notes:
 	ACCESSORS
 	--->
 	<cffunction name="setId" access="public" returntype="void" output="false">
-		<cfargument name="id" type="string" required="true" />
-		<cfset variables.id = trim(arguments.id) />
+		<cfargument name="id" type="numeric" required="true" />
+		<cfset variables.id = arguments.id />
 	</cffunction>
-	<cffunction name="getId" access="public" returntype="string" output="false">
+	<cffunction name="getId" access="public" returntype="numeric" output="false">
 		<cfreturn variables.id />
 	</cffunction>
 
@@ -183,10 +189,10 @@ Notes:
 	</cffunction>
 
 	<cffunction name="setChapterId" access="public" returntype="void" output="false">
-		<cfargument name="chapterId" type="string" required="true" />
-		<cfset variables.chapterId = trim(arguments.chapterId) />
+		<cfargument name="chapterId" type="numeric" required="true" />
+		<cfset variables.chapterId = arguments.chapterId />
 	</cffunction>
-	<cffunction name="getChapterId" access="public" returntype="string" output="false">
+	<cffunction name="getChapterId" access="public" returntype="numeric" output="false">
 		<cfreturn variables.chapterId />
 	</cffunction>
 
@@ -206,12 +212,28 @@ Notes:
 		<cfreturn variables.lastName />
 	</cffunction>
 
-	<cffunction name="setAltEmail" access="public" returntype="void" output="false">
-		<cfargument name="altEmail" type="string" required="true" />
-		<cfset variables.altEmail = trim(arguments.altEmail) />
+	<cffunction name="setEmail" access="public" returntype="void" output="false">
+		<cfargument name="email" type="string" required="true" />
+		<cfset variables.email = trim(arguments.email) />
 	</cffunction>
-	<cffunction name="getAltEmail" access="public" returntype="string" output="false">
-		<cfreturn variables.altEmail />
+	<cffunction name="getEmail" access="public" returntype="string" output="false">
+		<cfreturn variables.email />
+	</cffunction>
+
+	<cffunction name="setPassword" access="public" returntype="void" output="false">
+		<cfargument name="password" type="string" required="true" />
+		<cfset variables.password = trim(arguments.password) />
+	</cffunction>
+	<cffunction name="getPassword" access="public" returntype="string" output="false">
+		<cfreturn variables.password />
+	</cffunction>
+
+	<cffunction name="setPasswordSalt" access="public" returntype="void" output="false">
+		<cfargument name="passwordSalt" type="string" required="true" />
+		<cfset variables.passwordSalt = trim(arguments.passwordSalt) />
+	</cffunction>
+	<cffunction name="getPasswordSalt" access="public" returntype="string" output="false">
+		<cfreturn variables.passwordSalt />
 	</cffunction>
 
 	<cffunction name="setTwitterUsername" access="public" returntype="void" output="false">

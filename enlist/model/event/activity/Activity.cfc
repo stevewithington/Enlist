@@ -216,6 +216,14 @@ Notes:
 		<cfargument name="eventId" type="string" required="true" />
 		<cfset variables.instance.eventId = arguments.eventId />
 	</cffunction>
+
+	<cffunction name="setInstanceData" access="public" output="false" returntype="void">
+		<cfargument name="instance" type="struct" required="true" />
+		<cfset variables.instance = arguments.instance />
+	</cffunction>
+	<cffunction name="getInstanceData" access="public" output="false" returntype="struct">
+		<cfreturn variables.instance />
+	</cffunction>
 	
 	<cffunction name="save" returntype="void" access="public" output="false">
 		

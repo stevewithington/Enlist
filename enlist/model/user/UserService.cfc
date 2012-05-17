@@ -21,8 +21,6 @@
     conditions of the GNU General Public License cover the whole
     combination.
 
-$Id$
-
 Notes:
 --->
 <cfcomponent
@@ -48,8 +46,8 @@ Notes:
 	PUBLIC FUNCTIONS
 	--->
 	<cffunction name="getUser" access="public" returntype="any" output="false">
-		<cfargument name="id" type="string" required="true" />
-		<cfreturn getGateway().getUser( Val(arguments.id) ) />
+		<cfargument name="id" type="numeric" required="true" />
+		<cfreturn getGateway().getUser( arguments.id ) />
 	</cffunction>
 
 	<cffunction name="getUsers" access="public" returntype="query" output="false">
@@ -57,28 +55,14 @@ Notes:
 	</cffunction>
 
 	<cffunction name="getUsersBySearch" access="public" returntype="query" output="false">
-		<cfargument name="id" type="string" required="false" default="" />
-		<cfargument name="status" type="string" required="false" default="" />
-		<cfargument name="role" type="string" required="false" default="" />
-		<cfargument name="chapterId" type="string" required="false" default="" />
-		<cfargument name="firstName" type="string" required="false" default="" />
-		<cfargument name="lastName" type="string" required="false" default="" />
-		<cfargument name="altEmail" type="string" required="false" default="" />
-		<cfargument name="twitterUsername" type="string" required="false" default="" />
-		<cfargument name="identicaUsername" type="string" required="false" default="" />
-		<cfargument name="phone" type="string" required="false" default="" />
-		<cfargument name="address1" type="string" required="false" default="" />
-		<cfargument name="address2" type="string" required="false" default="" />
-		<cfargument name="city" type="string" required="false" default="" />
-		<cfargument name="state" type="string" required="false" default="" />
-		<cfargument name="zip" type="string" required="false" default="" />
-			<cfreturn getGateway().search( argumentCollection = arguments ) />
+		<cfargument name="user" type="enlist.model.user.User" required="true" />
+		<cfreturn getGateway().search( arguments.user ) />
 	</cffunction>
 
-	<cffunction name="getUserByAltEmail" access="public" returntype="any" output="false"
+	<cffunction name="getUserByEmail" access="public" returntype="any" output="false"
 		hint="Gets an User from the datastore by Email.">
-		<cfargument name="altEmail" type="string" required="true" />
-		<cfreturn getGateway().getUser( altEmail = arguments.altEmail ) />
+		<cfargument name="email" type="string" required="true" />
+		<cfreturn getGateway().getUser( email = arguments.email ) />
 	</cffunction>
 
 	<cffunction name="getUserByTwitterUsername" access="public" returntype="any" output="false"

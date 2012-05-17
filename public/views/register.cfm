@@ -59,9 +59,9 @@ Notes:
 			<div class="controls"><form:input path="lastName" maxlength="200" class="required" /></div>
 		</div>
 		<div class="control-group">
-			<label class="control-label" for="altEmail"><view:message key="common.email" /> *</label>
+			<label class="control-label" for="email"><view:message key="common.email" /> *</label>
 			<div class="controls">
-				<form:input path="altEmail" maxlength="200" />
+				<form:input path="email" maxlength="200" />
 			</div>
 		</div>
 		<div class="control-group">

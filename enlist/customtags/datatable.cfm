@@ -21,42 +21,45 @@
     conditions of the GNU General Public License cover the whole
     combination.
 
-$Id$
-
 Notes:
+	* caller passes in tableID and optional tableBodyID and rowLink if rows should be hyperlinked
 --->
 <cfif thisTag.ExecutionMode IS "start">
-	<script type="text/javascript" charset="utf-8">
-		$(document).ready(function() {
-	
-			$('#chapters').dataTable({"sPaginationType": "bootstrap",
-			 "sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
-			 "sWrapper": "dataTables_wrapper form-inline"
-			});
-			
-			$.extend( $.fn.dataTableExt.oStdClasses, {
-	         "sWrapper": "dataTables_wrapper form-inline"} );
-	
-			//link datatable rows to chapter.edit
-			$('#chaptersList tr').live('click', function() {
-				var thisId = $(this).find('td[id]').attr("id");
-				window.location = '/index.cfm/?event=chapter.edit&id=' + thisId;
-			});
-			
-		} );
-	</script>
-	
-	 <style>
-		#chapters_length label {float:none;}
-		#chapters_filter {margin-bottom:10px;}
-		#chapters_length select {width:75px;}
-		#statusSelector td {border:0px;border-collapse:collapse;}
-		#statusSelector {border:0px;border-collapse:collapse;}	
-		tr.odd { background-color: #FFFFFF;}
-		tr.even {background-color: #FFFFFF;}
-		tr.odd td.sorting_1 {background-color: #FFFFFF;}
-		tr.even td.sorting_1 {background-color: #FFFFFF;}
-		label input,label select {display: inline;}
-		a.paginate.active{background-color: #66CCFF;}
-	</style> 
+
+	<cfoutput>
+		<script type="text/javascript" charset="utf-8">
+			$(document).ready(function() {
+		
+				$('###attributes.tableID#').dataTable({"sPaginationType": "bootstrap",
+				 "sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
+				 "sWrapper": "dataTables_wrapper form-inline"
+				});
+
+				$.extend( $.fn.dataTableExt.oStdClasses, {
+		         "sWrapper": "dataTables_wrapper form-inline"} );
+		
+			<cfif StructKeyExists(attributes, "tableBodyID")>
+				//link datatable rows if needed
+				$('###attributes.tableBodyID# tr').click(function() {
+					var thisId = $(this).attr('id');
+					<cfif StructKeyExists(attributes, "rowLink")>window.location = '#attributes.rowLink#&id=' + thisId;</cfif>
+				});
+			</cfif>
+			} );
+		</script>
+
+		<style>
+			###attributes.tableID#_length label {float:none;}
+			###attributes.tableID#_filter {margin-bottom:10px;}
+			###attributes.tableID#_length select {width:75px;}
+			##statusSelector td {border:0px;border-collapse:collapse;}
+			##statusSelector {border:0px;border-collapse:collapse;}	
+			tr.odd { background-color: ##FFFFFF;}
+			tr.even {background-color: ##FFFFFF;}
+			tr.odd td.sorting_1 {background-color: ##FFFFFF;}
+			tr.even td.sorting_1 {background-color: ##FFFFFF;}
+			label input,label select {display: inline;}
+			a.paginate.active{background-color: ##66CCFF;}
+		</style>
+	</cfoutput>
 </cfif>

@@ -17,11 +17,12 @@ ___
  | ._ _|_ ._ _  _|    _ _|_ o _ ._ 
 _|_| | |_ | (_)(_||_|(_  |_ |(_)| |
 ------------------------------------------------
-Enlist starting in early 2011 as the feature HackFest 
+Enlist started in early 2011 as the feature HackFest 
 project at the OpenCF Summit 2011 conference in Dallas, 
 TX. The OCFS HackFest aimed to build a functional application 
 that could be leveraged by non-profit organizations to 
 better manage and track everything to do with volunteers. 
+
 The idea came forth after Peter Farrell volunteered for a Team 
 Ortho event and noticed that all volunteer hours were being 
 tracked on spreadsheets. These spreadsheets were used to 
@@ -41,7 +42,7 @@ providing feedback, testing nightly / release candidate
 builds, test cases / application or finding defects 
 (in no particular order):
 
-Peter Farrel
+Peter Farrell
 Kurt Wiersma
 Matt Woodward
 Curt Gratz

@@ -22,8 +22,6 @@
     conditions of the GNU General Public License cover the whole
     combination.
 
-$Id: edit.cfm 186 2011-08-20 21:22:32Z peterjfarrell $
-
 Notes:
 --->
 	<cfimport prefix="form" taglib="/MachII/customtags/form" />
@@ -31,12 +29,16 @@ Notes:
 	<cfimport prefix="tags" taglib="/Enlist/customtags" />
 	<cfset copyToScope("${event.user},${event.chapters:arrayNew(1)},states=${properties.usStates},roles=${properties.userRoles},statuses=${properties.userStatuses}") />
 
-	<cfif NOT Len(variables.user.getId())>
-		<cfset variables.type = "New" />
-		<cfset variables.title = "New User" />
+	<cfif variables.user.getId() neq 0>
+		<view:message key="buttons.user.save" var="variables.save" />
+		<view:message key="meta.title.user.edit" var="variables.type" />
+		<view:message key="meta.title.user.edit" var="variables.title" arguments="#variables.user.getDisplayName()#" />
+		<view:meta type="title" content="#variables.title#" arguments="#variables.user.getDisplayName()#" />
 	<cfelse>
-		<cfset variables.type = "Edit" />
-		<cfset variables.title = "Edit User | #variables.user.getDisplayName()#" />
+		<view:message key="buttons.user.save" var="variables.save" />
+		<view:message key="meta.title.user.add" var="variables.type" />
+		<view:message key="meta.title.user.add" var="variables.title" />
+		<view:meta type="title" content="#variables.title#"  />
 	</cfif>
 
 	<view:meta type="title" content="#variables.title#" />
@@ -50,7 +52,7 @@ Notes:
 <cfoutput>
 
 <div>
-	<h3>#variables.title#</h3><br>
+	<h3>#variables.title#</h3><br />
 </div>
 
 <form:form actionEvent="user.save" bind="user" id="userForm">
@@ -125,24 +127,28 @@ Notes:
 					<form:option value="" label="" />
 				</form:select>&nbsp;
 				<form:input path="zip" size="11" maxlength="10" />
-			</td>
-		</tr>
+			</div>
+		</div>
 		<cfif chapters.RecordCount GT 0>
-			<tr>
-				<th><label id="chapterId">Chapter</label></th>
-				<td>
+			<div class="control-group">
+				<label class="control-label" for="chapterId"><view:message key="form.user.label.chapter" /></label>
+				<div class="controls">
 					<form:select path="chapterId">
+						<form:option value="" label="" />
 						<cfloop query="chapters">
 							<form:option value="#chapters.id#" label="#chapters.Name#" />
 						</cfloop>
 					</form:select>
-				</td>
-			</tr>
+				</div>
+			</div>
 		</cfif>
-		<tr>
-			<td><form:hidden name="id" path="id" /></td>
-			<td colspan="3"><form:button type="submit" name="save" value="Save User" class="btn-primary" /></td>
-		</tr>
-	</table>
+
+		<form:hidden name="id" path="id" />
+		<div class="form-actions">
+			<view:message key="" />
+			<form:button type="submit" name="save" value="#variables.save#" class="btn btn-primary"  />
+		</div>
+	</fieldset>
+
 </form:form>
 </cfoutput>
