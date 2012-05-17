@@ -61,7 +61,7 @@ Notes:
 		});
 	</view:script>
 </cfsilent>
-<cfoutput>	
+<cfoutput>
 
 <!---
 	Commenting this out for now. Blows up pretty hardcore in OpenBD.
@@ -70,15 +70,13 @@ Notes:
 <tags:displayerror />
 --->
 
-<h3>#variables.type# Activity</h3><br>
-
 <h3>#variables.type# Activity</h3>
-<form:form actionEvent="activity.save" bind="activity" id="actForm" class="form-horizontal">
+<form:form actionEvent="activity.save" bind="#variables.activity#" id="actForm" class="form-horizontal">
 	<fieldset>
 		<div class="control-group">
-			<label class="control-label" for="eventId"><view:message key="form.activity.label." /></label>
+			<label class="control-label" for="eventId"><view:message key="form.activity.label" /></label>
 			<div class="controls">
-				<form:select path="eventId" items="#variables.events#" bind="#variables.activity.getEvent().getId()#" class="required">
+				<form:select path="eventId" items="#variables.events#" bind="variables.activity.event.id" class="required">
 					<form:option value="" label="Choose an event" />
 				</form:select>
 			</div>
@@ -111,13 +109,13 @@ Notes:
 			<label class="control-label" for="location"><view:message key="form.activity.label.location" /></label>
 			<div class="controls"><form:input path="location" maxlength="20" class="required" /></div>
 		</div>
-		
+
 		<form:hidden path="id" />
 		<view:message key="button.save" var="variables.save" arguments="request.event" />
 		<div class="form-actions">
 			<form:button type="submit" name="save" value="#variables.save#" class="btn btn-primary" />
 		</div>
-	
+
 	</fieldset>
 </form:form>
 </cfoutput>
