@@ -49,12 +49,12 @@ Notes:
 		$(document).ready(function(){
 			jQuery.validator.addMethod("greaterThanEqual", function(value, element, params) {
 				if (!/Invalid|NaN/.test(new Date(value))) {
-					return new Date(value) >= new Date($(params).val());
+					return new Date(value) <= new Date($(params).val());
 				}
 				return isNaN(value) && isNaN($(params).val()) || (parseFloat(value) > parseFloat($(params).val()));
 			},'Must be greater than or equal to {0}.');
 			$("#actForm").validate();
-			$("#endDate").rules("add", {greaterThanEqual: "#startDate"});
+			$("#endDate").rules("add", {greaterThanEqual: "startDate"});
 		});
 
 		$(function() {
