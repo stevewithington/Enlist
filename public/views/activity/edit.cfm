@@ -35,9 +35,9 @@ Notes:
 
 	<cfif Len(variables.activity.getId())>
 		<view:message key="buttons.event.save" var="variables.save" />
-		<view:message key="meta.title.activity.edit" var="variables.type" />
-		<view:message key="meta.title.activity.edit" var="variables.title" arguments="#variables.theEvent.getName()#" />
-		<view:meta type="title" content="#variables.title#" arguments="#variables.theEvent.getName()#" />
+		<view:message key="meta.title.activity.edit" var="variables.type" arguments="#variables.activity.getTitle()#" />
+		<view:message key="meta.title.activity.edit" var="variables.title" arguments="#variables.activity.getTitle()#" />
+		<view:meta type="title" content="#variables.title#" />
 	<cfelse>
 		<view:message key="buttons.event.save" var="variables.save" />
 		<view:message key="meta.title.activity.add" var="variables.type" />
@@ -49,7 +49,7 @@ Notes:
 		$(document).ready(function(){
 			jQuery.validator.addMethod("greaterThanEqual", function(value, element, params) {
 				if (!/Invalid|NaN/.test(new Date(value))) {
-					return new Date(value) <= new Date($(params).val());
+					return new Date(value) >= new Date($(params).val());
 				}
 				return isNaN(value) && isNaN($(params).val()) || (parseFloat(value) > parseFloat($(params).val()));
 			},'Must be greater than or equal to {0}.');
