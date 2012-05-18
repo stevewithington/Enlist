@@ -60,15 +60,16 @@ Notes:
 		<cfscript>
 			var errors = StructNew();
 
-			if (Len(Trim(getName())) eq 0) {
+			// Trim is not required because the setter performs this functionality
+			if (NOT Len(getName())) {
 				errors.name = "You must enter a name for the chapter";
 			}
 
-			if (Len(Trim(getLocation())) eq 0) {
+			if (NOT Len(getLocation())) {
 				errors.location = "You must enter a location for the chapter";
 			}
 
-			if (Len(Trim(getStatus())) eq 0) {
+			if (NOT Len(getStatus())) {
 				errors.status = "You must enter a status for the chapter";
 			}
 
