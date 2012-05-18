@@ -61,6 +61,12 @@ Notes:
 			</parameters>
 		</property>
 
+		<property name="database" type="enlist.controllers.properties.DatabaseProperty">
+			<parameters>
+			
+			</parameters>
+		</property>
+		
 		<property name="coldspring" type="MachII.properties.ColdspringProperty">
 			<parameters>
 				<parameter name="beanFactoryPropertyName" value="serviceFactory"/>
