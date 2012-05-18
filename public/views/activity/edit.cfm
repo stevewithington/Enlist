@@ -31,16 +31,18 @@ Notes:
 	<cfimport prefix="tags" taglib="/Enlist/customtags" />
 	<view:message key="event.activity" var="request.event"/>
 
-	<cfset copyToScope("${event.activity},${event.events}") />
+	<cfset copyToScope("${event.activity},${event.theEvents}") />
 
-	<cfif NOT Len(variables.activity.getId())>
-		<view:message key="buttons.activity.save" var="variables.save" />
-		<view:message key="meta.title.activity.add" var="variables.type" />
-		<view:meta type="title" content="#variables.activity.getTitle()#" />
+	<cfif Len(variables.activity.getId())>
+		<view:message key="buttons.event.save" var="variables.save" />
+		<view:message key="meta.title.activity.edit" var="variables.type" />
+		<view:message key="meta.title.activity.edit" var="variables.title" arguments="#variables.theEvent.getName()#" />
+		<view:meta type="title" content="#variables.title#" arguments="#variables.theEvent.getName()#" />
 	<cfelse>
-		<view:message key="buttons.activity.save" var="variables.save" arguments="request.event" />
-		<view:message key="meta.title.activity.edit" var="variables.type" arguments="#variables.activity.getTitle()#" />
-		<view:meta type="title" content="#variables.activity.getTitle()#"  />
+		<view:message key="buttons.event.save" var="variables.save" />
+		<view:message key="meta.title.activity.add" var="variables.type" />
+		<view:message key="meta.title.activity.add" var="variables.title" />
+		<view:meta type="title" content="#variables.title#" />
 	</cfif>
 
 	<view:script>
@@ -76,7 +78,7 @@ Notes:
 		<div class="control-group">
 			<label class="control-label" for="eventId"><view:message key="form.activity.label" /></label>
 			<div class="controls">
-				<form:select path="eventId" items="#variables.events#" bind="variables.activity.event.id" class="required">
+				<form:select path="eventId" items="#variables.theEvents#" bind="variables.activity.event.id" class="required">
 					<form:option value="" label="Choose an event" />
 				</form:select>
 			</div>
@@ -111,11 +113,9 @@ Notes:
 		</div>
 
 		<form:hidden path="id" />
-		<view:message key="button.save" var="variables.save" arguments="request.event" />
 		<div class="form-actions">
 			<form:button type="submit" name="save" value="#variables.save#" class="btn btn-primary" />
 		</div>
-
 	</fieldset>
 </form:form>
 </cfoutput>
