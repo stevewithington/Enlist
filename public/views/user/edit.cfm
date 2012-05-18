@@ -55,11 +55,11 @@ Notes:
 	<h3>#variables.title#</h3><br />
 </div>
 
-<form:form actionEvent="user.save" bind="user" id="userForm">
+<form:form actionEvent="user.save" bind="user" id="userForm" class="form-horizontal">
 
 	<fieldset>
 		<div class="control-group">
-			<label id="status">Status *</label>
+			<label class="control-label" id="status">Status *</label>
 			<div class="controls">
 				<form:select path="status" items="#statuses#" class="required">
 					<form:option value="" label="" />
@@ -68,7 +68,7 @@ Notes:
 		</div>
 
 		<div class="control-group">
-			<label id="role">Role *</label>
+			<label class="control-label" id="role">Role *</label>
 			<div class="controls">
 				<form:select path="role" items="#roles#" class="required">
 					<form:option value="" label="" />
@@ -77,52 +77,71 @@ Notes:
 		</div>
 
 		<div class="control-group">
-			<label id="firstName">First Name *</label>
+			<label class="control-label" id="firstName">First Name *</label>
 			<div class="controls">
 				<form:input path="firstName" size="40" maxlength="200" class="required" />
 			</div>
 		</div>
 
 		<div class="control-group">
-			<label id="lastName">Last Name *</label>
+			<label class="control-label" id="lastName">Last Name *</label>
 			<div class="controls">
 				<form:input path="lastName" size="40" maxlength="200" class="required" />
 			</div>
 		</div>
 
 		<div class="control-group">
-			<label id="altEmail">Email *</label>
+			<label class="control-label" id="email">Email *</label>
 			<div class="controls">
-				<form:input path="altEmail" size="40" maxlength="200" class="required" />
+				<form:input path="email" size="40" maxlength="200" class="required" />
 			</div>
 		</div>
 
-<label id="twitterUsername">Identi.ca</label></th>
-			<td><form:input path="identicaUsername" size="40" maxlength="50" /></td>
-		</tr>
-		<tr>
-			<th><label id="twitterUsername">Twitter</label></th>
-			<td><form:input path="twitterUsername" size="40" maxlength="50" /></td>
-		</tr>
-		<tr>
-			<th><label id="phone">Phone</label></th>
-			<td><form:input path="phone" size="40" maxlength="40" /></td>
-		</tr>
-		<tr>
-			<th><label id="address1">Address 1</label></th>
-			<td><form:input path="address1" size="40" maxlength="200" /></td>
-		</tr>
-		<tr>
-			<th><label id="address2">Address 2</label></th>
-			<td><form:input path="address2" size="40" maxlength="200" /></td>
-		</tr>
-		<tr>
-			<th><label id="city">City</label></th>
-			<td><form:input path="city" size="40" maxlength="200" /></td>
-		</tr>
-		<tr>
-			<th><label id="state">State / Zip</label></th>
-			<td>
+		<div class="control-group">
+			<label class="control-label" id="twitterUsername">Identi.ca</label>
+			<div class="controls">
+				<form:input path="identicaUsername" size="40" class="required" />
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label" id="twitterUsername">Twitter</label>
+			<div class="controls">
+				<form:input path="twitterUsername" size="40" maxlength="50" class="required" />
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label" id="phone">Phone</label>
+			<div class="controls">
+				<form:input path="phone" size="40" maxlength="40" class="required" />
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label" id="address1">Address 1</label>
+			<div class="controls">
+				<form:input path="address1" size="40" maxlength="200" class="required" />
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label" id="address2">Address 2</label>
+			<div class="controls">
+				<form:input path="address2" size="40" maxlength="200" class="required" />
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label" id="city">City</label>
+			<div class="controls">
+				<form:input path="city" size="40" maxlength="200" class="required"/>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label" id="state">State / Zip</label>
+			<div class="controls">
 				<form:select path="state" items="#states#" labelKey="abbr" valueKey="abbr">
 					<form:option value="" label="" />
 				</form:select>&nbsp;
@@ -135,17 +154,15 @@ Notes:
 				<div class="controls">
 					<form:select path="chapterId">
 						<form:option value="" label="" />
-						<cfloop query="chapters">
-							<form:option value="#chapters.id#" label="#chapters.Name#" />
-						</cfloop>
+						<form:options items="#chapters#" valueCol="id" lableCol="name" />
 					</form:select>
 				</div>
 			</div>
 		</cfif>
 
 		<form:hidden name="id" path="id" />
+
 		<div class="form-actions">
-			<view:message key="" />
 			<form:button type="submit" name="save" value="#variables.save#" class="btn btn-primary"  />
 		</div>
 	</fieldset>
