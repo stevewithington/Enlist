@@ -23,92 +23,111 @@
 
 Notes:
 --->
-<cfcomponent output="false">
+<cfcomponent
+	displayname="ChapterGateway"
+	hint=""
+	output="false">
 
-	<cffunction name="getChapter" access="public" returntype="enlist.model.chapter.Chapter" output="false">
-		<cfargument name="chapterID" type="numeric" required="false" default="0">
+	<!---
+	PUBLIC FUNCTIONS - ScRuD
+	--->
+	<cffunction name="read" access="public" returntype="void" output="false">
+		<cfargument name="chapterID" type="numeric" required="true" />
+		<cfargument name="chapter" type="Chapter" required="true" />
 
-		<cfset var chapter = 0 />
 		<cfset var chapterQry = 0 />
-		<cfset var data = structNew() />
+		<cfset var data = StructNew() />
 
-		<cfif arguments.chapterID eq 0>
-			<cfset chapter = createObject("component", "enlist.model.chapter.Chapter").init() />
-		<cfelse>
+		<cfif arguments.chapterID>
 			<cfquery name="chapterQry">
-			select 	id, name, location, status
-			from	chapter
-			where 	id = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.chapterID#" />
+				select 	id, name, location, status
+				from	chapter
+				where 	id = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.chapterID#" />
 			</cfquery>
+
 			<cfloop list="#chapterQry.columnList#" index="field">
-				<cfset 'data.#field#' = evaluate('chapterQry.#field#')>
+				<cfset data[field] = chapterQry[field] />
 			</cfloop>
-			<cfset chapter = createObject("component", "enlist.model.chapter.Chapter").init(argumentcollection=data) />
+
+			<cfset arguments.chapter.init(argumentcollection=data) />
 		</cfif>
-
-		<cfreturn chapter />
-	</cffunction>
-
-	<cffunction name="getChapters" access="public" returntype="query" output="false">
-		<cfset var chapters = 0>
-		<cfquery name="chapters">
-		select 	id, name, location, status
-		from	chapter
-		order by name
-		</cfquery>
-		<cfreturn chapters />
 	</cffunction>
 
 	<cffunction name="saveChapter" access="public" returntype="void" output="false">
-		<cfargument name="chapter" type="enlist.model.chapter.Chapter" required="true">
-		<cfif arguments.chapter.getID() neq 0>
-			<cfset update(arguments.chapter)>
+		<cfargument name="chapter" type="enlist.model.chapter.Chapter" required="true" />
+
+		<cfif arguments.chapter.getID()>
+			<cfset update(arguments.chapter) />
 		<cfelse>
-			<cfset create(arguments.chapter)>
+			<cfset create(arguments.chapter) />
 		</cfif>
 	</cffunction>
-	
+
 	<cffunction name="create" access="private" returntype="void" output="false">
-		<cfargument name="chapter" type="enlist.model.chapter.Chapter" required="yes">
-		<cfset var data = chapter.getInstanceMemento()>
-		<cfset var newchapter = 0>
+		<cfargument name="chapter" type="enlist.model.chapter.Chapter" required="true" />
+
+		<cfset var data = chapter.getInstanceMemento() />
+		<cfset var newChapterQry = 0 />
+		<cfset var maxIdQry = 0 />
+
 		<cftransaction>
-		<cfquery name="newchapter">
-		INSERT INTO chapter (name, location, status)
-		VALUES (
-			<cfqueryparam cfsqltype="cf_sql_varchar" value="#data.name#"
-				null="#yesnoformat(len(data.name) eq 0)#" maxlength="100">,
-			<cfqueryparam cfsqltype="cf_sql_varchar" value="#data.location#"
-				null="#yesnoformat(len(data.location) eq 0)#" maxlength="100">,
-			<cfqueryparam cfsqltype="cf_sql_varchar" value="#data.status#"
-				null="#yesnoformat(len(data.status) eq 0)#" maxlength="50">
-		)
-		</cfquery>
-		<cfquery name="qMaxID">
-		SELECT LAST_INSERT_ID() as maxID
-		</cfquery>
+			<cfquery name="newChapterQry">
+				INSERT INTO chapter (
+					name
+					, location
+					, status
+				) VALUES (
+					<cfqueryparam cfsqltype="cf_sql_varchar" value="#data.name#"
+						null="#yesnoformat(len(data.name) eq 0)#" maxlength="100" />
+					, <cfqueryparam cfsqltype="cf_sql_varchar" value="#data.location#"
+						null="#yesnoformat(len(data.location) eq 0)#" maxlength="100" />
+					, <cfqueryparam cfsqltype="cf_sql_varchar" value="#data.status#"
+						null="#yesnoformat(len(data.status) eq 0)#" maxlength="50" />
+				)
+			</cfquery>
+			<cfquery name="maxIdQry">
+				SELECT LAST_INSERT_ID() as maxID
+			</cfquery>
 		</cftransaction>
-		<cfset chapter.setId(qMaxID.maxID)>
+
+		<cfset chapter.setId(maxIdQry.maxID) />
 	</cffunction>
 
 	<cffunction name="update" access="private" returntype="void" output="false">
-		<cfargument name="chapter" type="enlist.model.chapter.chapter" required="yes">
-		<cfset var data = chapter.getInstanceMemento()>
-		<cfset var updatechapter = 0>
-		<cfquery name="updatechapter">
+		<cfargument name="chapter" type="enlist.model.chapter.chapter" required="true" />
+
+		<cfset var data = chapter.getInstanceMemento() />
+		<cfset var updateChapterQry = 0 />
+
+		<cfquery name="updateChapterQry">
 		UPDATE chapter
-		SET 
-			name = 
-				<cfqueryparam cfsqltype="cf_sql_varchar" value="#data.name#"
-					null="#yesnoformat(len(data.name) eq 0)#" maxlength="100">,
-			location = 
-				<cfqueryparam cfsqltype="cf_sql_varchar" value="#data.location#"
-					null="#yesnoformat(len(data.location) eq 0)#" maxlength="100">,
-			status = 
-				<cfqueryparam cfsqltype="cf_sql_varchar" value="#data.status#"
-					null="#yesnoformat(len(data.status) eq 0)#" maxlength="50">
-		WHERE id = <cfqueryparam cfsqltype="cf_sql_integer" value="#data.id#">
+			SET
+				name =
+					<cfqueryparam cfsqltype="cf_sql_varchar" value="#data.name#"
+						null="#yesnoformat(len(data.name) eq 0)#" maxlength="100" />
+				, location =
+					<cfqueryparam cfsqltype="cf_sql_varchar" value="#data.location#"
+						null="#yesnoformat(len(data.location) eq 0)#" maxlength="100" />
+				, status =
+					<cfqueryparam cfsqltype="cf_sql_varchar" value="#data.status#"
+						null="#yesnoformat(len(data.status) eq 0)#" maxlength="50" />
+			WHERE id = <cfqueryparam cfsqltype="cf_sql_integer" value="#data.id#" />
 		</cfquery>
+	</cffunction>
+
+	<!---
+	PUBLIC FUNCTIONS - GATEWAY
+	--->
+	<cffunction name="getChapters" access="public" returntype="query" output="false">
+		<cfset var chaptersQry = 0 />
+
+		<cfquery name="chaptersQry">
+			select 	id, name, location, status
+			from	chapter
+			order by name
+		</cfquery>
+
+		<cfreturn chaptersQry />
 	</cffunction>
 
 </cfcomponent>

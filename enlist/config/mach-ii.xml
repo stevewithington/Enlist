@@ -205,7 +205,7 @@ Notes:
 		</event-handler>		
 		<event-handler event="activity.edit" access="public">
 			<notify listener="activityListener" method="getActivity" resultArg="activity" />
-			<call-method bean="eventService" method="getEventsAsStruct" resultArg="events" />
+			<call-method bean="eventService" method="getEventsAsStruct" resultArg="theEvents" />
 			<view-page name="activity.edit" contentArg="layout.content"/>
 			<execute subroutine="doMainLayout"/>
 		</event-handler>

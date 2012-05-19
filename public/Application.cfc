@@ -20,7 +20,7 @@
     making a combined work based on this library.  Thus, the terms and
     conditions of the GNU General Public License cover the whole
     combination.
-    
+
 --->
 <cfcomponent
 	displayname="Application"
@@ -51,8 +51,8 @@
 	--->
 	<cfset MACHII_CONFIG_PATH = ExpandPath("/enlist/config/mach-ii.xml") />
 	<cfset MACHII_HANDLE_ONLOAD = false />
-	<cfset MACHII_CONFIG_MODE = 1 />
-	
+	<cfset MACHII_CONFIG_MODE = 0 />
+
 	<!---
 		Most of the rest of the properties, methods, etc. have "intelligent defaults"
 		set in MachII.mach-ii (which Application.cfc extends). The typical Mach-II
@@ -68,25 +68,8 @@
 	--->
 
 	<!---
-	PUBLIC FUNCTIONS
+	PUBLIC FUNCTIONS - APPLICATION LIFECYCLE
 	--->
-	<cffunction name="onApplicationStart" access="public" returntype="void" output="false"
-		hint="Overrides the Mach-II bootstrapper and then calls the super method.">
-
-		<!--- Setup datasource and create db schema --->
-		<cfset DatasourceCreate("enlist"
-			, {
-				drivername: "org.h2.Driver"
-				, hoststring: "jdbc:h2:" & ExpandPath('./') & "/WEB-INF/bluedragon/h2databases/enlist;AUTO_SERVER=TRUE;IGNORECASE=false;MODE=MySQL"
-				, initstring: "RUNSCRIPT FROM '#ExpandPath("../docs/sql")#/mysql_createDB.sql'\\;"
-				, databasename: "enlist"
-				, username: "enlist"
-				, password: "enlist"
-			}) />
-
-		<cfset super.init() />
-	</cffunction>
-
 	<cffunction name="onRequestStart" access="public" returntype="void" output="true"
 		hint="Overrides the Mach-II bootstrapper and then calls the super method.">
 		<cfargument name="targetPage" type="string" required="true" />
@@ -95,16 +78,16 @@
 			<cfset reloadConfig() />
 		</cfif>
 
-		<!--- TODO: remove before putting into production --->
+		<!--- This won't work if you running the app into production group environments --->
 		<cfif StructKeyExists(url, "recreateDb")>
-			<cfquery datasource="enlist">
-				drop all objects;
-			</cfquery>
-			<cfset datasourceDelete("enlist") />
-			<cfset onApplicationStart() />
+			<cfset getProperty('database').recreateDatabase() />
 		</cfif>
 
 		<cfset super.onRequestStart(arguments.targetPage) />
 	</cffunction>
+
+	<!---
+	PRROTECTED FUNCTIONS
+	--->
 
 </cfcomponent>

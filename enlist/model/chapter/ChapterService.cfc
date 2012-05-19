@@ -23,7 +23,9 @@
 
 Notes:
 --->
-<cfcomponent output="false">
+<cfcomponent
+	displayname="ChapterService"
+	output="false">
 
 	<!---
 	PROPERTIES
@@ -47,11 +49,18 @@ Notes:
 	</cffunction>
 
 	<!---
-	PUBLIC FUNCTIONS
+	PUBLIC FUNCTIONS - GENERAL
 	--->
-	<cffunction name="getChapter" access="public" returntype="enlist.model.chapter.Chapter" output="false">
-		<cfargument name="chapterID" type="string" required="false" default="">
-		<cfreturn getChapterGateway().getChapter(arguments.chapterID) />
+	<cffunction name="getChapter" access="public" returntype="enlist.model.chapter.Chapter" output="false"
+		hint="Gets a chapter by chapter ID.">
+		<cfargument name="chapterID" type="string" required="false"
+			default="0" />
+
+		<cfset var chapter = createChapterBean() />
+
+		<cfset getChapterGateway().read(arguments.chapterID, chapter) />
+
+		<cfreturn chapter />
 	</cffunction>
 
 	<cffunction name="getChapters" access="public" returntype="query" output="false">
@@ -59,12 +68,22 @@ Notes:
 	</cffunction>
 
 	<cffunction name="saveChapter" access="public" returntype="any" output="false">
-		<cfargument name="chapter" type="enlist.model.chapter.Chapter" required="true">
+		<cfargument name="chapter" type="enlist.model.chapter.Chapter" required="true" />
+
 		<cfset var errors = arguments.chapter.validate() />
-		<cfif (structIsEmpty(errors))>
-			<cfset getChapterGateway().saveChapter(arguments.chapter) />
+
+		<cfif (StructIsEmpty(errors))>
+			<cfset getChapterGateway().save(arguments.chapter) />
 		</cfif>
+
 		<cfreturn errors />
+	</cffunction>
+
+	<!---
+	PUBLIC FUNCTIONS - UTILS
+	--->
+	<cffunction name="createChapterBean" access="public" returntype="Chapter" output="false">
+		<cfreturn CreateObject("component", "Chapter").init() />
 	</cffunction>
 
 </cfcomponent>

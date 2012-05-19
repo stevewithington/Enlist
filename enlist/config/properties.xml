@@ -39,7 +39,7 @@ Notes:
 				<parameter name="development">
 					<struct>
 						<key name="environmentGroup" value="development"/>
-						<key name="servers" value="localhost,enlist.local"/>
+						<key name="servers" value="localhost,enlist.local,127.0.0.1"/>
 						<key name="properties">
 							<struct>
 								<key name="modules:lazyLoad" value="*"/>
@@ -61,6 +61,12 @@ Notes:
 			</parameters>
 		</property>
 
+		<property name="database" type="enlist.controllers.properties.DatabaseProperty">
+			<parameters>
+			
+			</parameters>
+		</property>
+		
 		<property name="coldspring" type="MachII.properties.ColdspringProperty">
 			<parameters>
 				<parameter name="beanFactoryPropertyName" value="serviceFactory"/>

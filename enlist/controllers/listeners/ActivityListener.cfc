@@ -101,7 +101,7 @@ Notes:
 				bean = getActivityService().getActivity();
 			}
 		</cfscript>
-
+		
 		<cfreturn bean />
 	</cffunction>
 

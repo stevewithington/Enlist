@@ -21,8 +21,6 @@
     conditions of the GNU General Public License cover the whole
     combination.
 
-$Id$
-
 Notes:
 --->
 <cfcomponent
@@ -37,13 +35,13 @@ Notes:
 	--->
 	<cfset variables.settingService = "" />
 
-
 	<!---
 	INITIALIZATION / CONFIGURATION
 	--->
 
 	<cffunction name="configure" access="public" returntype="void" output="false"
 		hint="Configures the property.">
+
 		<!--- Put custom configuration for this property here. --->
 		<cfset variables.settingService = getProperty('settingService') />
 		<cfset setProperty('setting', getSetting()) />
@@ -52,13 +50,18 @@ Notes:
 	<!---
 	PUBLIC FUNCTIONS
 	--->
-	<cffunction name="getSetting" access="public" returntype="enlist.model.setting.Setting" output="false">
+	<cffunction name="getSetting" access="public" returntype="enlist.model.setting.Setting" output="false"
+		hint="">
+
 		<cfset var setting = variables.settingService.getLastSetting() />
-		<!--- if this is a new app without any settings, save the defaults --->
-		<cfif setting.getID() eq 0>
+
+		<!--- If this is a new app without any settings, save the defaults --->
+		<cfif setting.getID() EQ 0>
 			<cfset variables.settingService.saveSetting(setting) />
 			<cfset setting = variables.settingService.getLastSetting() />
 		</cfif>
+
 		<cfreturn setting />
 	</cffunction>
+
 </cfcomponent>

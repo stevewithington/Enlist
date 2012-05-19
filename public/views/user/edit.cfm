@@ -41,14 +41,15 @@ Notes:
 		<view:meta type="title" content="#variables.title#"  />
 	</cfif>
 
+	<view:meta type="title" content="#variables.title#" />
+
 	<view:script>
 		$(document).ready(function(){
 			$("#userForm").validate();
 		});
 	</view:script>
 </cfsilent>
-
-<cfoutput>		
+<cfoutput>
 
 <div>
 	<h3>#variables.title#</h3><br />
@@ -58,98 +59,88 @@ Notes:
 
 	<fieldset>
 		<div class="control-group">
-			<label class="control-label" for="status"><view:message key="form.user.label.status" /> *</label>
+			<label class="control-label" id="status">Status *</label>
 			<div class="controls">
 				<form:select path="status" items="#statuses#" class="required">
 					<form:option value="" label="" />
 				</form:select>
 			</div>
 		</div>
+
 		<div class="control-group">
-			<label class="control-label" for="role"><view:message key="form.user.label.role" /> *</label>
+			<label class="control-label" id="role">Role *</label>
 			<div class="controls">
 				<form:select path="role" items="#roles#" class="required">
 					<form:option value="" label="" />
 				</form:select>
 			</div>
-		</div>	
+		</div>
+
 		<div class="control-group">
-			<label class="control-label" for="firstName"><view:message key="form.user.label.firstname" /> *</label>
+			<label class="control-label" id="firstName">First Name *</label>
 			<div class="controls">
 				<form:input path="firstName" size="40" maxlength="200" class="required" />
 			</div>
 		</div>
+
 		<div class="control-group">
-			<label class="control-label" for="lastName"><view:message key="form.user.label.lastname" /> *</label>
+			<label class="control-label" id="lastName">Last Name *</label>
 			<div class="controls">
 				<form:input path="lastName" size="40" maxlength="200" class="required" />
 			</div>
 		</div>
+
 		<div class="control-group">
-			<label class="control-label" for="email"><view:message key="form.user.label.email" /> *</label>
+			<label class="control-label" id="email">Email *</label>
 			<div class="controls">
 				<form:input path="email" size="40" maxlength="200" class="required" />
 			</div>
 		</div>
+
 		<div class="control-group">
-			<label class="control-label" for="password"><view:message key="common.password" /><cfif variables.user.getId() eq 0> *</cfif></label>
+			<label class="control-label" id="twitterUsername">Identi.ca</label>
 			<div class="controls">
-				<cfif variables.user.getId() eq 0>
-					<form:password name="password" size="40" maxlength="40" class="required" />
-				<cfelse>
-					<form:password name="password" size="40" maxlength="40" /><cfif variables.user.getId() neq 0><br />
-					<em>(Only enter a password if you want to change it!)</em></cfif>
-				</cfif>
+				<form:input path="identicaUsername" size="40" class="required" />
 			</div>
 		</div>
+
 		<div class="control-group">
-			<label class="control-label" for="confirmPassword"><view:message key="common.confirmPassword" /><cfif variables.user.getId() eq 0> *</cfif></label>
+			<label class="control-label" id="twitterUsername">Twitter</label>
 			<div class="controls">
-				<cfif variables.user.getId() eq 0>
-					<form:password name="confirmPassword" size="40" maxlength="40" class="required" />
-				<cfelse>
-					<form:password name="confirmPassword" size="40" maxlength="40" />
-				</cfif>
+				<form:input path="twitterUsername" size="40" maxlength="50" class="required" />
 			</div>
 		</div>
+
 		<div class="control-group">
-			<label class="control-label" for="identicaUsername"><view:message key="form.user.label.identica" /></label>
+			<label class="control-label" id="phone">Phone</label>
 			<div class="controls">
-				<form:input path="identicaUsername" size="40" maxlength="50" />
+				<form:input path="phone" size="40" maxlength="40" class="required" />
 			</div>
 		</div>
+
 		<div class="control-group">
-			<label class="control-label" for="twitterUsername"><view:message key="form.user.label.twitter" /></label>
+			<label class="control-label" id="address1">Address 1</label>
 			<div class="controls">
-				<form:input path="twitterUsername" size="40" maxlength="50" />
+				<form:input path="address1" size="40" maxlength="200" class="required" />
 			</div>
 		</div>
+
 		<div class="control-group">
-			<label class="control-label" for="phone"><view:message key="form.user.label.phone" /></label>
+			<label class="control-label" id="address2">Address 2</label>
 			<div class="controls">
-				<form:input path="phone" size="40" maxlength="40" />
+				<form:input path="address2" size="40" maxlength="200" class="required" />
 			</div>
 		</div>
+
 		<div class="control-group">
-			<label class="control-label" for="address1"><view:message key="form.user.label.address" /></label>
+			<label class="control-label" id="city">City</label>
 			<div class="controls">
-				<form:input path="address1" size="40" maxlength="200" />
+				<form:input path="city" size="40" maxlength="200" class="required"/>
 			</div>
 		</div>
+
 		<div class="control-group">
-			<label class="control-label" for="address2"><view:message key="form.user.label.address2" /></label>
-			<div class="controls">
-				<form:input path="address2" size="40" maxlength="200" />
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label" for="city"><view:message key="form.user.label.city" /></label>
-			<div class="controls">
-				<form:input path="city" size="40" maxlength="200" />
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label" for="state"><view:message key="form.user.label.state" /> / <view:message key="form.user.label.postalcode" /></label>
+			<label class="control-label" id="state">State / Zip</label>
 			<div class="controls">
 				<form:select path="state" items="#states#" labelKey="abbr" valueKey="abbr">
 					<form:option value="" label="" />
@@ -163,17 +154,15 @@ Notes:
 				<div class="controls">
 					<form:select path="chapterId">
 						<form:option value="" label="" />
-						<cfloop query="chapters">
-							<form:option value="#chapters.id#" label="#chapters.Name#" />
-						</cfloop>
+						<form:options items="#chapters#" valueCol="id" lableCol="name" />
 					</form:select>
 				</div>
 			</div>
 		</cfif>
 
 		<form:hidden name="id" path="id" />
+
 		<div class="form-actions">
-			<view:message key="" />
 			<form:button type="submit" name="save" value="#variables.save#" class="btn btn-primary"  />
 		</div>
 	</fieldset>

@@ -55,20 +55,21 @@ Notes:
 	<cffunction name="getDisplayName" access="public" returntype="string" output="false">
 		<cfreturn getName() & " (" & getLocation() & ")" />
 	</cffunction>
-	
+
 	<cffunction name="validate" access="public" returntype="struct" output="false">
 		<cfscript>
 			var errors = StructNew();
 
-			if (Len(Trim(getName())) eq 0) {
+			// Trim is not required because the setter performs this functionality
+			if (NOT Len(getName())) {
 				errors.name = "You must enter a name for the chapter";
 			}
 
-			if (Len(Trim(getLocation())) eq 0) {
+			if (NOT Len(getLocation())) {
 				errors.location = "You must enter a location for the chapter";
 			}
 
-			if (Len(Trim(getStatus())) eq 0) {
+			if (NOT Len(getStatus())) {
 				errors.status = "You must enter a status for the chapter";
 			}
 
@@ -78,19 +79,19 @@ Notes:
 
 	<cffunction name="setInstanceMemento" access="public" returntype="void" output="false">
 		<cfargument name="data" type="struct" required="true" />
-		
+
 		<cfset setId(arguments.data.id) />
 		<cfset setName(arguments.data.name) />
 		<cfset setLocation(arguments.data.location) />
 		<cfset setStatus(arguments.data.status) />
  	</cffunction>
 	<cffunction name="getInstanceMemento" access="public" returntype="struct" output="false">
-		
-		<cfset var data = structnew() />
+
+		<cfset var data = StructNew() />
 		<cfset var fieldname = "" />
 
 		<cfloop list="id,name,location,status" index="fieldname">
-			<cfset data[fieldname] = variables[fieldname]>
+			<cfset data[fieldname] = variables[fieldname] />
 		</cfloop>
 
 		<cfreturn data />

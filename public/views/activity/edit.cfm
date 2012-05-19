@@ -28,19 +28,21 @@ Notes:
 --->
 	<cfimport prefix="view" taglib="/MachII/customtags/view" />
 	<cfimport prefix="form" taglib="/MachII/customtags/form" />
-	<cfimport prefix="tags" taglib="/enlist/customtags" />
+	<cfimport prefix="tags" taglib="/Enlist/customtags" />
 	<view:message key="event.activity" var="request.event"/>
 
-	<cfset copyToScope("${event.activity},${event.events}") />
+	<cfset copyToScope("${event.activity},${event.theEvents}") />
 
-	<cfif NOT Len(variables.activity.getId())>
-		<view:message key="buttons.activity.save" var="variables.save" />
-		<view:message key="meta.title.activity.add" var="variables.type" />
-		<view:meta type="title" content="#variables.activity.getTitle()#" />
-	<cfelse>
-		<view:message key="buttons.save" var="variables.save" arguments="request.event" />
+	<cfif Len(variables.activity.getId())>
+		<view:message key="buttons.event.save" var="variables.save" />
 		<view:message key="meta.title.activity.edit" var="variables.type" arguments="#variables.activity.getTitle()#" />
-		<view:meta type="title" content="#variables.save#"  />
+		<view:message key="meta.title.activity.edit" var="variables.title" arguments="#variables.activity.getTitle()#" />
+		<view:meta type="title" content="#variables.title#" />
+	<cfelse>
+		<view:message key="buttons.event.save" var="variables.save" />
+		<view:message key="meta.title.activity.add" var="variables.type" />
+		<view:message key="meta.title.activity.add" var="variables.title" />
+		<view:meta type="title" content="#variables.title#" />
 	</cfif>
 
 	<view:script>
@@ -52,7 +54,7 @@ Notes:
 				return isNaN(value) && isNaN($(params).val()) || (parseFloat(value) > parseFloat($(params).val()));
 			},'Must be greater than or equal to {0}.');
 			$("#actForm").validate();
-			$("#endDate").rules("add", {greaterThanEqual: "#startDate"});
+			$("#endDate").rules("add", {greaterThanEqual: "startDate"});
 		});
 
 		$(function() {
@@ -61,7 +63,7 @@ Notes:
 		});
 	</view:script>
 </cfsilent>
-<cfoutput>	
+<cfoutput>
 
 <!---
 	Commenting this out for now. Blows up pretty hardcore in OpenBD.
@@ -70,15 +72,13 @@ Notes:
 <tags:displayerror />
 --->
 
-<h3>#variables.type# Activity</h3><br>
-
 <h3>#variables.type# Activity</h3>
-<form:form actionEvent="activity.save" bind="activity" id="actForm" class="form-horizontal">
+<form:form actionEvent="activity.save" bind="#variables.activity#" id="actForm" class="form-horizontal">
 	<fieldset>
 		<div class="control-group">
-			<label class="control-label" for="eventId"><view:message key="form.activity.label." /></label>
+			<label class="control-label" for="eventId"><view:message key="form.activity.label" /></label>
 			<div class="controls">
-				<form:select path="eventId" items="#variables.events#" bind="#variables.activity.getEvent().getId()#" class="required">
+				<form:select path="eventId" items="#variables.theEvents#" bind="variables.activity.event.id" class="required">
 					<form:option value="" label="Choose an event" />
 				</form:select>
 			</div>
@@ -111,13 +111,11 @@ Notes:
 			<label class="control-label" for="location"><view:message key="form.activity.label.location" /></label>
 			<div class="controls"><form:input path="location" maxlength="20" class="required" /></div>
 		</div>
-		
+
 		<form:hidden path="id" />
-		<view:message key="button.save" var="variables.save" arguments="request.event" />
 		<div class="form-actions">
 			<form:button type="submit" name="save" value="#variables.save#" class="btn btn-primary" />
 		</div>
-	
 	</fieldset>
 </form:form>
 </cfoutput>
