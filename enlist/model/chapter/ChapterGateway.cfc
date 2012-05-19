@@ -53,8 +53,8 @@ Notes:
 		</cfif>
 	</cffunction>
 
-	<cffunction name="saveChapter" access="public" returntype="void" output="false">
-		<cfargument name="chapter" type="enlist.model.chapter.Chapter" required="true" />
+	<cffunction name="save" access="public" returntype="void" output="false">
+		<cfargument name="chapter" type="Chapter" required="true" />
 
 		<cfif arguments.chapter.getID()>
 			<cfset update(arguments.chapter) />
@@ -64,7 +64,7 @@ Notes:
 	</cffunction>
 
 	<cffunction name="create" access="private" returntype="void" output="false">
-		<cfargument name="chapter" type="enlist.model.chapter.Chapter" required="true" />
+		<cfargument name="chapter" type="Chapter" required="true" />
 
 		<cfset var data = chapter.getInstanceMemento() />
 		<cfset var newChapterQry = 0 />
@@ -94,7 +94,7 @@ Notes:
 	</cffunction>
 
 	<cffunction name="update" access="private" returntype="void" output="false">
-		<cfargument name="chapter" type="enlist.model.chapter.chapter" required="true" />
+		<cfargument name="chapter" type="Chapter" required="true" />
 
 		<cfset var data = chapter.getInstanceMemento() />
 		<cfset var updateChapterQry = 0 />

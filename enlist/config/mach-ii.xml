@@ -139,8 +139,8 @@ Notes:
 			<event-mapping event="fail" mapping="register" />
 			<event-arg name="message" value="Registration saved" />
 			<notify listener="userListener" method="saveUser" />
-			<!-- TODO: should the email notification be moved to the listener so it's more transactional with 
-						creating the new user? -->
+			<!-- TODO: should the email notification be moved to the listener so it's more 
+						transactional with creating the new user? -->
 			<event-arg name="email.title" value="welcomeNewVolunteerTitle"/>
 			<event-arg name="email.message" value="welcomeNewVolunteer"/>
 			<publish message="email.Notification"/>

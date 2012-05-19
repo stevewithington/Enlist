@@ -100,42 +100,42 @@ Notes:
 		<div class="control-group">
 			<label class="control-label" id="twitterUsername">Identi.ca</label>
 			<div class="controls">
-				<form:input path="identicaUsername" size="40" class="required" />
+				<form:input path="identicaUsername" size="40" />
 			</div>
 		</div>
 
 		<div class="control-group">
 			<label class="control-label" id="twitterUsername">Twitter</label>
 			<div class="controls">
-				<form:input path="twitterUsername" size="40" maxlength="50" class="required" />
+				<form:input path="twitterUsername" size="40" maxlength="50" />
 			</div>
 		</div>
 
 		<div class="control-group">
 			<label class="control-label" id="phone">Phone</label>
 			<div class="controls">
-				<form:input path="phone" size="40" maxlength="40" class="required" />
+				<form:input path="phone" size="40" maxlength="40" />
 			</div>
 		</div>
 
 		<div class="control-group">
 			<label class="control-label" id="address1">Address 1</label>
 			<div class="controls">
-				<form:input path="address1" size="40" maxlength="200" class="required" />
+				<form:input path="address1" size="40" maxlength="200" />
 			</div>
 		</div>
 
 		<div class="control-group">
 			<label class="control-label" id="address2">Address 2</label>
 			<div class="controls">
-				<form:input path="address2" size="40" maxlength="200" class="required" />
+				<form:input path="address2" size="40" maxlength="200" />
 			</div>
 		</div>
 
 		<div class="control-group">
 			<label class="control-label" id="city">City</label>
 			<div class="controls">
-				<form:input path="city" size="40" maxlength="200" class="required"/>
+				<form:input path="city" size="40" maxlength="200" />
 			</div>
 		</div>
 
@@ -154,7 +154,7 @@ Notes:
 				<div class="controls">
 					<form:select path="chapterId">
 						<form:option value="" label="" />
-						<form:options items="#chapters#" valueCol="id" lableCol="name" />
+						<form:options items="#chapters#" valueCol="id" labelCol="name" />
 					</form:select>
 				</div>
 			</div>
